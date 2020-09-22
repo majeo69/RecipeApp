@@ -4,7 +4,7 @@ import './Footer.styles.css';
 const Footer = () => {
   return (
     <div className='footer-container'>
-      <h5>This is the footer of this website</h5>
+      <p>© Copyright 2020. Created and Designed by Stephanie Wang and Fangyu Hsu.</p>
     </div>
   );
 }

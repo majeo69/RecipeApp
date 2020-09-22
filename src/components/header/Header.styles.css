@@ -1,7 +1,24 @@
 .header-container {
-  width: 100%;
-  background-color: bisque;
-  margin: 0px 0px;
-  display: flex;
-  justify-content: center;
+  background-color: #cccccc;
+	opacity: 0.6;
+	height: 70px;
+	display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3%;
 }
+.web-logo {
+  text-decoration: none;
+}
+.header-options {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2%;
+}
+.header-option {
+  padding: 0 3% 0 3%;
+  text-decoration: none;
+}
+
