@@ -9,7 +9,7 @@ const Header = () => {
       <div className='header-options'>
         <Link className='header-option' to='/explore'>Explore</Link>
         <Link className='header-option' to='/myrecipes'>My Recipes</Link>
-        <Link className='header-option' to='/login'>Login</Link>
+        <Link className='header-option' to='/signin'>Sign in</Link>
       </div>
     </div>
   );
