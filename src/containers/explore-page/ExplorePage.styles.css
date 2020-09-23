@@ -1,0 +1,13 @@
+.explore-container {
+  height: 700px;
+}
+.searchbar-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+.searchbar-explore {
+  width: 50%;
+  margin: 0 auto;
+}

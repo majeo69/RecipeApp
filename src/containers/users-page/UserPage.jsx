@@ -3,7 +3,7 @@ import './UserPage.styles.css';
 
 const UserPage = () => {
   return (
-    <div>
+    <div className='user-page-container'>
     </div>
   );
 }
