@@ -9,6 +9,7 @@ import HomePage from './home-page/HomePage';
 import ExplorePage from './explore-page/ExplorePage';
 import UserPage from './users-page/UserPage';
 import SignInPage from './signin-page/SignInPage';
+import CreateRecipePage from './create-recipe-page/CreateRecipePage'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/explore' component={ExplorePage} />
         <Route path='/myrecipes' component={UserPage} />
         <Route path='/signin' component={SignInPage} />
+        <Route path='/create' component={CreateRecipePage} />
       </Switch>
       <Footer />
     </div>
