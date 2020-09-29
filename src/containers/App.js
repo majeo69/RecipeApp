@@ -7,7 +7,7 @@ import Footer from '../components/footer/Footer';
 
 import HomePage from './home-page/HomePage';
 import ExplorePage from './explore-page/ExplorePage';
-import UserPage from './users-page/UserPage';
+import UserRecipePage from './user-recipe-page/UserRecipePage';
 import SignInPage from './signin-page/SignInPage';
 import CreateRecipePage from './create-recipe-page/CreateRecipePage'
 
@@ -19,7 +19,7 @@ function App() {
       <Switch>
       	<Route exact path='/' component={HomePage} />
         <Route path='/explore' component={ExplorePage} />
-        <Route path='/myrecipes' component={UserPage} />
+        <Route path='/myrecipes' component={UserRecipePage} />
         <Route path='/signin' component={SignInPage} />
         <Route path='/create' component={CreateRecipePage} />
       </Switch>

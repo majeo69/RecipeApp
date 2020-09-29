@@ -3,7 +3,7 @@ import './CreateRecipePage.styles.css';
 
 const CreateRecipePage = () => {
   return (
-    <div>
+    <div className='create-recipe-page-container'>
     </div>
   );
 }

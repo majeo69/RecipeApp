@@ -1,0 +1,26 @@
+.user-recipe-page-container {
+  height: 700px;
+  display: flex;
+  flex-direction: row;
+
+  .user-recipe-container {
+    width: 75vw;
+
+    .user-searchbar-container {
+      display: flex;
+      justify-content: center;
+      padding-top: 35px;
+      padding-bottom: 35px;
+
+      .searchbar-user {
+        width: 50%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .personal-info-container {
+    width: 25vw;
+    background: lightsalmon;
+  }
+}
