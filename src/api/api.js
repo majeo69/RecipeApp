@@ -1,2 +1,2 @@
-export const apiCall = (link) =>
-  fetch(link).then(response => response.json())
+export const apiCall = (link, requestbody) =>
+  fetch(link, requestbody).then(response => response.json())

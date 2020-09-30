@@ -1,16 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './ExplorePage.styles.scss';
 
-import SearchBar from '../../components/searchbar/SearchBar';
+import { connect } from 'react-redux';
+import { requestAllPublicRecipes } from '../../redux/puclic-recipes/public.recipes.actions'
 
-const ExplorePage = () => {
-  return (
-    <div className='explore-page-container'>
-      <div className='explore-searchbar-container'>
-        <SearchBar className='searchbar-explore'>Explore universe recipes from here!</SearchBar>
-      </div>
-    </div>
-  );
+import SearchBar from '../../components/searchbar/SearchBar';
+import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
+import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
+
+const mapStateToProps = (state) => {
+  return {
+    isPending: state.publicRecipes.isPending,
+    publicRecipes: state.publicRecipes.publicRecipes
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    requestAllPublicRecipes: () => dispatch(requestAllPublicRecipes())
+  }
 }
 
-export default ExplorePage;
+class ExplorePage extends Component {
+  componentDidMount() {
+    this.props.requestAllPublicRecipes();
+  }
+
+  render() {
+    const { isPending, publicRecipes } = this.props;
+    return (
+      <div className='explore-page-container'>
+        <div className='explore-searchbar-container'>
+          <SearchBar className='searchbar-explore'>Explore universe recipes from here!</SearchBar>
+        </div>
+        <div className='explore-recipes-container'>
+          {
+            isPending ? <h1>Loading...</h1> :
+            <ErrorBoundry>
+              <RecipesOverview recipes={publicRecipes} />
+            </ErrorBoundry>
+          }
+        </div>
+      </div>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExplorePage);
