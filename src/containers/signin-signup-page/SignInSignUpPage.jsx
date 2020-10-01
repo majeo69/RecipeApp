@@ -14,12 +14,10 @@ function SignInSignUpPage() {
     setValue(newValue);
   };
 
-  var styles = {
-    default_tab:{
-      minWidth: "40%",
-      color:"#7b7b7b",
-      outline: "none"
-    }
+  var tab_styles = {
+    minWidth: "40%",
+    color:"#7b7b7b",
+    outline: "none"
   }
 
   return (
@@ -32,8 +30,8 @@ function SignInSignUpPage() {
           onChange={handleChange}
           centered
         >
-          <Tab style={styles.default_tab} label="Sign in" />
-          <Tab style={styles.default_tab} label="Sign up" />
+          <Tab style={tab_styles} label="Sign in" />
+          <Tab style={tab_styles} label="Sign up" />
         </Tabs>
         {
           value === 0 ?
