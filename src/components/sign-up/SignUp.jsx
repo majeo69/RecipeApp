@@ -9,35 +9,37 @@ import FormInput from '../form-input/FormInput';
 const SignUp = () => {
   return (
     <div className='signup-container'>
-      <FormInput
-        type='text'
-        name='displayName'
-        label='Display Name'
-        required
-      />
-      <FormInput
-        type='email'
-        name='email'
-        label='Email'
-        required
-      />
-      <FormInput
-        type='password'
-        name='password'
-        autoComplete="on" 
-        label='Password'
-        required
-      />
-      <FormInput
-        type='password'
-        name='confirmPassword'
-        autoComplete="on" 
-        label='Confirm Password'
-        required
-      />
-      <div className='signup-button-container'>
-        <Button className='signup-button' variant="outline-secondary">Sign Up</Button>
-      </div>
+      <form className='sign-up-form'>
+        <FormInput
+          type='text'
+          name='displayName'
+          label='Display Name'
+          required
+        />
+        <FormInput
+          type='email'
+          name='email'
+          label='Email'
+          required
+        />
+        <FormInput
+          type='password'
+          name='password'
+          autoComplete="on" 
+          label='Password'
+          required
+        />
+        <FormInput
+          type='password'
+          name='confirmPassword'
+          autoComplete="on" 
+          label='Confirm Password'
+          required
+        />
+        <div className='signup-button-container'>
+          <Button variant="outline-secondary">Sign Up</Button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -1,12 +1,13 @@
 .signin-signup-page-container {
-  height: 700px;
+  height: 630px;
+  display: flex;
+  justify-content: center;
 
-  .signin-box {
-    background: lightblue;
-    width: 40vw;
-    margin: 100px auto;
-    padding: 20px 10px 10px 10px;
-    border: none;
-    border-radius: 30px;
+  .signin-signup-form-container {
+    width: 50%;
+    margin: 50px;
+    padding: 20px 0 3px 0;
+    border-radius: 20px;
+    background-color: lightblue;
   }
 }
