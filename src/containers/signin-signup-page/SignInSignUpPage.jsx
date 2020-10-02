@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignInSignUpPage.styles.scss';
 
 import Tabs from '@material-ui/core/Tabs';
@@ -8,7 +8,7 @@ import SignIn from '../../components/sign-in/SignIn';
 import SignUp from '../../components/sign-up/SignUp';
 
 function SignInSignUpPage() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const tab_styles = {
     minWidth: "40%",
     color:"#7b7b7b",

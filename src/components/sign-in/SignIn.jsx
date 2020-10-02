@@ -45,8 +45,8 @@ class SignIn extends Component {
       })
       .then(data => {
         if (data !== undefined) {
-          this.props.setCurrentUser(data);
           this.setState({ errormsg: '' });
+          this.props.setCurrentUser(data);
         }
       })
       .catch(error => this.setState({ errormsg: error }))
