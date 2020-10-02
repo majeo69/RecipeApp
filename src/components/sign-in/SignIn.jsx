@@ -81,7 +81,7 @@ class SignIn extends Component {
             required 
           />
           <div className='signin-button-container'>
-            <Button type="submit" onClick={this.handleSubmit} variant="outline-secondary">Sign In</Button>
+            <Button type="submit" variant="outline-secondary">Sign In</Button>
           </div>
           {
             this.state.errormsg ? <h6>{this.state.errormsg}</h6> : null

@@ -7,7 +7,7 @@ const RecipesOverview = ({ recipes }) => {
   return (
     <div className='recipes-overview-container'>
       {
-        recipes.map(recipe => {
+        recipes && recipes.map(recipe => {
           return (
             <RecipePreview
               key={recipe._id}

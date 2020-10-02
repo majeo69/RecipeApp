@@ -1,6 +1,6 @@
 .signin-container {
   width: 35vw;
-  margin: 70px auto;
+  margin: 50px auto 40px auto;
 
   h5 {
     margin: 30px 10px 40px 10px;
@@ -11,6 +11,10 @@
   .signin-button-container {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin: 30px 0;
+  }
+
+  h6 {
+    text-align: center;
   }
 }

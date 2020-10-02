@@ -34,7 +34,12 @@ class ExplorePage extends Component {
         </div>
         <div className='explore-recipes-container'>
           {
-            isPending ? <h1>Loading...</h1> :
+            isPending ? 
+            <div>
+              <h1>Loading...</h1> 
+              <h4>If the recipes do not load up in 20 seconds, please reload your browser again.</h4>
+            </div>
+            :
             <ErrorBoundry>
               <RecipesOverview recipes={publicRecipes} />
             </ErrorBoundry>
