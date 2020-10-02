@@ -1,9 +1,9 @@
 import React from 'react'
 import './FormInput.styles.scss';
 
-const FormInput = ({ label, ...otherProps }) => (
+const FormInput = ({ handleChange, label, ...otherProps }) => (
   <div className="single-form-input">
-    <input className="form-styles" {...otherProps} />
+    <input className="form-styles" onChange={handleChange} {...otherProps} />
     <label>{label}</label>
   </div>
 );

@@ -9,16 +9,15 @@ import SignUp from '../../components/sign-up/SignUp';
 
 function SignInSignUpPage() {
   const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  var tab_styles = {
+  const tab_styles = {
     minWidth: "40%",
     color:"#7b7b7b",
     outline: "none"
   }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <div className='signin-signup-page-container'>
@@ -34,14 +33,7 @@ function SignInSignUpPage() {
           <Tab style={tab_styles} label="Sign up" />
         </Tabs>
         {
-          value === 0 ?
-          <div>
-            <SignIn />
-          </div> 
-          :
-          <div>
-            <SignUp />
-          </div>
+          value === 0 ? <SignIn /> : <SignUp />
         }
       </div>
     </div>

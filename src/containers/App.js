@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import Header from '../components/header/Header';
@@ -11,8 +11,16 @@ import UserRecipePage from './user-recipe-page/UserRecipePage';
 import SignInSignUpPage from './signin-signup-page/SignInSignUpPage';
 import CreateRecipePage from './create-recipe-page/CreateRecipePage'
 
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectUserToken } from '../redux/user/user.selectors';
 
-function App() {
+
+const mapStateToProps = createStructuredSelector({
+  currentUserToken: selectUserToken
+});
+
+function App({ currentUserToken }) {
   return (
     <div className="App">
       <Header />
@@ -20,7 +28,7 @@ function App() {
       	<Route exact path='/' component={HomePage} />
         <Route path='/explore' component={ExplorePage} />
         <Route path='/myrecipes' component={UserRecipePage} />
-        <Route path='/signin' component={SignInSignUpPage} />
+        <Route path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
         <Route path='/create' component={CreateRecipePage} />
       </Switch>
       <Footer />
@@ -29,4 +37,4 @@ function App() {
 }
 
 
-export default App;
+export default connect(mapStateToProps)(App);
