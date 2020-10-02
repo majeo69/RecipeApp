@@ -4,7 +4,7 @@ import './SignUp.styles.scss';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.actions';
 
-import Button from '../../../node_modules/react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormInput from '../form-input/FormInput';
 

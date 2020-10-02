@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SignIn.styles.scss';
 
-import Button from '../../../node_modules/react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FormInput from '../form-input/FormInput';
