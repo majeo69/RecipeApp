@@ -16,3 +16,8 @@ export const requestAllUserRecipes = (token) => (dispatch) => {
     .then(data => dispatch({ type: UserRecipesTypes.REQUEST_ALL_USER_RECIPES_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: UserRecipesTypes.REQUEST_ALL_USER_RECIPES_FAILED, payload: error }))
 }
+
+export const requestFilteredUserRecipes = keyword => ({
+  type: UserRecipesTypes.REQUEST_FILTERED_USER_RECIPES,
+  payload: keyword
+})

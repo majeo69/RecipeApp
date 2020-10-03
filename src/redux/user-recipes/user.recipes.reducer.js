@@ -1,8 +1,10 @@
 import UserRecipesTypes from './user.recipes.types';
+import { filterUserRecipes } from './user.recipes.utils';
 
 const INITIAL_STATE = {
   isPending: true,
-  userRecipes: []
+  userRecipes: [],
+  filteredUserRecipes: []
 }
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -22,6 +24,11 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         error: action.payload
+      }
+    case UserRecipesTypes.REQUEST_FILTERED_USER_RECIPES:
+      return {
+        ...state,
+        filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes)
       }
     default:
       return state

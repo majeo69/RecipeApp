@@ -12,7 +12,7 @@ const mapStateToProps = createStructuredSelector({
 
 const PersonalInfo = ({ currentUserName, currentUserEmail }) => {
   return (
-    <div>
+    <div className='personal-info'>
       <h4>{currentUserName}</h4>
       <h6>{currentUserEmail}</h6>
     </div>

@@ -7,16 +7,26 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 
 import { connect } from 'react-redux';
-import { requestAllUserRecipes } from '../../redux/user-recipes/user.recipes.actions';
+import { requestAllUserRecipes, requestFilteredUserRecipes } from '../../redux/user-recipes/user.recipes.actions';
+import { createStructuredSelector } from 'reselect';
+import { 
+  selectUserRecipesPending, 
+  selectAllUserRecipes, 
+  selectFilteredUserRecipes 
+} from '../../redux/user-recipes/user.recipes.selectors';
+import { selectUserToken } from '../../redux/user/user.selectors';
 
-const mapStateToProps = (state) => ({
-  isPending: state.userRecipes.isPending,
-  userRecipes: state.userRecipes.userRecipes,
-  token: state.user.currentUser.token
-})
+
+const mapStateToProps = createStructuredSelector({
+  isPending: selectUserRecipesPending,
+  userRecipes: selectAllUserRecipes,
+  filteredUserRecipes: selectFilteredUserRecipes,
+  token: selectUserToken
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  requestAllUserRecipes: (token) => dispatch(requestAllUserRecipes(token))
+  requestAllUserRecipes: (token) => dispatch(requestAllUserRecipes(token)),
+  requestFilteredUserRecipes: (keyword) => dispatch(requestFilteredUserRecipes(keyword))
 })
 
 class UserRecipePage extends Component {
@@ -24,13 +34,17 @@ class UserRecipePage extends Component {
     this.props.requestAllUserRecipes(this.props.token);
   }
 
+  handleChange = event => {
+    this.props.requestFilteredUserRecipes(event.target.value);
+  }
+
   render() {
-    const { isPending, userRecipes } = this.props;
+    const { isPending, userRecipes, filteredUserRecipes } = this.props;
     return (
       <div className='user-recipe-page-container'>
         <div className='user-recipe-container'>
           <div className='user-searchbar-container'>
-            <SearchBar className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
+            <SearchBar onChange={this.handleChange} className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
           </div>
           {
             isPending ? 
@@ -40,7 +54,11 @@ class UserRecipePage extends Component {
             </div>
             :
             <ErrorBoundry>
-              <RecipesOverview recipes={userRecipes} />
+              {
+                filteredUserRecipes.length === 0 ? <RecipesOverview recipes={userRecipes} />
+                : typeof(filteredUserRecipes) === 'string' ? <div><h4>{filteredUserRecipes}</h4></div>
+                  : <RecipesOverview recipes={filteredUserRecipes} />
+              }
             </ErrorBoundry>
           }
         </div>

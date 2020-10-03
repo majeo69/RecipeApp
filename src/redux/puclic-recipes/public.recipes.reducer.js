@@ -1,8 +1,10 @@
 import PublicRecipesTypes from './public.recipes.types';
+import { filterPublicRecipes } from './public.recipes.utils'
 
 const INITIAL_STATE = {
   isPending: true,
-  publicRecipes: []
+  publicRecipes: [],
+  filteredPublicRecipes: []
 }
 
 const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -22,6 +24,11 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         error: action.payload
+      }
+    case PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES:
+      return {
+        ...state,
+        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes)
       }
     default:
       return state

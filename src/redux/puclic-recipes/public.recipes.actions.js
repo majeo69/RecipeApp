@@ -15,3 +15,8 @@ export const requestAllPublicRecipes = () => (dispatch) => {
     .then(data => dispatch({ type: PublicRecipesTypes.REQUEST_ALL_PUBLIC_RECIPES_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: PublicRecipesTypes.REQUEST_ALL_PUBLIC_RECIPES_FAILED, payload: error }))
 }
+
+export const requestFilteredPublicRecipes = (keyword) => ({
+  type: PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES,
+  payload: keyword
+})
