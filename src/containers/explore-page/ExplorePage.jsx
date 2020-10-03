@@ -8,12 +8,10 @@ import SearchBar from '../../components/searchbar/SearchBar';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 
-const mapStateToProps = (state) => {
-  return {
-    isPending: state.publicRecipes.isPending,
-    publicRecipes: state.publicRecipes.publicRecipes
-  }
-}
+const mapStateToProps = (state) => ({
+  isPending: state.publicRecipes.isPending,
+  publicRecipes: state.publicRecipes.publicRecipes
+})
 const mapDispatchToProps = (dispatch) => {
   return {
     requestAllPublicRecipes: () => dispatch(requestAllPublicRecipes())

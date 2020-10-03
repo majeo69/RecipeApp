@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import requestPublicRecipesReducer from './puclic-recipes/public.recipes.reducer';
+import requestUserRecipesReducer from './user-recipes/user.recipes.reducer';
 import userReducer from './user/user.reducer';
 
 import { persistReducer } from 'redux-persist';
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const rootRuducer = combineReducers({
   publicRecipes: requestPublicRecipesReducer,
+  userRecipes: requestUserRecipesReducer,
   user: userReducer
 })
 
