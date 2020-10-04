@@ -7,8 +7,11 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 
 import { connect } from 'react-redux';
-import { requestAllUserRecipes, requestFilteredUserRecipes } from '../../redux/user-recipes/user.recipes.actions';
 import { createStructuredSelector } from 'reselect';
+import { 
+  requestAllUserRecipes, 
+  requestFilteredUserRecipes
+} from '../../redux/user-recipes/user.recipes.actions';
 import { 
   selectUserRecipesPending, 
   selectAllUserRecipes, 
