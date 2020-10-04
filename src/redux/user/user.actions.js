@@ -1,4 +1,3 @@
-import { apiCall } from '../../api/api';
 import { UserActionTypes } from './user.types'
 
 const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
@@ -9,7 +8,7 @@ export const setCurrentUser = user => ({
 });
 
 export const logoutCurrentUser = (token) => (dispatch) => {
-	apiCall(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/logout',
+	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/logout',
 	{
 		method: 'POST',
 		headers: {
