@@ -7,22 +7,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { setCurrentUser } from '../../redux/user/user.actions';
+import { logoutCurrentUser } from '../../redux/user/user.actions';
 import { selectUserToken } from '../../redux/user/user.selectors';
 
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  logoutCurrentUser: token => dispatch(logoutCurrentUser(token))
 })
 
 const mapStateToProps = createStructuredSelector({
   currentUserToken: selectUserToken
 });
 
-const Header = ({ setCurrentUser, currentUserToken }) => {
+const Header = ({ logoutCurrentUser, currentUserToken }) => {
   const handleClick = event => {
     if (currentUserToken) {
-      setCurrentUser({})
+      logoutCurrentUser(currentUserToken)
     };
   }
 
@@ -43,6 +43,5 @@ const Header = ({ setCurrentUser, currentUserToken }) => {
     </div>
   );
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
