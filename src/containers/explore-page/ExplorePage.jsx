@@ -32,8 +32,8 @@ class ExplorePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalPages: 0,
-      currentPage: 1
+      currentPage: 1,
+      totalPages: 0
     }
   }
   componentDidMount() {

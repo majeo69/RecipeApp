@@ -5,6 +5,6 @@ export const filterUserRecipes = (keywords, userRecipes) => {
   if (filteredRecipes.length !== 0) {
     return filteredRecipes;
   } else {
-    return "no matches found"
+    return "no matches found. Please search with other keywords."
   }
 }

@@ -1,5 +1,5 @@
 export const userPagination = (userRecipes, filteredUserRecipes, currentPage, totalPage) => {
-  if (typeof(filteredPublicRecipes) === 'string') {
+  if (typeof(filteredUserRecipes) === 'string') {
     return filteredUserRecipes;
   } else if (filteredUserRecipes.length === 0) {
     if (currentPage === totalPage) {
