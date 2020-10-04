@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './ExplorePage.styles.scss';
-import Pagination from '@material-ui/lab/Pagination';
 
 import SearchBar from '../../components/searchbar/SearchBar';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
+import Pagination from '@material-ui/lab/Pagination';
 
-import { publicPagination } from '../../utils/explore-page.utils';
+import { publicPagination } from '../../utils/public-recipes.utils';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
