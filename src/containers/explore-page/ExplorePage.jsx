@@ -112,5 +112,4 @@ class ExplorePage extends Component {
   }
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(ExplorePage);

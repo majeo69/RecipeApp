@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './UserRecipePage.styles.scss';
+import { withRouter } from 'react-router-dom';
 
 import SearchBar from '../../components/searchbar/SearchBar';
 import PersonalInfo from '../../components/personal-info/PersonalInfo';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
 
 import { userPagination } from '../../utils/user-recipes.utils';
@@ -73,13 +76,18 @@ class UserRecipePage extends Component {
   };
 
   render() {
-    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages } = this.props;
+    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages, history } = this.props;
     const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages);
     return (
       <div className='user-recipe-page-container'>
         <div className='user-recipe-container'>
           <div className='user-searchbar-container'>
             <SearchBar onChange={this.handleChange} className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
+            <div className='create-recipe-button'>
+            <Button 
+              onClick={() => {history.push('/create');}}
+              variant="contained" color="primary" startIcon={<AddIcon />} >Create Recipe</Button>
+            </div>
           </div>
           {
             isPending ? 
@@ -116,5 +124,4 @@ class UserRecipePage extends Component {
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserRecipePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserRecipePage));
