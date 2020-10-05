@@ -10,46 +10,53 @@ import { publicPagination } from '../../utils/public-recipes.utils';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { requestAllPublicRecipes, requestFilteredPublicRecipes } from '../../redux/puclic-recipes/public.recipes.actions';
+import { 
+  requestAllPublicRecipes, 
+  requestFilteredPublicRecipes, 
+  setCurrentPage, 
+  setTotalPage 
+} from '../../redux/puclic-recipes/public.recipes.actions';
 import { 
   selectPublicRecipesPending,
   selectAllPublicRecipes,
-  selectFilteredPublicRecipes
+  selectFilteredPublicRecipes,
+  selectPublicCurrentPage,
+  selectPublicTotalPages
 } from '../../redux/puclic-recipes/public.recipes.selectors';
+
 
 const mapStateToProps = createStructuredSelector({
   isPending: selectPublicRecipesPending,
   publicRecipes: selectAllPublicRecipes,
-  filteredPublicRecipes: selectFilteredPublicRecipes
+  filteredPublicRecipes: selectFilteredPublicRecipes,
+  publicCurrentPage: selectPublicCurrentPage,
+  publicTotalPages: selectPublicTotalPages
 });
 
 const mapDispatchToProps = (dispatch) => ({
   requestAllPublicRecipes: () => dispatch(requestAllPublicRecipes()),
-  requestFilteredPublicRecipes: keyword => dispatch(requestFilteredPublicRecipes(keyword))
+  requestFilteredPublicRecipes: keyword => dispatch(requestFilteredPublicRecipes(keyword)),
+  setPublicCurrentPage: (data) => dispatch(setCurrentPage(data)),
+  setPublicTotalPage: (data) => dispatch(setTotalPage(data))
 });
 
 class ExplorePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPage: 1,
-      totalPages: 0
-    }
-  }
   componentDidMount() {
-    this.props.requestAllPublicRecipes();
+    if (this.props.publicRecipes.length === 0){
+      this.props.requestAllPublicRecipes();
+    }
   }
   componentDidUpdate(prevProps) {
     if (prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
       && typeof(this.props.filteredPublicRecipes) === 'string') {
-        this.setState({ totalPages: 0});
+        this.props.setPublicTotalPage(0)
     }
     if ( prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
       && this.props.filteredPublicRecipes !== []
       && typeof(this.props.filteredPublicRecipes) !== 'string') {
-        this.setState({ totalPages: Math.ceil(this.props.filteredPublicRecipes.length / 8) });
+        this.props.setPublicTotalPage(Math.ceil(this.props.filteredPublicRecipes.length / 8))
       } else if (prevProps.publicRecipes !== this.props.publicRecipes) {
-      this.setState({ totalPages: Math.ceil(this.props.publicRecipes.length / 8) });
+      this.props.setPublicTotalPage(Math.ceil(this.props.publicRecipes.length / 8))
     }
   }
 
@@ -58,17 +65,19 @@ class ExplorePage extends Component {
   }
 
   handlePagination = (event, value) => {
-    this.setState({ currentPage: value });
+    this.props.setPublicCurrentPage(value)
   };
 
   render() {
-    const { currentPage, totalPages } = this.state;
-    const { isPending, publicRecipes, filteredPublicRecipes } = this.props;
-    const publicRecipesPagination = publicPagination(publicRecipes, filteredPublicRecipes, currentPage, totalPages);
+    const { isPending, publicRecipes, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
+    const publicRecipesPagination = publicPagination(publicRecipes, filteredPublicRecipes, publicCurrentPage, publicTotalPages);
+
     return (
       <div className='explore-page-container'>
         <div className='explore-searchbar-container'>
-          <SearchBar onChange={this.handleChange} className='searchbar-explore'>Explore universe recipes from here!</SearchBar>
+          <SearchBar onChange={this.handleChange} className='searchbar-explore'>
+            Explore universe recipes from here!
+          </SearchBar>
         </div>
         <div className='explore-recipes-container'>
           {
@@ -87,13 +96,13 @@ class ExplorePage extends Component {
           }
         </div>
         {
-          this.state.totalPages === 0 ? null 
+          publicTotalPages === 0 ? null 
           :
           <div className='public-pagination-container'>
             <Pagination 
               variant="outlined" 
-              count={this.state.totalPages} 
-              page={this.state.currentPage} 
+              count={publicTotalPages} 
+              page={publicCurrentPage} 
               onChange={this.handlePagination} 
             />
           </div>

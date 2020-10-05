@@ -4,7 +4,9 @@ import { filterPublicRecipes } from './public.recipes.utils'
 const INITIAL_STATE = {
   isPending: true,
   publicRecipes: [],
-  filteredPublicRecipes: []
+  filteredPublicRecipes: [],
+  currentPage: 1,
+  totalPages: 0
 }
 
 const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -18,7 +20,7 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         publicRecipes: action.payload,
-        isPending: !state.isPending,
+        isPending: !state.isPending
       }
     case PublicRecipesTypes.REQUEST_ALL_PUBLIC_RECIPES_FAILED:
       return {
@@ -28,7 +30,17 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
     case PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES:
       return {
         ...state,
-        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes),
+        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes)
+      }
+    case PublicRecipesTypes.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload
+      }
+    case PublicRecipesTypes.SET_TOTAL_PAGE:
+      return {
+        ...state,
+        totalPages: action.payload
       }
     default:
       return state

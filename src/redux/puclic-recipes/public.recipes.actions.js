@@ -20,3 +20,13 @@ export const requestFilteredPublicRecipes = (keyword) => ({
   type: PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES,
   payload: keyword
 })
+
+export const setCurrentPage = (data) => ({
+  type: PublicRecipesTypes.SET_CURRENT_PAGE,
+  payload: data
+})
+
+export const setTotalPage = (data) => ({
+  type: PublicRecipesTypes.SET_TOTAL_PAGE,
+  payload: data
+})
