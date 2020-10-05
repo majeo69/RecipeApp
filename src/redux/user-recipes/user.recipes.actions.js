@@ -21,3 +21,13 @@ export const requestFilteredUserRecipes = keyword => ({
   type: UserRecipesTypes.REQUEST_FILTERED_USER_RECIPES,
   payload: keyword
 })
+
+export const setUserCurrentPage = (data) => ({
+  type: UserRecipesTypes.SET_CURRENT_PAGE,
+  payload: data
+})
+
+export const setUserTotalPage = (data) => ({
+  type: UserRecipesTypes.SET_TOTAL_PAGE,
+  payload: data
+})

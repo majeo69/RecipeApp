@@ -11,11 +11,18 @@ import { userPagination } from '../../utils/user-recipes.utils';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { requestAllUserRecipes, requestFilteredUserRecipes } from '../../redux/user-recipes/user.recipes.actions';
+import { 
+  requestAllUserRecipes, 
+  requestFilteredUserRecipes, 
+  setUserCurrentPage, 
+  setUserTotalPage 
+} from '../../redux/user-recipes/user.recipes.actions';
 import { 
   selectUserRecipesPending, 
   selectAllUserRecipes, 
-  selectFilteredUserRecipes 
+  selectFilteredUserRecipes,
+  selectUserCurrentPage,
+  selectUserTotalPages 
 } from '../../redux/user-recipes/user.recipes.selectors';
 import { selectUserToken } from '../../redux/user/user.selectors';
 
@@ -24,38 +31,36 @@ const mapStateToProps = createStructuredSelector({
   isPending: selectUserRecipesPending,
   userRecipes: selectAllUserRecipes,
   filteredUserRecipes: selectFilteredUserRecipes,
+  userCurrentPage: selectUserCurrentPage,
+  userTotalPages: selectUserTotalPages,
   token: selectUserToken
 });
 
 const mapDispatchToProps = (dispatch) => ({
   requestAllUserRecipes: (token) => dispatch(requestAllUserRecipes(token)),
-  requestFilteredUserRecipes: (keyword) => dispatch(requestFilteredUserRecipes(keyword))
+  requestFilteredUserRecipes: (keyword) => dispatch(requestFilteredUserRecipes(keyword)),
+  setUserCurrentPage: (data) => dispatch(setUserCurrentPage(data)),
+  setUserTotalPage: (data) => dispatch(setUserTotalPage(data))
 })
 
 class UserRecipePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentPage: 1,
-      totalPages: 0
-    }
-  }
-
   componentDidMount() {
-    this.props.requestAllUserRecipes(this.props.token);
+    if (this.props.userRecipes.length === 0) {
+      this.props.requestAllUserRecipes(this.props.token);
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.filteredUserRecipes !== this.props.filteredUserRecipes
       && typeof(this.props.filteredUserRecipes) === 'string') {
-        this.setState({ totalPages: 0});
+        this.props.setUserTotalPage(0)
     }
     if ( prevProps.filteredUserRecipes !== this.props.filteredUserRecipes
       && this.props.filteredUserRecipes !== []
       && typeof(this.props.filteredUserRecipes) !== 'string') {
-        this.setState({ totalPages: Math.ceil(this.props.filteredUserRecipes.length / 6) });
+        this.props.setUserTotalPage(Math.ceil(this.props.filteredUserRecipes.length / 6));
       } else if (prevProps.userRecipes !== this.props.userRecipes) {
-      this.setState({ totalPages: Math.ceil(this.props.userRecipes.length / 6) });
+      this.props.setUserTotalPage(Math.ceil(this.props.userRecipes.length / 6))
     }
   }
 
@@ -64,13 +69,12 @@ class UserRecipePage extends Component {
   }
 
   handlePagination = (event, value) => {
-    this.setState({ currentPage: value });
+    this.props.setUserCurrentPage(value)
   };
 
   render() {
-    const { currentPage, totalPages } = this.state;
-    const { isPending, userRecipes, filteredUserRecipes } = this.props;
-    const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, currentPage, totalPages);
+    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages } = this.props;
+    const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages);
     return (
       <div className='user-recipe-page-container'>
         <div className='user-recipe-container'>
@@ -92,13 +96,13 @@ class UserRecipePage extends Component {
             </ErrorBoundry>
           }
           {
-            this.state.totalPages === 0 ? null 
+            userTotalPages === 0 ? null 
             :
             <div className='user-pagination-container'>
               <Pagination 
                 variant="outlined" 
-                count={this.state.totalPages} 
-                page={this.state.currentPage} 
+                count={userTotalPages} 
+                page={userCurrentPage} 
                 onChange={this.handlePagination} 
               />
             </div>

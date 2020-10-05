@@ -4,7 +4,9 @@ import { filterUserRecipes } from './user.recipes.utils';
 const INITIAL_STATE = {
   isPending: true,
   userRecipes: [],
-  filteredUserRecipes: []
+  filteredUserRecipes: [],
+  userCurrentPage: 1,
+  userTotalPages: 0
 }
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -29,6 +31,16 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes)
+      }
+    case UserRecipesTypes.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        userCurrentPage: action.payload
+      }
+    case UserRecipesTypes.SET_TOTAL_PAGE:
+      return {
+        ...state,
+        userTotalPages: action.payload
       }
     default:
       return state
