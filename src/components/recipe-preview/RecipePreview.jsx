@@ -13,7 +13,7 @@ const RecipePreview = ({ recipe, match, history }) => {
         }
       })}
     >
-      <img alt='default_foodimg' src={require('./food_default.png')} height="300" width="300" />
+      <img alt='default_foodimg' src={require('./food_default.png')} height="250" width="250" />
       <h4>{title}</h4>
       <h5>Preparation time: {preparation}</h5>
       <h5>Cook time: {cook_time}</h5>
