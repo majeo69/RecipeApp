@@ -24,9 +24,11 @@ const mapStateToProps = createStructuredSelector({
 function App({ currentUserToken }) {
   return (
     <div className="App">
-      <Header />
+      <div className='sticky-header'>
+        <Header />
+      </div>
       <Switch>
-      	<Route exact path='/' component={HomePage} />
+        <Route exact path='/' component={HomePage} />
         <Route exact path='/explore' component={ExplorePage} />
         <Route exact path='/myrecipes' render={() => currentUserToken ? (<UserRecipePage />) : (<Redirect to='/signin' />)} />
         <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />

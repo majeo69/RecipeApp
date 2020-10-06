@@ -5,3 +5,11 @@
 button:active, button:focus {
   outline:0 !important;
 }
+
+.sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 70px;
+  z-index: 1;
+}
