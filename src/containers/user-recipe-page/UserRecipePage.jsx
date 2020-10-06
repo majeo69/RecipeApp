@@ -85,7 +85,7 @@ class UserRecipePage extends Component {
             <SearchBar onChange={this.handleChange} className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
             <div className='create-recipe-button'>
             <Button 
-              onClick={() => {history.push('/create');}}
+              onClick={() => {history.push('/createrecipe');}}
               variant="contained" color="primary" startIcon={<AddIcon />} >Create Recipe</Button>
             </div>
           </div>

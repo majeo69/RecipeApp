@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import './SignUp.styles.scss';
 
-import { connect } from 'react-redux';
-import { setCurrentUser } from '../../redux/user/user.actions';
-
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormInput from '../form-input/FormInput';
 
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { setCurrentUser, signupNewUser } from '../../redux/user/user.actions';
+import { selectSignupErrormsg } from '../../redux/user/user.selectors'
+
+const mapStateToProps = createStructuredSelector({
+  signupError: selectSignupErrormsg
+})
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)), 
+  signupNewUser: (displayName, email, password) => dispatch(signupNewUser(displayName, email, password))
 })
 
 class SignUp extends Component {
@@ -21,44 +27,18 @@ class SignUp extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      signupErrorMsg: ''
+      signupPwdNotMatch: ''
     }
   }
 
   handleSubmit = event => {
     event.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
-      return this.setState({ signupErrorMsg: 'Confirm Password doesn\'t match' })
+      return this.setState({ signupPwdNotMatch: 'Confirm Password doesn\'t match' })
     } else {
-      this.setState({ signupErrorMsg: '' })
+      this.setState({ signupPwdNotMatch: '' });
+      this.props.signupNewUser(this.state.displayName, this.state.email, this.state.password)
     }
-
-    const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: this.state.displayName,
-        email: this.state.email,
-        password: this.state.password
-      })
-    };
-    fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users', requestOptions)
-      .then(response => {
-        if(response.ok) {
-          return response.json();
-        } else {
-          this.setState({ signupErrorMsg: 'Something went wrong...' })
-        }
-      })
-      .then(data => {
-        if (data !== undefined) {
-          this.props.setCurrentUser(data);
-          this.setState({ signupErrorMsg: '' });
-        }
-      })
-      .catch(error => this.setState({ signupErrorMsg: error }))
-
   }
 
   handleChange = event => {
@@ -67,6 +47,8 @@ class SignUp extends Component {
   }
 
   render () {
+    const { signupError } = this.props;
+    const { displayName, email, password, confirmPassword, signupPwdNotMatch } = this.state;
     return (
       <div className='signup-container'>
         <form className='sign-up-form' onSubmit={this.handleSubmit} >
@@ -76,7 +58,7 @@ class SignUp extends Component {
             autoComplete="on" 
             label='Display Name'
             handleChange={this.handleChange} 
-            value={this.state.displayName} 
+            value={displayName} 
             required
           />
           <FormInput
@@ -85,7 +67,7 @@ class SignUp extends Component {
             autoComplete="on" 
             label='Email'
             handleChange={this.handleChange} 
-            value={this.state.email} 
+            value={email} 
             required
           />
           <FormInput
@@ -94,7 +76,7 @@ class SignUp extends Component {
             autoComplete="on" 
             label='Password'
             handleChange={this.handleChange} 
-            value={this.state.password} 
+            value={password} 
             required
           />
           <FormInput
@@ -103,14 +85,15 @@ class SignUp extends Component {
             autoComplete="on" 
             label='Confirm Password'
             handleChange={this.handleChange} 
-            value={this.state.confirmPassword} 
+            value={confirmPassword} 
             required
           />
           <div className='signup-button-container'>
             <Button type="submit" variant="outline-secondary">Sign Up</Button>
           </div>
           {
-          this.state.signupErrorMsg ? <h6>{this.state.signupErrorMsg}</h6> : <h6>Welcome to join us!</h6>
+            signupPwdNotMatch ? <h6>{signupPwdNotMatch}</h6> 
+              : signupError ? <h6>{signupError}</h6> : <h6>Welcome to join us!</h6>
           }
         </form>
       </div>
@@ -118,4 +101,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

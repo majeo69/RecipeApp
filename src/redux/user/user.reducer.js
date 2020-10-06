@@ -1,7 +1,8 @@
 import { UserActionTypes } from './user.types'
 
 const INITIAL_STATE = {
-	currentUser: {}
+	currentUser: {},
+	signupErrormsg: ''
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				currentUser: action.payload
+			}
+		case UserActionTypes.SIGNUP_NEW_USER_SUCCESS:
+			return {
+				...state,
+				currentUser: action.payload
+			}
+		case UserActionTypes.SIGNUP_NEW_USER_FAILED:
+			return {
+				...state,
+				signupErrormsg: action.payload
 			}
 		default:
 			return state;
