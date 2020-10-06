@@ -31,6 +31,9 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
       <Link className='web-logo' to='/'>Secret Recipes</Link>
       <div className='header-options'>
         <Link className='header-option' to='/explore'>Explore</Link>
+        {
+          currentUserToken ? <Link className='header-option' to='/myrecipes'>My Recipes</Link> : null
+        }
         <Link className='header-option' to='/signin'>
           <Button variant="dark" type="button" onClick={() => handleClick()}>
           {

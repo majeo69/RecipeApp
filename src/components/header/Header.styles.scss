@@ -1,14 +1,15 @@
 .header-container {
-  background-color: black;
-	opacity: 0.6;
+  background-color: #945D5E;
+  opacity: 0.9;
 	height: 70px;
 	display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 3%;
 
   .web-logo {
     text-decoration: none;
+    color: #1B2021;
+    padding-left: 3%;
   }
 
   .header-options {
@@ -17,10 +18,12 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 2%;
+    color: #393D3F;
 
     .header-option {
       padding: 0 3% 0 3%;
       text-decoration: none;
+      color: #1B2021;
     }
   }
 

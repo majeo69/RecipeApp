@@ -5,7 +5,7 @@
 }
 .searchTerm {
   width: 100%;
-  border: 3px solid #8d9db6;
+  border: 3px solid #AEB4A9;
   border-right: none;
   padding: 5px;
   height: 46px;
@@ -16,8 +16,8 @@
 .searchButton {
   width: 60px;
   height: 46px;
-  border: 1px solid #8d9db6;
-  background: #8d9db6;
+  border: 1px solid #989D95;
+  background: #989D95;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -27,8 +27,8 @@
 .searchButton:hover {
   width: 60px;
   height: 46px;
-  border: 1px solid #667292;
-  background: #667292;
+  border: 1px solid #989D95;
+  background: #474935;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
