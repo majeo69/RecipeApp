@@ -20,8 +20,8 @@ const RecipePreview = ({ recipe, match, history }) => {
         }
       </div>
       <h4>{title}</h4>
-      <h5>Preparation time: {preparation}</h5>
-      <h5>Cook time: {cook_time}</h5>
+      <h6>Preparation time: {preparation}</h6>
+      <h6>Cook time: {cook_time}</h6>
       <h6>Servings: {servings}</h6>
     </div>
   );

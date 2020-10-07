@@ -8,11 +8,11 @@ const Loading = () => {
         Please refresh your web page if the recipes do not show up in 20 seconds.
       </h1>
       <div id="cooking">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
+        <div className="bubble"></div>
         <div id="area">
           <div id="sides">
             <div id="pan"></div>

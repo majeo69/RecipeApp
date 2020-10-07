@@ -12,6 +12,11 @@ export const selectUserEmail = createSelector(
   user => user.currentUser.user.email
 )
 
+export const selectUserAvatar = createSelector(
+  [selectUser],
+  user => user.currentUser.user.avatar
+)
+
 export const selectUserId = createSelector(
   [selectUser],
   user => user.currentUser.user._id

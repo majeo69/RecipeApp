@@ -3,18 +3,27 @@ import './PersonalInfo.styles.scss';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectUserName, selectUserEmail } from '../../redux/user/user.selectors';
+import { selectUserName, selectUserEmail, selectUserAvatar } from '../../redux/user/user.selectors';
 
 const mapStateToProps = createStructuredSelector({
-  currentUserName: selectUserName,
-  currentUserEmail: selectUserEmail
+  userName: selectUserName,
+  userEmail: selectUserEmail,
+  userAvatar: selectUserAvatar
 })
 
-const PersonalInfo = ({ currentUserName, currentUserEmail }) => {
+const PersonalInfo = ({ userName, userEmail, userAvatar }) => {
   return (
     <div className='personal-info'>
-      <h4>Hi! {currentUserName}</h4>
-      <h6>{currentUserEmail}</h6>
+      <div className='user-avatar-container'>
+        {
+          userAvatar ? <img alt='userimg' src={`data:image/png;base64,${userAvatar}`} /> 
+          : <img alt='default_userimg' src={require('./user_default.png')} />
+        }
+      </div>
+      <div className='user-detailed-info'>
+        <h4>Hi! {userName}</h4>
+        <h6>{userEmail}</h6>
+      </div>
     </div>
   );
 }
