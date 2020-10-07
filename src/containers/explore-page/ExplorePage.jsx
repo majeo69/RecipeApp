@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ExplorePage.styles.scss';
 
+import Loading from '../../components/loading/Loading';
 import SearchBar from '../../components/searchbar/SearchBar';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
@@ -74,37 +75,34 @@ class ExplorePage extends Component {
 
     return (
       <div className='explore-page-container'>
-        <div className='explore-searchbar-container'>
-          <SearchBar onChange={this.handleChange} className='searchbar-explore'>
-            Explore universe recipes from here!
-          </SearchBar>
-        </div>
-        <div className='explore-recipes-container'>
-          {
-            isPending ? 
-            <div>
-              <h1>Loading...</h1> 
-              <h4>If the recipes do not load up in 20 seconds, please reload your browser again.</h4>
-            </div>
-            :
-            <ErrorBoundry>
-              {
-                typeof(publicRecipesPagination) === 'string' ? <div><h4>{publicRecipesPagination}</h4></div>
-                : <RecipesOverview recipes={publicRecipesPagination} />
-              }
-            </ErrorBoundry>
-          }
-        </div>
         {
-          publicTotalPages === 0 ? null 
-          :
-          <div className='public-pagination-container'>
-            <Pagination 
-              variant="outlined" 
-              count={publicTotalPages} 
-              page={publicCurrentPage} 
-              onChange={this.handlePagination} 
-            />
+          isPending ? <Loading /> :
+          <div>
+            <div className='explore-searchbar-container'>
+              <SearchBar onChange={this.handleChange} className='searchbar-explore'>
+                Explore universe recipes from here!
+              </SearchBar>
+            </div>
+            <div className='explore-recipes-container'>
+              <ErrorBoundry>
+                {
+                  typeof(publicRecipesPagination) === 'string' ? <div><h4>{publicRecipesPagination}</h4></div>
+                  : <RecipesOverview recipes={publicRecipesPagination} />
+                }
+              </ErrorBoundry>
+            </div>
+            {
+              publicTotalPages === 0 ? null 
+              :
+              <div className='public-pagination-container'>
+                <Pagination 
+                  variant="outlined" 
+                  count={publicTotalPages} 
+                  page={publicCurrentPage} 
+                  onChange={this.handlePagination} 
+                />
+              </div>
+            }
           </div>
         }
       </div>
