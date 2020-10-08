@@ -1,5 +1,5 @@
 import { UserActionTypes } from './user.types';
-import { addUserAvatar } from './user.utils';
+import { addUserAvatar, deleteUserAvatar } from './user.utils';
 
 const INITIAL_STATE = {
 	currentUser: {},
@@ -49,6 +49,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				uploadProfilePicPending: false,
 				uploadProfilePicErrormsg: action.payload
+			}
+		case UserActionTypes.DELETE_PROFILE_PIC_SUCCESS:
+			return {
+				...state,
+				currentUser: deleteUserAvatar(state.currentUser, action.payload)
 			}
 		default:
 			return state;

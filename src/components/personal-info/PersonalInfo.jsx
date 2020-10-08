@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { uploadProfileImage, uploadProfileImageTypeError } from '../../redux/user/user.actions';
+import { uploadProfileImage, uploadProfileImageTypeError, deleteProfileImage } from '../../redux/user/user.actions';
 import { 
   selectUserName, 
   selectUserEmail,
@@ -28,7 +28,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   uploadProfileImage: (token, profilepic) => dispatch(uploadProfileImage(token, profilepic)),
-  uploadProfileImageTypeError: data => dispatch(uploadProfileImageTypeError(data))
+  uploadProfileImageTypeError: data => dispatch(uploadProfileImageTypeError(data)),
+  deleteProfileImage: token => dispatch(deleteProfileImage(token))
 });
 
 class PersonalInfo extends Component {
@@ -44,6 +45,12 @@ class PersonalInfo extends Component {
       return false;
     } else {
       this.props.uploadProfileImage(this.props.userToken, imageFile);
+    }
+  }
+
+  onDelete = event => {
+    if (this.props.userAvatar) {
+      this.props.deleteProfileImage(this.props.userToken);
     }
   }
 
@@ -74,7 +81,7 @@ class PersonalInfo extends Component {
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <Button variant="outlined" color="secondary" size="small" startIcon={<DeleteIcon />} >Del photo</Button>
+            <Button variant="outlined" color="secondary" size="small" startIcon={<DeleteIcon />} onClick={this.onDelete} >Del photo</Button>
           </div>
         </div>
         <div className='user-detailed-info'>

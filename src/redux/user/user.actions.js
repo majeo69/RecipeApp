@@ -67,6 +67,22 @@ export const uploadProfileImageTypeError = (data) => ({
 	payload: data
 });
 
+export const deleteProfileImage = (token) => (dispatch) => {
+	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
+	{
+		method: 'DELETE',
+		headers: {
+			'Authorization': 'Bearer ' + token
+		},
+	})
+	.then(response => response.json())
+	.then(data => {
+		if (data !== undefined) {
+			dispatch({ type: UserActionTypes.DELETE_PROFILE_PIC_SUCCESS, payload: data })
+		}
+	})
+}
+
 export const logoutCurrentUser = (token) => (dispatch) => {
 	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/logout',
 	{
