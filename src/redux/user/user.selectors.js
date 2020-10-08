@@ -31,3 +31,13 @@ export const selectSignupErrormsg = createSelector(
   [selectUser],
   user => user.signupErrormsg
 )
+
+export const selectUploadProfilePicSuccess = createSelector(
+  [selectUser],
+  user => user.uploadProfilePicSuccessmsg
+)
+
+export const selectUploadProfilePicError = createSelector(
+  [selectUser],
+  user => user.uploadProfilePicErrormsg
+)

@@ -33,6 +33,40 @@ export const signupNewUser = (displayName, email, password) => (dispatch) => {
 		.catch(error => dispatch({ type: UserActionTypes.SIGNUP_NEW_USER_FAILED, payload: error }))
 }
 
+export const uploadProfileImage = (token, profilepic) => (dispatch) => {
+	dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_PENDING })
+	const formData = new FormData();
+	formData.append("avatar", profilepic);
+	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
+	{
+		method: 'POST',
+		headers: {
+			'Authorization': 'Bearer ' + token
+		},
+		body: formData
+	})
+	.then(response => 
+		{
+			if(response.ok) {
+				return response.json();
+			} else {
+				dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_FAILED, payload: "Something went wrong..." })
+			}
+		}
+	)
+	.then(data => {
+		if (data !== undefined) {
+			dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_SUCCESS, payload: data })
+		}
+	})
+	.catch(error => dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_FAILED, payload: error }))
+}
+
+export const uploadProfileImageTypeError = (data) => ({
+	type: UserActionTypes.UPLOAD_PROFILE_PIC_FAILED,
+	payload: data
+});
+
 export const logoutCurrentUser = (token) => (dispatch) => {
 	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/logout',
 	{
