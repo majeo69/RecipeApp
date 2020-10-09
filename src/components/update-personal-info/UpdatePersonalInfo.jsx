@@ -45,6 +45,10 @@ class UpdatePersonalInfo extends Component {
     this.setState({ [name]: value })
   }
 
+  handleCancel = () => {
+    this.props.onEditProfile();
+  }
+
   render() {
     const { userName, userEmail } = this.props;
     return (
@@ -52,7 +56,10 @@ class UpdatePersonalInfo extends Component {
         <form className='personal-info-edit' onSubmit={this.handleSubmit}>
           <input name="displayName" type="text" id="edit-name" onChange={this.handleChange} defaultValue={userName} />
           <input name="email" type="email" id="edit-email" onChange={this.handleChange} defaultValue={userEmail} />
-          <Button variant="outlined" type="submit" size="small">Submit</Button>
+          <div className='personal-info-edit-buttons'>
+            <Button variant="outlined" type="submit" size="small">Submit</Button>
+            <Button variant="outlined" type="button" size="small" onClick={this.handleCancel}>Cancle</Button>
+          </div>
         </form>
       </div>
     );

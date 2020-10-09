@@ -16,7 +16,7 @@ const RecipePreview = ({ recipe, match, history }) => {
       <div className='foodimg_container'>
         {
           recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
-          : <img alt='default_foodimg' src={require('./food_default.png')} />
+          : <img alt='default_foodimg' src={require('../../utils/food_default.png')} />
         }
       </div>
       <h4>{title}</h4>

@@ -9,14 +9,23 @@
 
     input {
       margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid gray;
 
       &:focus {
         outline: none;
       }
     }
 
-    Button {
-      margin-top: 10px;
+    .personal-info-edit-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+
+      Button {
+        margin:  10px 5px 0px 5px;
+      }
     }
   }
 }
