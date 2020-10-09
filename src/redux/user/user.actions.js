@@ -94,3 +94,34 @@ export const logoutCurrentUser = (token) => (dispatch) => {
 	})
 	.then(dispatch({ type: UserActionTypes.LOGOUT_CURRENT_USER, payload: {} }))
 };
+
+export const onEditProfile = () => ({type: UserActionTypes.CHANGE_EDIT_STATUS});
+
+export const updateUserInfo = (token, displayName, email) => (dispatch) => {
+	dispatch({ type: UserActionTypes.UPDATE_USER_INFO_PENDING })
+	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/updateme',
+	{
+		method: 'PATCH',
+		headers: {
+			'Authorization': 'Bearer ' + token,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			name: displayName,
+			email: email
+		})
+	})
+	.then(response => {
+		if(response.ok) {
+			return response.json();
+		} else {
+			dispatch({ type: UserActionTypes.UPDATE_USER_INFO_FAILED, payload: "Action went wrong" })
+		}
+	})
+	.then(data => {
+		if (data !== undefined) {
+			dispatch({ type: UserActionTypes.UPDATE_USER_INFO_SUCCESS, payload: data })
+		}
+	})
+	.catch(error => dispatch({ type: UserActionTypes.UPDATE_USER_INFO_FAILED, payload: error }))
+}

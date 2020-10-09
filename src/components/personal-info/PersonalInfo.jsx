@@ -4,17 +4,27 @@ import './PersonalInfo.styles.scss';
 import Button from "@material-ui/core/Button";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+
+import UpdatePersonalInfo from '../update-personal-info/UpdatePersonalInfo';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { uploadProfileImage, uploadProfileImageTypeError, deleteProfileImage } from '../../redux/user/user.actions';
+import { 
+  uploadProfileImage, 
+  uploadProfileImageTypeError, 
+  deleteProfileImage, 
+  onEditProfile 
+} from '../../redux/user/user.actions';
 import { 
   selectUserName, 
   selectUserEmail,
   selectUserToken, 
   selectUserAvatar,
   selectUploadProfilePicSuccess,
-  selectUploadProfilePicError
+  selectUploadProfilePicError,
+  selectEditStatus
 } from '../../redux/user/user.selectors';
 
 const mapStateToProps = createStructuredSelector({
@@ -23,13 +33,15 @@ const mapStateToProps = createStructuredSelector({
   userAvatar: selectUserAvatar,
   userToken: selectUserToken,
   uploadProfilePicSuccess: selectUploadProfilePicSuccess,
-  uploadProfilePicError: selectUploadProfilePicError
+  uploadProfilePicError: selectUploadProfilePicError,
+  editStatus: selectEditStatus
 })
 
 const mapDispatchToProps = (dispatch) => ({
   uploadProfileImage: (token, profilepic) => dispatch(uploadProfileImage(token, profilepic)),
   uploadProfileImageTypeError: data => dispatch(uploadProfileImageTypeError(data)),
-  deleteProfileImage: token => dispatch(deleteProfileImage(token))
+  deleteProfileImage: token => dispatch(deleteProfileImage(token)),
+  onEditProfile: () => dispatch(onEditProfile())
 });
 
 class PersonalInfo extends Component {
@@ -54,8 +66,14 @@ class PersonalInfo extends Component {
     }
   }
 
+  onEdit = event => {
+    if (!this.props.editStatus) {
+      this.props.onEditProfile();
+    }
+  }
+
   render () {
-    const { userName, userEmail, userAvatar } = this.props;
+    const { userName, userEmail, userAvatar, editStatus } = this.props;
     return (
       <div className='personal-info'>
         <div className='user-avatar-container'>
@@ -85,8 +103,18 @@ class PersonalInfo extends Component {
           </div>
         </div>
         <div className='user-detailed-info'>
-          <h4>Hi! {userName}</h4>
-          <h6>{userEmail}</h6>
+          {
+            editStatus ? <UpdatePersonalInfo /> :
+            <div>
+              <div className='name-edit-icon'>
+                <h4>Hi! {userName}</h4>
+                <IconButton aria-label="delete" onClick={this.onEdit}>
+                  <EditRoundedIcon fontSize="small" />
+                </IconButton>
+              </div>
+              <h6>{userEmail}</h6>
+            </div>
+          }
         </div>
       </div>
     );

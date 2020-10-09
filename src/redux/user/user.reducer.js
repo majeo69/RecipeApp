@@ -1,12 +1,15 @@
 import { UserActionTypes } from './user.types';
-import { addUserAvatar, deleteUserAvatar } from './user.utils';
+import { updateUser } from './user.utils';
 
 const INITIAL_STATE = {
 	currentUser: {},
 	signupErrormsg: '',
 	uploadProfilePicPending: true,
 	uploadProfilePicSuccessmsg: '',
-	uploadProfilePicErrormsg: ''
+	uploadProfilePicErrormsg: '',
+	onEditProfile: false,
+	editProfilePending: true,
+	editProfileErrormsg: ''
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -39,7 +42,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case UserActionTypes.UPLOAD_PROFILE_PIC_SUCCESS:
 			return {
 				...state,
-				currentUser: addUserAvatar(state.currentUser, action.payload),
+				currentUser: updateUser(state.currentUser, action.payload),
 				uploadProfilePicSuccessmsg: 'Upload Success! Please refresh your webpage.',
 				uploadProfilePicPending: false,
 				uploadProfilePicErrormsg: '',
@@ -53,7 +56,31 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case UserActionTypes.DELETE_PROFILE_PIC_SUCCESS:
 			return {
 				...state,
-				currentUser: deleteUserAvatar(state.currentUser, action.payload)
+				currentUser: updateUser(state.currentUser, action.payload)
+			}
+		case UserActionTypes.CHANGE_EDIT_STATUS:
+			return {
+				...state,
+				onEditProfile: !state.onEditProfile
+			}
+		case UserActionTypes.UPDATE_USER_INFO_PENDING:
+			return {
+				...state,
+				editProfilePending: true
+			}
+		case UserActionTypes.UPDATE_USER_INFO_SUCCESS:
+			return {
+				...state,
+				editProfilePending: false,
+				currentUser: updateUser(state.currentUser, action.payload),
+				onEditProfile: false,
+				editProfileErrormsg: ''
+			}
+		case UserActionTypes.UPDATE_USER_INFO_FAILED:
+			return {
+				...state,
+				editProfilePending: false,
+				editProfileErrormsg: action.payload
 			}
 		default:
 			return state;

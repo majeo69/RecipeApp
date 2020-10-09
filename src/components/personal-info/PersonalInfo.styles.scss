@@ -38,6 +38,19 @@
   .user-detailed-info {
     word-wrap: break-word;
     text-align: center;
-    width: 70%;
+    width: 90%;
+
+    .name-edit-icon {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      vertical-align: center;
+
+      h4 {
+        margin-bottom: 0px;
+      }
+    }
   }
 }
