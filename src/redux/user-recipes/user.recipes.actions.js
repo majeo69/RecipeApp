@@ -18,6 +18,7 @@ export const requestAllUserRecipes = (token) => (dispatch) => {
 }
 
 export const createNewRecipe = (props) => (dispatch) => {
+  dispatch({ type: UserRecipesTypes.CREATE_NEW_RECIPE_PENDING })
   fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/recipes',
   {
     method: 'POST',
