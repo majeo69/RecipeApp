@@ -4,11 +4,12 @@
   transform: translateZ(0);
   transition:transform 0.25s ease-out;
   background-color: #fffff0;
-  width: 300px;
+  width: 25%;
+  min-width: 350px;
 
-  margin: 20px;
-  padding: 0 20px 0 20px;
-  border-radius: 10px;
+  margin: 25px;
+  padding: 10px 10px;
+  border-radius: 3px;
 
   &:hover, &:focus {
     transform:scale(1.05);
@@ -22,9 +23,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 175px;
-    width: 260px;
-    margin: 15px 0;
+
 
     img {
       max-width: 100%;

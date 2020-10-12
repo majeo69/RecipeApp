@@ -1,3 +1,16 @@
 .recipe-details-page-container {
-  padding: 4vw 10vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: space-evenly;
+
+
+  .details-box {
+    width: 800px;
+  }
+
+  .personal-info-box {
+    width: 300px;
+    padding-top: 3%;
+  }
 }

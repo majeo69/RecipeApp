@@ -108,7 +108,7 @@ class PersonalInfo extends Component {
             <div>
               <div className='name-edit-icon'>
                 <h4>Hi! {userName}</h4>
-                <IconButton aria-label="delete" onClick={this.onEdit}>
+                <IconButton aria-label="edit-personal-info" onClick={this.onEdit}>
                   <EditRoundedIcon fontSize="small" />
                 </IconButton>
               </div>

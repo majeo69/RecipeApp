@@ -1,29 +1,66 @@
 import React from 'react';
 import './RecipeDetails.scss';
 
-import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Button, IconButton, Checkbox, FormControlLabel } from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
+import AlarmIcon from '@material-ui/icons/Alarm';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
-const RecipeDetails = ({ recipe, history }) => {
-  const { title, preparation, cook_time, servings, ingredients, steps } = recipe;
+import { Stepper, Step, StepLabel, StepContent, Typography } from "@material-ui/core";
+
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectUserId } from '../../redux/user/user.selectors';
+
+const mapStateToProps = createStructuredSelector({
+  userId: selectUserId
+})
+
+const RecipeDetails = ({ recipe, history, userId }) => {
+  const { title, preparation, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
-      <Button variant="outlined" type="button" size="small" onClick={() => history.goBack()}>Go Back</Button>
-      <h1>{title}</h1>
+
+      <div className='recipe-details-row1'>
+        <Button onClick={() => history.goBack()}
+          type="button" startIcon={<KeyboardBackspaceIcon />}>
+            Go Back
+        </Button>
+        <Button onClick={() => {history.push('/createrecipe');}}
+          variant="outlined" color="default" startIcon={<AddIcon />}>
+            Create Recipe
+        </Button>
+      </div>
+
+      <div className='recipe-details-row2'>
+        <h1>{title}</h1>
+        {
+          userId === owner ? 
+            <IconButton type="button" aria-label="edit-recipe">
+              <EditRoundedIcon />
+            </IconButton> 
+            : null
+        }
+      </div>
+      
+      <div className='recipe-details-row3'>
+        <AlarmIcon /><span style={{paddingLeft: "5px"}}>{preparation}</span>
+        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Prep: </span><br /><span>{preparation}</span></div>
+        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Cook: </span><br /><span>{cook_time}</span></div>
+        <div style={{paddingLeft: "16px"}}><PersonOutlineIcon /><span style={{paddingLeft: "5px"}}>{servings}</span></div>
+      </div>
+
       <div className='recipe-details-img-container'>
         {
           recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
           : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
         }
       </div>
-      <div className='other-info'>
-        <h5>Preparation: {preparation}</h5>
-        <h5>Cook time: {cook_time}</h5>
-        <h5>Servings: {servings}</h5>
-      </div>
+
       <div className='recipe-details-ingredients-container'>
-        <h3>Ingredients:</h3>
+        <h3>{`<Ingredients for='${servings} people'>`}</h3>
         <div className='recipe-details-ingredient'>
         {
           ingredients.map((ingredient, index) => {
@@ -31,7 +68,7 @@ const RecipeDetails = ({ recipe, history }) => {
                       key={index}
                       value="end"
                       control={<Checkbox color="default" />}
-                      label={<span style={{ fontSize: '1.3vw' }}>{ingredient}</span>}
+                      label={<span style={{ fontSize: '18px' }}>{ingredient}</span>}
                       labelPlacement="end"
                       fontSize={15}
                     />
@@ -40,22 +77,21 @@ const RecipeDetails = ({ recipe, history }) => {
         </div>
       </div>
       <div className='recipe-details-steps-container'>
-        <h3>Steps: </h3>
-        <div className='recipe-details-steps'>
-        {
-          steps.map((step, index) => {
-            return (
-              <div key={index} className='steps-styles'>
-                <h5>Step {index+1}:</h5>
-                <span>{step}</span><br />
-              </div>)
-          })
-        }
-        </div>
+        <h3>{`<Steps time='${preparation} minutes'>`}</h3>
+        <Stepper className='stepper' orientation="vertical">
+          {steps.map((step, index) => (
+            <Step className='step' key={index} active={true} >
+              <StepLabel className='stepLabel'>{`  Step ${index+1}`}</StepLabel>
+              <StepContent className='stepContent'>
+                <Typography className='typography'>{step}</Typography>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
       </div >
       <Button variant="outlined" type="button" size="small" onClick={() => history.goBack()}>Go Back</Button>
     </div>
   );
 }
 
-export default RecipeDetails;
+export default connect(mapStateToProps)(RecipeDetails);
