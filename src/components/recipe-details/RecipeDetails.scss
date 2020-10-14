@@ -32,6 +32,10 @@
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
+
+    span:last-child {
+      padding: 0 0;
+    }
   }
 
   Button {

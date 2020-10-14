@@ -1,0 +1,58 @@
+.create-recipe-fields {
+  width: 50vw;
+  min-width: 360px;
+
+  button {
+    padding: 0 0;
+  }
+
+  .recipe-title-field {
+    margin: 3vw 0 1vw 0;
+  }
+
+  .public-switch-button {
+    margin: 2vw 0;
+    h6 {
+      margin: 0 0;
+    }
+  }
+
+  .category-field {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2vw 0;
+
+    label, h6 {
+      margin: 0 0;
+    }
+  }
+
+  .time-field {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 2vw 0 1vw 0;
+
+    h6 {
+      margin: 0 0;
+    }
+  }
+
+  .ingredients-steps-field {
+    margin-top: 3vw;
+    h6 {
+      margin: 2vw 0;
+    }
+  }
+  .create-recipe-submitbtn {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vw;
+  }
+
+  .create-recipe-error {
+    margin-top: 2vw;
+    text-align: center;
+  }
+}

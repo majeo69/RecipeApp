@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './PersonalInfo.styles.scss';
 
-import Button from "@material-ui/core/Button";
+import { Button, IconButton } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
 import UpdatePersonalInfo from '../update-personal-info/UpdatePersonalInfo';
@@ -77,10 +76,10 @@ class PersonalInfo extends Component {
     return (
       <div className='personal-info'>
         <div className='user-avatar-container'>
-          {
-            userAvatar ? <img alt='userimg' src={`data:image/png;base64,${userAvatar}`} /> 
-            : <img alt='default_userimg' src={require('./user_default.png')} />
-          }
+        {
+          userAvatar ? <img alt='userimg' src={`data:image/png;base64,${userAvatar}`} /> 
+          : <img alt='default_userimg' src={require('./user_default.png')} />
+        }
         </div>
         <div className='avatar-button-container'>
           <div className='uploaduserimg-container'>

@@ -46,17 +46,17 @@ const RecipeDetails = ({ recipe, history, userId }) => {
       </div>
       
       <div className='recipe-details-row3'>
-        <AlarmIcon /><span style={{paddingLeft: "5px"}}>{preparation}</span>
-        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Prep: </span><br /><span>{preparation}</span></div>
-        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Cook: </span><br /><span>{cook_time}</span></div>
-        <div style={{paddingLeft: "16px"}}><PersonOutlineIcon /><span style={{paddingLeft: "5px"}}>{servings}</span></div>
+        <AlarmIcon /><span style={{paddingLeft: "5px"}}>{preparation} mins</span>
+        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Prep: </span><br /><span>{preparation} mins</span></div>
+        <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Cook: </span><br /><span>{cook_time} mins</span></div>
+        <PersonOutlineIcon style={{marginLeft: 16}} /><span style={{paddingLeft: "5px"}}>{servings} people</span>
       </div>
 
       <div className='recipe-details-img-container'>
-        {
-          recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
-          : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
-        }
+      {
+        recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
+        : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+      }
       </div>
 
       <div className='recipe-details-ingredients-container'>

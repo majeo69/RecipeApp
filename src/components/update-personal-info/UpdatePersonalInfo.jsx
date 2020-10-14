@@ -34,9 +34,6 @@ class UpdatePersonalInfo extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props.userToken)
-    console.log(this.state.displayName)
-    console.log(this.state.email)
     this.props.updateUserInfo(this.props.userToken, this.state.displayName, this.state.email);
   }
 

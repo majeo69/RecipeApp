@@ -1,0 +1,65 @@
+import CreateRecipesTypes from './create.recipe.types';
+
+const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
+
+export const resetCreateNeRecipeState = () => ({
+  type: CreateRecipesTypes.CREATE_NEW_RECIPE_RESET_STATE
+})
+
+export const createNewRecipe = (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
+  dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_PENDING })
+  fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/recipes',
+  {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + userToken,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: title,
+      preparation: prep_time,
+      cook_time: cook_time,
+      servings: servings,
+      ingredients: ingredients.split('\n').filter(Boolean),
+      steps: steps.split('\n').filter(Boolean),
+      public: public_recipe
+    })
+  }).then(response => {
+    if(response.ok) {
+      return response.json();
+    } else {
+      dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_FAILED, payload: 'Something went wrong, please make sure you filled out the recipe form and submit it again.' })
+    }
+  }).then(data => {
+    if (data !== undefined) {
+      dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_SUCCESS, payload: data })
+    }
+  }).catch(error => dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_FAILED, payload: error }))
+}
+
+
+export const uploadRecipeImage = (recipeId, recipeImg) => (dispatch) => {
+	dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_PENDING })
+	const formData = new FormData();
+	formData.append("foodimg", recipeImg);
+	fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/${recipeId}/foodimg`,
+	{
+		method: 'POST',
+		body: formData
+	})
+	.then(response => 
+		{
+			if(response.ok) {
+				dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_SUCCESS })
+			} else {
+				dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED, payload: "Something went wrong..." })
+			}
+		}
+	)
+	.catch(error => dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED, payload: error }))
+}
+
+export const uploadRecipeImgError = (errorMsg) => ({
+  type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED,
+  payload: errorMsg
+})

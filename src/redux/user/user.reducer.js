@@ -4,7 +4,7 @@ import { updateUser } from './user.utils';
 const INITIAL_STATE = {
 	currentUser: {},
 	signupErrormsg: '',
-	uploadProfilePicPending: true,
+	uploadProfilePicPending: false,
 	uploadProfilePicSuccessmsg: '',
 	uploadProfilePicErrormsg: '',
 	onEditProfile: false,
@@ -37,7 +37,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case UserActionTypes.UPLOAD_PROFILE_PIC_PENDING:
 			return {
 				...state,
-				uploadProfilePicPending: true
+				uploadProfilePicPending: true,
+				uploadProfilePicErrormsg: ''
 			}
 		case UserActionTypes.UPLOAD_PROFILE_PIC_SUCCESS:
 			return {
