@@ -50,12 +50,17 @@ export const uploadRecipeImage = (recipeId, recipeImg) => (dispatch) => {
 	.then(response => 
 		{
 			if(response.ok) {
-				dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_SUCCESS })
+				return response.json();
 			} else {
 				dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED, payload: "Something went wrong..." })
 			}
 		}
-	)
+  )
+  .then(data => {
+    if (data !== undefined) {
+      dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_SUCCESS, payload: data })
+    }
+  })
 	.catch(error => dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED, payload: error }))
 }
 

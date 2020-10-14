@@ -5,21 +5,25 @@ import App from './containers/App';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import * as serviceWorker from './serviceWorker';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
+import history from "./history";
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <PersistGate persistor={persistor}>
-          <App />
-        </PersistGate>
-      </BrowserRouter>
-    </Provider>
+    <Router history={history}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

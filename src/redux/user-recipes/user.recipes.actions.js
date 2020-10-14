@@ -23,11 +23,11 @@ export const requestFilteredUserRecipes = keyword => ({
 })
 
 export const setUserCurrentPage = (data) => ({
-  type: UserRecipesTypes.SET_CURRENT_PAGE,
+  type: UserRecipesTypes.SET_USER_CURRENT_PAGE,
   payload: data
 })
 
 export const setUserTotalPage = (data) => ({
-  type: UserRecipesTypes.SET_TOTAL_PAGE,
+  type: UserRecipesTypes.SET_USER_TOTAL_PAGE,
   payload: data
 })

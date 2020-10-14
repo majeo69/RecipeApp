@@ -3,7 +3,6 @@ import './RecipePhotoUpload.styles.scss';
 
 import { Button, CircularProgress } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import DeleteIcon from '@material-ui/icons/Delete';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,14 +11,16 @@ import {
   selectCreatedRecipeId,
   selectUploadFoodimgPending, 
   selectUploadFoodimgSuccess, 
-  selectUploadFoodimgErrormsg 
+  selectUploadFoodimgErrormsg ,
+  selectUploadedFoodimg
 } from '../../redux/create-recipe/create.recipe.selectors';
 
 const mapStateToProps = createStructuredSelector({
   recipeId: selectCreatedRecipeId,
   uploadFoodimgPending: selectUploadFoodimgPending,
   uploadFoodimgSuccess: selectUploadFoodimgSuccess,
-  uploadFoodimgErrormsg: selectUploadFoodimgErrormsg
+  uploadFoodimgErrormsg: selectUploadFoodimgErrormsg,
+  uploadedFoodimg: selectUploadedFoodimg
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -45,31 +46,34 @@ class RecipePhotoUpload extends Component {
   }
 
   render () {
-    const { uploadFoodimgPending } = this.props;
+    const { uploadFoodimgPending, uploadFoodimgSuccess, uploadedFoodimg } = this.props;
     return (
       <div className='upload-recipeimg-container'>
-        <div className='uploaduserimg-container'>
-          <input 
-            accept="image/*" 
-            className="upload-recipeimg-button" 
-            id="upload-recipeimg"
-            type="file" 
-            style={{display:"none"}}
-            onChange={this.onChangeFile}
-          />
-          <label htmlFor="upload-recipeimg">
-            <Button variant="outlined" color="primary" size="small" component="span" 
-              disabled={uploadFoodimgPending} startIcon={<PhotoCamera />}>
-              {uploadFoodimgPending && <CircularProgress size={15} />}
-              {!uploadFoodimgPending && 'Upload'}
-            </Button>
-          </label>
+        <div className='upload-foodimg-btn-container'>
+          <div className='uploadrecipeimg-container'>
+            <input 
+              accept="image/*" 
+              className="upload-recipeimg-button" 
+              id="upload-recipeimg"
+              type="file" 
+              style={{display:"none"}}
+              onChange={this.onChangeFile}
+            />
+            <label htmlFor="upload-recipeimg">
+              <Button variant="outlined" color="primary" size="small" component="span" 
+                disabled={uploadFoodimgPending} startIcon={<PhotoCamera />}>
+                {uploadFoodimgPending && <CircularProgress size={15} />}
+                {!uploadFoodimgPending && 'Upload'}
+              </Button>
+            </label>
+          </div>
         </div>
-        <div className='deleterecipeimg-container'>
-          <Button variant="outlined" color="secondary" size="small" startIcon={<DeleteIcon />}  >Del photo</Button>
-        </div>
+
         <div className='upload-recipeimg'>
-          <img alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+        {
+          uploadFoodimgSuccess ? <img alt='recipe_image' src={`data:image/png;base64,${uploadedFoodimg}`} /> 
+          : <img alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+        }
         </div>
       </div>
     );

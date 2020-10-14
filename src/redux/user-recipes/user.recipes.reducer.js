@@ -6,10 +6,7 @@ const INITIAL_STATE = {
   userRecipes: [],
   filteredUserRecipes: [],
   userCurrentPage: 1,
-  userTotalPages: 0,
-  createRecipeErrormsg: '',
-  createRecipePending: true,
-  newRecipe: {}
+  userTotalPages: 0
 }
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -35,32 +32,15 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
         ...state,
         filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes)
       }
-    case UserRecipesTypes.SET_CURRENT_PAGE:
+    case UserRecipesTypes.SET_USER_CURRENT_PAGE:
       return {
         ...state,
         userCurrentPage: action.payload
       }
-    case UserRecipesTypes.SET_TOTAL_PAGE:
+    case UserRecipesTypes.SET_USER_TOTAL_PAGE:
       return {
         ...state,
         userTotalPages: action.payload
-      }
-    case UserRecipesTypes.CREATE_NEW_RECIPE_PENDING:
-      return {
-        ...state,
-        createRecipePending: true
-      }
-    case UserRecipesTypes.CREATE_NEW_RECIPE_SUCCESS:
-      return {
-        ...state,
-        createRecipePending: false,
-        newRecipe: action.payload,
-        createRecipeErrormsg: ''
-      }
-    case UserRecipesTypes.CREATE_NEW_RECIPE_FAILED:
-      return {
-        ...state,
-        createRecipeErrormsg: action.payload
       }
     default:
       return state

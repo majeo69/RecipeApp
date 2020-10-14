@@ -50,7 +50,7 @@ export const uploadProfileImage = (token, profilepic) => (dispatch) => {
 			if(response.ok) {
 				return response.json();
 			} else {
-				dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_FAILED, payload: "Something went wrong..." })
+				dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_FAILED, payload: "Something went wrong...Please try it again" })
 			}
 		}
 	)

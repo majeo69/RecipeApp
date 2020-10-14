@@ -36,3 +36,8 @@ export const selectUploadFoodimgErrormsg = createSelector(
   [selectCreateRecipe],
   createRecipe => createRecipe.uploadFoodimgErrormsg
 )
+
+export const selectUploadedFoodimg = createSelector(
+  [selectCreateRecipe],
+  createdRecipe => createdRecipe.newRecipe.img
+)

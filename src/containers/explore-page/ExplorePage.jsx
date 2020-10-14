@@ -55,9 +55,9 @@ class ExplorePage extends Component {
     if ( prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
       && this.props.filteredPublicRecipes !== []
       && typeof(this.props.filteredPublicRecipes) !== 'string') {
-        this.props.setPublicTotalPage(Math.ceil(this.props.filteredPublicRecipes.length / 8))
+        this.props.setPublicTotalPage(Math.ceil(this.props.filteredPublicRecipes.length / 9))
       } else if (prevProps.publicRecipes !== this.props.publicRecipes) {
-      this.props.setPublicTotalPage(Math.ceil(this.props.publicRecipes.length / 8))
+      this.props.setPublicTotalPage(Math.ceil(this.props.publicRecipes.length / 9))
     }
   }
 

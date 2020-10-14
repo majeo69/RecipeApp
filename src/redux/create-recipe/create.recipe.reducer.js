@@ -40,7 +40,10 @@ const createUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
         createRecipeErrormsg: '',
         createRecipePending: false,
         newRecipe: {},
-        createSuccessStatus: false
+        createSuccessStatus: false,
+        uploadFoodimgPending: false,
+        uploadFoodimgSuccess: false,
+        uploadFoodimgErrormsg: ''
       }
     case CreateRecipesTypes.UPLOAD_RECIPE_PIC_PENDING:
       return {
@@ -52,6 +55,7 @@ const createUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case CreateRecipesTypes.UPLOAD_RECIPE_PIC_SUCCESS:
       return {
         ...state,
+        newRecipe: action.payload,
         uploadFoodimgSuccess: true,
         uploadFoodimgPending: false,
         uploadFoodimgErrormsg: '',

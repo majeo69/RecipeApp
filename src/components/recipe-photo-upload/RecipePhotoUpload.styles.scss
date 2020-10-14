@@ -1,6 +1,20 @@
 .upload-recipeimg-container {
   width: 50vw;
   min-width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .upload-foodimg-btn-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .uploadrecipeimg-container {
+      margin-top: 20px;
+    }
+  }
 
   .upload-recipeimg {
     display: flex;
@@ -9,8 +23,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 90%;
-    margin: 15px 0;
+    width: 100%;
+    margin: 3vw 0;
   
     img {
       width: 100%;
