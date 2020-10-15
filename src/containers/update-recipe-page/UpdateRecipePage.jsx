@@ -9,11 +9,16 @@ import RecipeForm from '../../components/recipe-form/RecipeForm';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUpdateRecipeSuccess } from '../../redux/update-recipe/update.recipe.selectors';
+import { resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
 
 
 const mapStateToProps = createStructuredSelector({
   updateRecipeSuccess: selectUpdateRecipeSuccess
 })
+
+const mapDispatchToProps = (dispatch) => ({
+  resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
+});
 
 const UpdateRecipePage = (props) => {
   return (
@@ -26,7 +31,8 @@ const UpdateRecipePage = (props) => {
                 <Button 
                   onClick={() => {
                     props.history.push('/myrecipes');
-                    props.history.go();}}
+                    props.history.go();
+                    props.resetUpdateRecipe();}}
                     variant="contained" color="default" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
                 </Button>
                 and check it out!
@@ -38,4 +44,4 @@ const UpdateRecipePage = (props) => {
   );
 }
 
-export default withRouter(connect(mapStateToProps)(UpdateRecipePage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdateRecipePage));

@@ -68,6 +68,7 @@ export const uploadProfileImageTypeError = (data) => ({
 });
 
 export const deleteProfileImage = (token) => (dispatch) => {
+	dispatch({ type: UserActionTypes.DELETE_PROFILE_PIC_PENDING })
 	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
 	{
 		method: 'DELETE',

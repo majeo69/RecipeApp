@@ -47,6 +47,11 @@ export const selectUploadProfilePicError = createSelector(
   user => user.uploadProfilePicErrormsg
 )
 
+export const selectDeleteProfilePicPending = createSelector(
+  [selectUser],
+  user => user.deleteProfilePicPending
+)
+
 export const selectEditStatus = createSelector(
   [selectUser],
   user => user.onEditProfile

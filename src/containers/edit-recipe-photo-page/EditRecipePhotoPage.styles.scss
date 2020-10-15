@@ -1,0 +1,16 @@
+.edit-recipe-photo-page-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 5vw 0;
+
+  .edit-recipe-photo-section {
+    text-align: center;
+    width: 50%;
+    min-width: 380px;
+
+    h5:last-child {
+      margin-bottom: 2vw;
+    }
+  }
+}

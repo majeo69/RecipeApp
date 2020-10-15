@@ -4,9 +4,10 @@ import './RecipeDetails.scss';
 import { Button, IconButton, Checkbox, FormControlLabel } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import AlarmIcon from '@material-ui/icons/Alarm';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import { Stepper, Step, StepLabel, StepContent, Typography } from "@material-ui/core";
 
@@ -14,6 +15,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUserId } from '../../redux/user/user.selectors';
 import { setToBeUpdatedRecipe, resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
+import { setOnEditRecipeForPhoto } from '../../redux/create-recipe/create.recipe.actions'
 
 const mapStateToProps = createStructuredSelector({
   userId: selectUserId
@@ -21,10 +23,11 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   setToBeUpdatedRecipe: (data) => dispatch(setToBeUpdatedRecipe(data)),
-  resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
+  resetUpdateRecipe: () => dispatch(resetUpdateRecipe()),
+  setOnEditRecipeForPhoto: (data) => dispatch(setOnEditRecipeForPhoto(data))
 });
 
-const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpdateRecipe }) => {
+const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpdateRecipe, setOnEditRecipeForPhoto }) => {
   const { title, preparation, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
@@ -67,6 +70,18 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       {
         recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
         : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+      }
+      {
+        userId === owner ? 
+        <div className='food-pic-camera-btn'>
+          <IconButton color='default' aria-label="upload food picture" component="span" 
+            onClick={() => {
+              setOnEditRecipeForPhoto(recipe)
+              history.push('./editrecipephoto');}}>
+            <PhotoCamera style={{fontSize: '300%'}} />
+          </IconButton>
+        </div>
+        : null
       }
       </div>
 

@@ -24,7 +24,8 @@ import {
   selectUploadProfilePicPending,
   selectUploadProfilePicSuccess,
   selectUploadProfilePicError,
-  selectEditStatus
+  selectEditStatus,
+  selectDeleteProfilePicPending
 } from '../../redux/user/user.selectors';
 
 const mapStateToProps = createStructuredSelector({
@@ -35,7 +36,8 @@ const mapStateToProps = createStructuredSelector({
   uploadProfilePicPending: selectUploadProfilePicPending,
   uploadProfilePicSuccess: selectUploadProfilePicSuccess,
   uploadProfilePicError: selectUploadProfilePicError,
-  editStatus: selectEditStatus
+  editStatus: selectEditStatus,
+  deleteProfilePicPending: selectDeleteProfilePicPending
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -74,7 +76,7 @@ class PersonalInfo extends Component {
   }
 
   render () {
-    const { userName, userEmail, userAvatar, editStatus, uploadProfilePicPending } = this.props;
+    const { userName, userEmail, userAvatar, editStatus, uploadProfilePicPending, deleteProfilePicPending } = this.props;
     return (
       <div className='personal-info'>
         <div className='user-avatar-container'>
@@ -102,7 +104,11 @@ class PersonalInfo extends Component {
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <Button variant="outlined" color="secondary" size="small" startIcon={<DeleteIcon />} onClick={this.onDelete} >Del photo</Button>
+            <Button variant="outlined" color="secondary" size="small" onClick={this.onDelete} 
+              disabled={deleteProfilePicPending} startIcon={<DeleteIcon />} >
+              {deleteProfilePicPending && <CircularProgress size={15} />}
+              {!deleteProfilePicPending && 'Delete'}
+            </Button>
           </div>
         </div>
         <div className='user-detailed-info'>

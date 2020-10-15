@@ -9,7 +9,8 @@ const INITIAL_STATE = {
 	uploadProfilePicErrormsg: '',
 	onEditProfile: false,
 	editProfilePending: false,
-	editProfileErrormsg: ''
+	editProfileErrormsg: '',
+	deleteProfilePicPending: false
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -54,10 +55,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
 				uploadProfilePicPending: false,
 				uploadProfilePicErrormsg: action.payload
 			}
+		case UserActionTypes.DELETE_PROFILE_PIC_PENDING:
+			return {
+				...state,
+				deleteProfilePicPending: true
+			}
 		case UserActionTypes.DELETE_PROFILE_PIC_SUCCESS:
 			return {
 				...state,
-				currentUser: updateUser(state.currentUser, action.payload)
+				currentUser: updateUser(state.currentUser, action.payload),
+				deleteProfilePicPending: false
 			}
 		case UserActionTypes.CHANGE_EDIT_STATUS:
 			return {

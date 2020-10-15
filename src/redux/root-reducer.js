@@ -12,7 +12,7 @@ import storageSession from 'redux-persist/lib/storage/session'
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['user']
+  whitelist: ['user', 'updateRecipe']
 }
 
 const rootRuducer = combineReducers({

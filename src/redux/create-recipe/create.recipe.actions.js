@@ -68,3 +68,8 @@ export const uploadRecipeImgError = (errorMsg) => ({
   type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED,
   payload: errorMsg
 })
+
+export const setOnEditRecipeForPhoto = (data) => ({
+  type: CreateRecipesTypes.SET_ON_EDIT_RECIPE_FOR_PHOTO,
+  payload: data
+})

@@ -7,6 +7,11 @@ export const selectCreateRecipePending = createSelector(
   createdRecipe => createdRecipe.createRecipePending
 )
 
+export const selectNewRecipeInfo = createSelector(
+  [selectCreateRecipe],
+  createdRecipe => createdRecipe.newRecipe
+)
+
 export const selectCreatedRecipeId = createSelector(
   [selectCreateRecipe],
   createdRecipe => createdRecipe.newRecipe._id
@@ -35,9 +40,4 @@ export const selectUploadFoodimgSuccess = createSelector(
 export const selectUploadFoodimgErrormsg = createSelector(
   [selectCreateRecipe],
   createRecipe => createRecipe.uploadFoodimgErrormsg
-)
-
-export const selectUploadedFoodimg = createSelector(
-  [selectCreateRecipe],
-  createdRecipe => createdRecipe.newRecipe.img
 )

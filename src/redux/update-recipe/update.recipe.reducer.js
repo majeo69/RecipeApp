@@ -12,12 +12,18 @@ const updateUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case UpdateRecipeTypes.RECIPE_TO_BE_UPDATE:
       return {
         ...state,
-        recipeToBeUpdate: action.payload
+        recipeToBeUpdate: action.payload,
+        updateRecipePending: false,
+        updateRecipeSuccess: false,
+        updateRecipeFailed: false
       }
     case UpdateRecipeTypes.RESET_UPDATE_RECIPE:
       return {
         ...state,
-        recipeToBeUpdate: {}
+        recipeToBeUpdate: {},
+        updateRecipePending: false,
+        updateRecipeSuccess: false,
+        updateRecipeFailed: false
       }
     case UpdateRecipeTypes.UPDATE_RECIPE_PENDING:
       return {
@@ -36,7 +42,7 @@ const updateUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case UpdateRecipeTypes.UPDATE_RECIPE_FAILED:
       return {
         ...state,
-        updateRecipePending: true,
+        updateRecipePending: false,
         updateRecipeSuccess: false,
         updateRecipeFailed: action.payload
       }

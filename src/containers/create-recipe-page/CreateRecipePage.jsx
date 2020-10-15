@@ -9,9 +9,10 @@ import RecipePhotoUpload from '../../components/recipe-photo-upload/RecipePhotoU
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCreateRecipeSuccess, selectUploadFoodimgSuccess } from '../../redux/create-recipe/create.recipe.selectors';
+import { selectNewRecipeInfo, selectCreateRecipeSuccess, selectUploadFoodimgSuccess } from '../../redux/create-recipe/create.recipe.selectors';
 
 const mapStateToProps = createStructuredSelector({
+  onEditNewRecipe: selectNewRecipeInfo,
   createSuccess: selectCreateRecipeSuccess,
   uploadFoodimgSuccess: selectUploadFoodimgSuccess
 })
@@ -26,7 +27,7 @@ const CreateRecipePage = (props) => {
           {
             uploadFoodimgSuccess ?
             <div>
-              <h5>You've successfully uploaded the image for your recipe!</h5>
+              <h5>You've successfully uploaded the image for your {props.onEditNewRecipe.title} recipe!</h5>
               <h5>Go back to 
                 <Button 
                   onClick={() => {
@@ -39,7 +40,7 @@ const CreateRecipePage = (props) => {
             </div>
             :
             <div>
-              <h5>You are almost done! Upload an image for your recipe!</h5>
+              <h5>You are almost done! Upload an image for your {props.onEditNewRecipe.title} recipe!</h5>
               <h5>Or simply go back to 
                 <Button 
                   onClick={() => {

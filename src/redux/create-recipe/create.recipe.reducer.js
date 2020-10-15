@@ -23,10 +23,13 @@ const createUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case CreateRecipesTypes.CREATE_NEW_RECIPE_SUCCESS:
       return {
         ...state,
+        newRecipe: action.payload,
         createRecipePending: false,
         createSuccessStatus: true,
-        newRecipe: action.payload,
-        createRecipeErrormsg: ''
+        createRecipeErrormsg: '',
+        uploadFoodimgPending: false,
+        uploadFoodimgSuccess: false,
+        uploadFoodimgErrormsg: ''
       }
     case CreateRecipesTypes.CREATE_NEW_RECIPE_FAILED:
       return {
@@ -48,6 +51,7 @@ const createUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case CreateRecipesTypes.UPLOAD_RECIPE_PIC_PENDING:
       return {
         ...state,
+        newRecipe: {},
         uploadFoodimgPending: true,
         uploadFoodimgSuccess: false,
         uploadFoodimgErrormsg: ''
@@ -63,9 +67,18 @@ const createUserRecipeReducer = (state = INITIAL_STATE, action={}) => {
     case CreateRecipesTypes.UPLOAD_RECIPE_PIC_FAILED:
       return {
         ...state,
+        newRecipe: {},
         uploadFoodimgPending: false,
         uploadFoodimgSuccess: false,
         uploadFoodimgErrormsg: action.payload
+      }
+    case CreateRecipesTypes.SET_ON_EDIT_RECIPE_FOR_PHOTO:
+      return {
+        ...state,
+        newRecipe: action.payload,
+        uploadFoodimgPending: false,
+        uploadFoodimgSuccess: false,
+        uploadFoodimgErrormsg: ''
       }
     default:
       return state

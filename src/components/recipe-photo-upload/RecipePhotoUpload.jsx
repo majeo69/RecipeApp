@@ -8,19 +8,13 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { uploadRecipeImage, uploadRecipeImgError } from '../../redux/create-recipe/create.recipe.actions';
 import { 
-  selectCreatedRecipeId,
-  selectUploadFoodimgPending, 
-  selectUploadFoodimgSuccess, 
-  selectUploadFoodimgErrormsg ,
-  selectUploadedFoodimg
+  selectUploadFoodimgPending,
+  selectNewRecipeInfo
 } from '../../redux/create-recipe/create.recipe.selectors';
 
 const mapStateToProps = createStructuredSelector({
-  recipeId: selectCreatedRecipeId,
   uploadFoodimgPending: selectUploadFoodimgPending,
-  uploadFoodimgSuccess: selectUploadFoodimgSuccess,
-  uploadFoodimgErrormsg: selectUploadFoodimgErrormsg,
-  uploadedFoodimg: selectUploadedFoodimg
+  onEditRecipeInfo: selectNewRecipeInfo
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,12 +35,12 @@ class RecipePhotoUpload extends Component {
       this.props.uploadRecipeImgError('File type must be .jpg/jpeg, .png, .HEIC')
       return false;
     } else {
-      this.props.uploadRecipeImage(this.props.recipeId, imageFile);
+      this.props.uploadRecipeImage(this.props.onEditRecipeInfo._id, imageFile);
     }
   }
 
   render () {
-    const { uploadFoodimgPending, uploadFoodimgSuccess, uploadedFoodimg } = this.props;
+    const { uploadFoodimgPending, onEditRecipeInfo } = this.props;
     return (
       <div className='upload-recipeimg-container'>
         <div className='upload-foodimg-btn-container'>
@@ -71,7 +65,7 @@ class RecipePhotoUpload extends Component {
 
         <div className='upload-recipeimg'>
         {
-          uploadFoodimgSuccess ? <img alt='recipe_image' src={`data:image/png;base64,${uploadedFoodimg}`} /> 
+          onEditRecipeInfo.img ? <img alt='recipe_image' src={`data:image/png;base64,${onEditRecipeInfo.img}`} /> 
           : <img alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
         }
         </div>
