@@ -15,6 +15,7 @@ import { userPagination } from '../../utils/user-recipes.utils';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
 import { 
   requestAllUserRecipes, 
   requestFilteredUserRecipes, 
@@ -44,7 +45,8 @@ const mapDispatchToProps = (dispatch) => ({
   requestAllUserRecipes: (token) => dispatch(requestAllUserRecipes(token)),
   requestFilteredUserRecipes: (keyword) => dispatch(requestFilteredUserRecipes(keyword)),
   setUserCurrentPage: (data) => dispatch(setUserCurrentPage(data)),
-  setUserTotalPage: (data) => dispatch(setUserTotalPage(data))
+  setUserTotalPage: (data) => dispatch(setUserTotalPage(data)),
+  resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
 })
 
 class UserRecipePage extends Component {
@@ -77,7 +79,7 @@ class UserRecipePage extends Component {
   };
 
   render() {
-    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages, history } = this.props;
+    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages, history, resetUpdateRecipe } = this.props;
     const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages);
     return (
       <div className='user-recipe-page-container'>
@@ -89,7 +91,9 @@ class UserRecipePage extends Component {
                 <SearchBar onChange={this.handleChange} className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
                 <div className='create-recipe-button'>
                   <Button 
-                    onClick={() => {history.push('/createrecipe');}}
+                    onClick={() => {
+                      resetUpdateRecipe();
+                      history.push('/createrecipe');}}
                     variant="contained" color="default" startIcon={<AddIcon />} >Create Recipe
                   </Button>
                 </div>

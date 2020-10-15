@@ -10,6 +10,7 @@ import ExplorePage from './explore-page/ExplorePage';
 import UserRecipePage from './user-recipe-page/UserRecipePage';
 import SignInSignUpPage from './signin-signup-page/SignInSignUpPage';
 import CreateRecipePage from './create-recipe-page/CreateRecipePage';
+import UpdateRecipePage from './update-recipe-page/UpdateRecipePage';
 import RecipePage from './recipe-page/RecipePage';
 
 import { connect } from 'react-redux';
@@ -33,6 +34,7 @@ function App({ currentUserToken }) {
         <Route exact path='/myrecipes' render={() => currentUserToken ? (<UserRecipePage />) : (<Redirect to='/signin' />)} />
         <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
         <Route exact path='/createrecipe' component={()=><CreateRecipePage />} />
+        <Route exacr path='/updaterecipe' component={()=><UpdateRecipePage />} />
         <Route path='/explore/:id' component={RecipePage} />
         <Route path='/myrecipes/:id' component={RecipePage} />
       </Switch>

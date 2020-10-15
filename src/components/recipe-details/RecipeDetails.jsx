@@ -13,12 +13,18 @@ import { Stepper, Step, StepLabel, StepContent, Typography } from "@material-ui/
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUserId } from '../../redux/user/user.selectors';
+import { setToBeUpdatedRecipe, resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
 
 const mapStateToProps = createStructuredSelector({
   userId: selectUserId
 })
 
-const RecipeDetails = ({ recipe, history, userId }) => {
+const mapDispatchToProps = (dispatch) => ({
+  setToBeUpdatedRecipe: (data) => dispatch(setToBeUpdatedRecipe(data)),
+  resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
+});
+
+const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpdateRecipe }) => {
   const { title, preparation, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
@@ -28,7 +34,9 @@ const RecipeDetails = ({ recipe, history, userId }) => {
           type="button" startIcon={<KeyboardBackspaceIcon />}>
             Go Back
         </Button>
-        <Button onClick={() => {history.push('/createrecipe');}}
+        <Button onClick={() => {
+          resetUpdateRecipe();
+          history.push('/createrecipe');}}
           variant="outlined" color="default" startIcon={<AddIcon />}>
             Create Recipe
         </Button>
@@ -38,7 +46,10 @@ const RecipeDetails = ({ recipe, history, userId }) => {
         <h1>{title}</h1>
         {
           userId === owner ? 
-            <IconButton type="button" aria-label="edit-recipe">
+            <IconButton type="button" aria-label="edit-recipe" 
+              onClick={() => {
+                setToBeUpdatedRecipe(recipe);
+                history.push('/updaterecipe');}}>
               <EditRoundedIcon />
             </IconButton> 
             : null
@@ -94,4 +105,4 @@ const RecipeDetails = ({ recipe, history, userId }) => {
   );
 }
 
-export default connect(mapStateToProps)(RecipeDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetails);

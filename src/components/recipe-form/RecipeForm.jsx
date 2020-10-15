@@ -11,62 +11,79 @@ import Switch from '@material-ui/core/Switch';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { updateRecipe } from '../../redux/update-recipe/update.recipe.actions';
 import { createNewRecipe, resetCreateNeRecipeState } from '../../redux/create-recipe/create.recipe.actions';
 import { selectUserToken } from '../../redux/user/user.selectors';
-import { selectCreateRecipePending, selectCreateRecipeSuccess, selectCreateRecipeErrormsg } from '../../redux/create-recipe/create.recipe.selectors'
+import { selectCreateRecipePending, selectCreateRecipeSuccess, selectCreateRecipeErrormsg } from '../../redux/create-recipe/create.recipe.selectors';
+import { selectRecipeToBeUpdate, selectUpdateRecipePending } from '../../redux/update-recipe/update.recipe.selectors';
 
 const mapDispatchToProps = (dispatch) => ({
   createNewRecipe: (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
     dispatch(createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
-    resetCreateNeRecipeState: () => dispatch(resetCreateNeRecipeState())
+  updateRecipe: (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
+    dispatch(updateRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
+  resetCreateNeRecipeState: () => dispatch(resetCreateNeRecipeState())
 });
 
 const mapStateToProps = createStructuredSelector({
   userToken: selectUserToken,
   createRecipePending: selectCreateRecipePending,
   createSuccess: selectCreateRecipeSuccess,
-  createError: selectCreateRecipeErrormsg
+  createError: selectCreateRecipeErrormsg,
+  recipeToBeUpdate: selectRecipeToBeUpdate,
+  updateRecipePending: selectUpdateRecipePending
 })
 
 class RecipeForm extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      title: '',
-      prep_time: '',
-      cook_time: '',
-      servings: '',
-      ingredients: '',
-      steps: '',
-      public_recipe: false
+    if (Object.keys(this.props.recipeToBeUpdate).length===0) {
+      this.state = {
+        title: '',
+        prep_time: '',
+        cook_time: '',
+        servings: '',
+        ingredients: '',
+        steps: '',
+        public_recipe: false
+      }
+    } else {
+      this.state = {
+        title: this.props.recipeToBeUpdate.title,
+        prep_time: this.props.recipeToBeUpdate.preparation,
+        cook_time: this.props.recipeToBeUpdate.cook_time,
+        servings: this.props.recipeToBeUpdate.servings,
+        ingredients: this.props.recipeToBeUpdate.ingredients,
+        steps: this.props.recipeToBeUpdate.steps,
+        public_recipe: this.props.recipeToBeUpdate.public
+      }
     }
-  }
-
-  componentDidMount() {
-    this.props.resetCreateNeRecipeState();
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { userToken } = this.props;
+    const { userToken, recipeToBeUpdate } = this.props;
     const { title, prep_time, cook_time, servings, ingredients, steps, public_recipe } = this.state;
-    this.props.createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)
-
+    if (Object.keys(this.props.recipeToBeUpdate).length===0) {
+      this.props.createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)
+    } else {
+      this.props.updateRecipe(recipeToBeUpdate._id, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)
+    }
   }
 
   handleChange = event => {
     const { value, checked, name } = event.target;
     if (name === 'prep_time' || name === 'cook_time' || name === 'servings') {
-      this.setState({ [name]: parseInt(value)})
+      this.setState({ [name]: parseInt(value) })
     } else if (name === 'public_recipe'){
-      this.setState({ [name]: checked})
+      this.setState({ [name]: checked })
     } else {
       this.setState({ [name]: value })
     }
   }
 
   render () {
-    const { createRecipePending, createError, createSuccess } = this.props;
+    const { createRecipePending, createError, createSuccess, recipeToBeUpdate, updateRecipePending } = this.props;
     return (
       <div className='create-recipe-fields'>
         <Button onClick={() => this.props.history.goBack()}
@@ -75,11 +92,12 @@ class RecipeForm extends Component {
         </Button>
         <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
           <TextField
-            onChange={this.handleChange}
+            onChange={this.handleChange} defaultValue={recipeToBeUpdate.title || ''}
             className='recipe-title-field' id="recipe-title" name='title' fullWidth label="Recipe Title" required />
           <div className='public-switch-button'>
             <h6>Public: 
-              <Switch onChange={this.handleChange} name="public_recipe" inputProps={{ 'aria-label': 'secondary checkbox' }}/>
+              <Switch onChange={this.handleChange} defaultChecked={recipeToBeUpdate.public || false}
+                name="public_recipe" inputProps={{ 'aria-label': 'secondary checkbox' }}/>
               (Note: All members have access to public recipes.)
             </h6>
           </div>
@@ -92,21 +110,21 @@ class RecipeForm extends Component {
           <div className='time-field'>
             <h6>Prep time: </h6>
             <TextField
-              onChange={this.handleChange}  
+              onChange={this.handleChange} defaultValue={recipeToBeUpdate.preparation || ''}
               id="standard-number" label="Number" type="number" inputProps={{ min: "0"}} name='prep_time' style={{margin: "0px 30px"}} required/>
             <h6>minutes</h6>
           </div>
           <div className='time-field'>
             <h6>Cook time:</h6>
             <TextField
-              onChange={this.handleChange} 
+              onChange={this.handleChange} defaultValue={recipeToBeUpdate.cook_time || ''}
               id="standard-number" label="Number" type="number" inputProps={{ min: "0"}} name='cook_time' style={{margin: "0px 30px"}} required/> 
             <h6>minutes</h6>
           </div>
           <div className='time-field'>
             <h6>Number of Servings:</h6>
             <TextField 
-              onChange={this.handleChange} 
+              onChange={this.handleChange} defaultValue={recipeToBeUpdate.servings || ''}
               id="standard-number" label="Number" type="number" inputProps={{ min: "0"}} name='servings' style={{margin: "0px 30px"}} required/> 
             <h6>poeple</h6>
           </div>
@@ -122,7 +140,8 @@ class RecipeForm extends Component {
               rows={8}
               placeholder="2 ripe avocados&#10;1/4 teaspoon of salt&#10;1/4 cup chopped onion"
               variant="outlined"
-              onChange={this.handleChange} 
+              onChange={this.handleChange}
+              defaultValue={Object.keys(recipeToBeUpdate).length===0 ?  '' : recipeToBeUpdate.ingredients.join('\n')}
               required
             />
           </div>
@@ -137,14 +156,20 @@ class RecipeForm extends Component {
               rows={8}
               placeholder="Bring a large pot of lightly salted water to a boil.&#10;Preheat oven to 425 degrees F (220 degrees C).&#10;Bake for 15 to 20 minutes in the preheated oven."
               variant="outlined"
-              onChange={this.handleChange} 
+              onChange={this.handleChange}
+              defaultValue={Object.keys(recipeToBeUpdate).length===0 ?  '' : recipeToBeUpdate.steps.join('\n')}
               required
             />
           </div>
           <div className='create-recipe-submitbtn'>
-            <Button variant="contained" type="submit" onClick={this.handleSubmit} disabled={createRecipePending}>
-              {createRecipePending && <CircularProgress size={19} />}
-              {!createRecipePending && 'Submit'}
+            <Button variant="contained" type="submit" onClick={this.handleSubmit} 
+              disabled={Object.keys(recipeToBeUpdate).length===0 ? createRecipePending : updateRecipePending}>
+              {Object.keys(recipeToBeUpdate).length===0 ? 
+                createRecipePending && <CircularProgress size={19} />
+                : updateRecipePending && <CircularProgress size={19} />}
+              {Object.keys(recipeToBeUpdate).length===0 ? 
+                !createRecipePending && 'Submit'
+                : !updateRecipePending && 'Submit'}
             </Button>
           </div>
         </form>

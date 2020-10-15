@@ -26,13 +26,13 @@ const CreateRecipePage = (props) => {
           {
             uploadFoodimgSuccess ?
             <div>
-              <h5>You've successfully upload the image for your recipe!</h5>
+              <h5>You've successfully uploaded the image for your recipe!</h5>
               <h5>Go back to 
                 <Button 
                   onClick={() => {
                     props.history.push('/myrecipes');
                     props.history.go();}}
-                  variant="contained" color="default" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
+                    variant="contained" color="default" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
                 </Button>
                 and check it out!
               </h5>

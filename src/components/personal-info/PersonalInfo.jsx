@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PersonalInfo.styles.scss';
 
-import { Button, IconButton } from "@material-ui/core";
+import { Button, IconButton, CircularProgress } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
@@ -21,6 +21,7 @@ import {
   selectUserEmail,
   selectUserToken, 
   selectUserAvatar,
+  selectUploadProfilePicPending,
   selectUploadProfilePicSuccess,
   selectUploadProfilePicError,
   selectEditStatus
@@ -31,6 +32,7 @@ const mapStateToProps = createStructuredSelector({
   userEmail: selectUserEmail,
   userAvatar: selectUserAvatar,
   userToken: selectUserToken,
+  uploadProfilePicPending: selectUploadProfilePicPending,
   uploadProfilePicSuccess: selectUploadProfilePicSuccess,
   uploadProfilePicError: selectUploadProfilePicError,
   editStatus: selectEditStatus
@@ -72,7 +74,7 @@ class PersonalInfo extends Component {
   }
 
   render () {
-    const { userName, userEmail, userAvatar, editStatus } = this.props;
+    const { userName, userEmail, userAvatar, editStatus, uploadProfilePicPending } = this.props;
     return (
       <div className='personal-info'>
         <div className='user-avatar-container'>
@@ -92,8 +94,10 @@ class PersonalInfo extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-avatar">
-              <Button variant="outlined" color="primary" size="small" component="span" startIcon={<PhotoCamera />}>
-                Upload
+              <Button variant="outlined" color="primary" size="small" component="span"
+                disabled={uploadProfilePicPending} startIcon={<PhotoCamera />}>
+                {uploadProfilePicPending && <CircularProgress size={15} />}
+                {!uploadProfilePicPending && 'Upload'}
               </Button>
             </label>
           </div>

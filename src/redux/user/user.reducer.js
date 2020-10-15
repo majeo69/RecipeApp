@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 	uploadProfilePicSuccessmsg: '',
 	uploadProfilePicErrormsg: '',
 	onEditProfile: false,
-	editProfilePending: true,
+	editProfilePending: false,
 	editProfileErrormsg: ''
 }
 

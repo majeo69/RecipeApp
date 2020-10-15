@@ -32,6 +32,11 @@ export const selectSignupErrormsg = createSelector(
   user => user.signupErrormsg
 )
 
+export const selectUploadProfilePicPending = createSelector(
+  [selectUser],
+  user => user.uploadProfilePicPending
+)
+
 export const selectUploadProfilePicSuccess = createSelector(
   [selectUser],
   user => user.uploadProfilePicSuccessmsg
@@ -45,4 +50,9 @@ export const selectUploadProfilePicError = createSelector(
 export const selectEditStatus = createSelector(
   [selectUser],
   user => user.onEditProfile
+)
+
+export const selectEditProfilePending = createSelector(
+  [selectUser],
+  user => user.editProfilePending
 )

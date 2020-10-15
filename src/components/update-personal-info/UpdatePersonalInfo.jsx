@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './UpdatePersonalInfo.styles.scss';
 
-import Button from "@material-ui/core/Button";
+import { Button, CircularProgress} from "@material-ui/core";
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -9,13 +9,15 @@ import { onEditProfile, updateUserInfo } from '../../redux/user/user.actions';
 import { 
   selectUserName, 
   selectUserEmail,
-  selectUserToken
+  selectUserToken,
+  selectEditProfilePending
 } from '../../redux/user/user.selectors';
 
 const mapStateToProps = createStructuredSelector({
   userName: selectUserName,
   userEmail: selectUserEmail,
-  userToken: selectUserToken
+  userToken: selectUserToken,
+  editProfilePenging: selectEditProfilePending
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,14 +49,18 @@ class UpdatePersonalInfo extends Component {
   }
 
   render() {
-    const { userName, userEmail } = this.props;
+    const { userName, userEmail, editProfilePenging } = this.props;
     return (
       <div className='personal-info-edit-container'>
         <form className='personal-info-edit' onSubmit={this.handleSubmit}>
           <input name="displayName" type="text" id="edit-name" onChange={this.handleChange} defaultValue={userName} />
           <input name="email" type="email" id="edit-email" onChange={this.handleChange} defaultValue={userEmail} />
           <div className='personal-info-edit-buttons'>
-            <Button variant="outlined" type="submit" size="small">Submit</Button>
+            <Button variant="outlined" type="submit" size="small"
+              disabled={editProfilePenging}>
+              {editProfilePenging && <CircularProgress size={15} />}
+              {!editProfilePenging && 'Submit'}
+            </Button>
             <Button variant="outlined" type="button" size="small" onClick={this.handleCancel}>Cancle</Button>
           </div>
         </form>
