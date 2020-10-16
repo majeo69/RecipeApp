@@ -39,10 +39,15 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
         </Button>
         <Button onClick={() => {
           resetUpdateRecipe();
-          history.push('/createrecipe');}}
+          if (userId !== 'no-user') {
+            history.push('/createrecipe');
+          } else {
+            history.push('/signin');
+          }}}
           variant="outlined" color="default" startIcon={<AddIcon />}>
             Create Recipe
         </Button>
+
       </div>
 
       <div className='recipe-details-row2'>
