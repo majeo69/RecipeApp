@@ -1,3 +1,9 @@
+export const addUpTotalTime = (publicRecipes) => {
+  return publicRecipes.map(
+    publicRecipe => ({...publicRecipe, total_time: parseInt(publicRecipe.preparation)+parseInt(publicRecipe.cook_time)})
+  )
+}
+
 export const filterPublicRecipes = (keywords, publicRecipes) => {
   const filteredRecipes = publicRecipes.filter(publicRecipe => {
     return publicRecipe.title.toLowerCase().includes(keywords.toLowerCase());

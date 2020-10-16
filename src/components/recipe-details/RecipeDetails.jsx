@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpdateRecipe, setOnEditRecipeForPhoto }) => {
-  const { title, preparation, cook_time, servings, ingredients, steps, owner } = recipe;
+  const { title, preparation, total_time, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
       <div className='recipe-details-row1'>
@@ -63,7 +63,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       </div>
       
       <div className='recipe-details-row3'>
-        <AlarmIcon /><span style={{paddingLeft: "5px"}}>{preparation} mins</span>
+        <AlarmIcon /><span style={{paddingLeft: "5px"}}>{total_time} mins</span>
         <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Prep: </span><br /><span>{preparation} mins</span></div>
         <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Cook: </span><br /><span>{cook_time} mins</span></div>
         <PersonOutlineIcon style={{marginLeft: 16}} /><span style={{paddingLeft: "5px"}}>{servings} people</span>
