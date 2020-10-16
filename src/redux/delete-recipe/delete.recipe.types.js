@@ -1,0 +1,6 @@
+const DeleteRecipeTypes = {
+  DELETE_RECIPE_PENDING: 'DELETE_RECIPE_PENDING',
+  DELETE_RECIPE_SUCCESS: 'DELETE_RECIPE_SUCCESS'
+}
+
+export default DeleteRecipeTypes;

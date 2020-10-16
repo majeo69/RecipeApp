@@ -19,10 +19,21 @@
 
   .recipe-details-row2 {
     width: 90%;
+    height: 100px;
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
+
+    .edit-delete-icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      button {
+        margin: 0 0;
+      }
+    }
   }
 
   .recipe-details-row3 {

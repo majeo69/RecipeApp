@@ -1,6 +1,8 @@
 import React from 'react';
 import './RecipeDetails.scss';
 
+import DeleteAlert from '../../components/delete-alert/DeleteAlert';
+
 import { Button, IconButton, Checkbox, FormControlLabel } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import AlarmIcon from '@material-ui/icons/Alarm';
@@ -8,7 +10,6 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-
 import { Stepper, Step, StepLabel, StepContent, Typography } from "@material-ui/core";
 
 import { connect } from 'react-redux';
@@ -31,7 +32,6 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
   const { title, preparation, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
-
       <div className='recipe-details-row1'>
         <Button onClick={() => history.goBack()}
           type="button" startIcon={<KeyboardBackspaceIcon />}>
@@ -48,13 +48,16 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       <div className='recipe-details-row2'>
         <h1>{title}</h1>
         {
-          userId === owner ? 
-            <IconButton type="button" aria-label="edit-recipe" 
-              onClick={() => {
-                setToBeUpdatedRecipe(recipe);
-                history.push('/updaterecipe');}}>
-              <EditRoundedIcon />
-            </IconButton> 
+          userId === owner ?
+            <div className='edit-delete-icons'>
+              <IconButton type="button" aria-label="edit-recipe" 
+                onClick={() => {
+                  setToBeUpdatedRecipe(recipe);
+                  history.push('/updaterecipe');}}>
+                <EditRoundedIcon />
+              </IconButton> 
+              <DeleteAlert onDeleteRecipe={recipe}/>
+            </div> 
             : null
         }
       </div>
