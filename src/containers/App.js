@@ -36,7 +36,7 @@ function App({ currentUserToken }) {
         <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
         <Route exact path='/createrecipe' component={()=><CreateRecipePage />} />
         <Route exacr path='/updaterecipe' component={()=><UpdateRecipePage />} />
-        <Route exacr path='/myrecipes/editrecipephoto' component={()=><EditRecipePhotoPage />} />
+        <Route exacr path='/editrecipephoto' component={()=><EditRecipePhotoPage />} />
         <Route path='/explore/:id' component={RecipePage} />
         <Route path='/myrecipes/:id' component={RecipePage} />
       </Switch>

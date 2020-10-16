@@ -4,6 +4,14 @@ import './RecipePage.styles.scss';
 import RecipeDetails from '../../components/recipe-details/RecipeDetails';
 import PersonalInfo from '../../components/personal-info/PersonalInfo';
 
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectUserId } from '../../redux/user/user.selectors';
+
+const mapStateToProps = createStructuredSelector({
+  userId: selectUserId
+})
+
 const RecipePage = (props) => {
   const recipe = props.location.state.detailedRecipe
   return (
@@ -11,11 +19,15 @@ const RecipePage = (props) => {
       <div className='details-box'>
         <RecipeDetails recipe={recipe} history={props.history}/>
       </div>
-      <div className='personal-info-box'>
-        <PersonalInfo />
-      </div>
+      {
+        props.userId !== 'no-user' ?
+        <div className='personal-info-box'>
+          <PersonalInfo />
+        </div>
+        : null
+      }
     </div>
   );
 }
 
-export default RecipePage;
+export default connect(mapStateToProps)(RecipePage);

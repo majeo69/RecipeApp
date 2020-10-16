@@ -20,7 +20,6 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         userRecipes: addUpTotalTime(action.payload),
-        //userRecipes: action.payload,
         isPending: !state.isPending
       }
     case UserRecipesTypes.REQUEST_ALL_USER_RECIPES_FAILED:

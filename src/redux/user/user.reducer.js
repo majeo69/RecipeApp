@@ -2,7 +2,7 @@ import { UserActionTypes } from './user.types';
 import { updateUser } from './user.utils';
 
 const INITIAL_STATE = {
-	currentUser: {},
+	currentUser: { user: {_id: 'no-user'} },
 	signupErrormsg: '',
 	uploadProfilePicPending: false,
 	uploadProfilePicSuccessmsg: '',

@@ -48,7 +48,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       <div className='recipe-details-row2'>
         <h1>{title}</h1>
         {
-          userId && userId === owner ?
+          userId !== 'no-user' && userId === owner ?
             <div className='edit-delete-icons'>
               <IconButton type="button" aria-label="edit-recipe" 
                 onClick={() => {
@@ -69,22 +69,22 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
         <PersonOutlineIcon style={{marginLeft: 16}} /><span style={{paddingLeft: "5px"}}>{servings} people</span>
       </div>
 
-      <div className='recipe-details-img-container'>
+      <div className={`${userId !== 'no-user' &&  userId === owner ? 'recipe-details-auth': ''} recipe-details-img-container`}>
       {
         recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
         : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
       }
       {
-        userId && userId === owner ? 
-        <div className='food-pic-camera-btn'>
-          <IconButton color='default' aria-label="upload food picture" component="span" 
-            onClick={() => {
-              setOnEditRecipeForPhoto(recipe)
-              history.push('./editrecipephoto');}}>
-            <PhotoCamera style={{fontSize: '300%'}} />
-          </IconButton>
-        </div>
-        : null
+        userId !== 'no-user' && userId === owner ?
+          <div className='food-pic-camera-btn'>
+            <IconButton color='default' aria-label="upload food picture" component="span" 
+              onClick={() => {
+                setOnEditRecipeForPhoto(recipe)
+                history.push('/editrecipephoto');}}>
+              <PhotoCamera style={{fontSize: '300%'}} />
+            </IconButton>
+          </div>
+          : null
       }
       </div>
 

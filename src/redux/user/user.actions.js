@@ -93,7 +93,7 @@ export const logoutCurrentUser = (token) => (dispatch) => {
 			'Content-Type': 'application/json'
 		}
 	})
-	.then(dispatch({ type: UserActionTypes.LOGOUT_CURRENT_USER, payload: {} }))
+	.then(dispatch({ type: UserActionTypes.LOGOUT_CURRENT_USER, payload: {user: {_id: 'no-user'}}}))
 };
 
 export const onEditProfile = () => ({type: UserActionTypes.CHANGE_EDIT_STATUS});
