@@ -53,8 +53,8 @@ class RecipeForm extends Component {
         prep_time: this.props.recipeToBeUpdate.preparation,
         cook_time: this.props.recipeToBeUpdate.cook_time,
         servings: this.props.recipeToBeUpdate.servings,
-        ingredients: this.props.recipeToBeUpdate.ingredients,
-        steps: this.props.recipeToBeUpdate.steps,
+        ingredients: this.props.recipeToBeUpdate.ingredients.join('\n'),
+        steps: this.props.recipeToBeUpdate.steps.join('\n'),
         public_recipe: this.props.recipeToBeUpdate.public
       }
     }

@@ -12,6 +12,8 @@ export const resetUpdateRecipe = () => ({
 })
 
 export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
+  console.log(ingredients)
+  console.log(steps)
   dispatch({ type: UpdateRecipeTypes.UPDATE_RECIPE_PENDING })
   fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/${recipeID}`,
   {
@@ -25,8 +27,8 @@ export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, s
       preparation: prep_time,
       cook_time: cook_time,
       servings: servings,
-      ingredients: ingredients,
-      steps: steps,
+      ingredients: ingredients.split('\n').filter(Boolean),
+      steps: steps.split('\n').filter(Boolean),
       public: public_recipe
     })
   }).then(response => {
