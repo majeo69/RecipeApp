@@ -96,7 +96,7 @@ class PersonalInfo extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-avatar">
-              <Button variant="outlined" color="primary" size="small" component="span"
+              <Button variant="outlined" color="default" size="small" component="span"
                 disabled={uploadProfilePicPending} startIcon={<PhotoCamera />}>
                 {uploadProfilePicPending && <CircularProgress size={15} />}
                 {!uploadProfilePicPending && 'Upload'}
@@ -104,7 +104,7 @@ class PersonalInfo extends Component {
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <Button variant="outlined" color="secondary" size="small" onClick={this.onDelete} 
+            <Button variant="outlined" color="default" size="small" onClick={this.onDelete} 
               disabled={deleteProfilePicPending} startIcon={<DeleteIcon />} >
               {deleteProfilePicPending && <CircularProgress size={15} />}
               {!deleteProfilePicPending && 'Delete'}
@@ -114,9 +114,9 @@ class PersonalInfo extends Component {
         <div className='user-detailed-info'>
           {
             editStatus ? <UpdatePersonalInfo /> :
-            <div>
+            <div className='name-and-email'>
               <div className='name-edit-icon'>
-                <h4>Hi! {userName}</h4>
+                <h4>{userName}</h4>
                 <IconButton aria-label="edit-personal-info" onClick={this.onEdit}>
                   <EditRoundedIcon fontSize="small" />
                 </IconButton>

@@ -26,10 +26,12 @@ const RecipePreview = ({ recipe, match, history }) => {
       <h4>{title}</h4>
       <div className='recipe-preview-icons'>
         <div className='recipe-preview-row1'>
-          <AccessTimeIcon /><span style={{paddingLeft: "5px", paddingRight: "15px", fontSize: "17px"}}>{preparation} mins</span>
-          <WhatshotIcon /><span style={{paddingLeft: "5px", fontSize: "17px"}}>{cook_time} mins</span>
+          <AccessTimeIcon /><span style={{paddingLeft: "5px", paddingRight: "15px", fontSize: "20px"}}>{preparation} <span style={{fontSize: "16px"}}>mins</span></span>
+          <WhatshotIcon /><span style={{paddingLeft: "5px", fontSize: "20px"}}>{cook_time} <span style={{fontSize: "16px"}}>mins</span></span>
         </div>
-        <PersonOutlineIcon /><span style={{paddingLeft: "5px", fontSize: "17px"}}>{servings} people</span>
+        <div className='recipe-preview-row2'>
+          <PersonOutlineIcon /><span style={{paddingLeft: "5px", fontSize: "20px"}}>{servings} <span style={{fontSize: "16px"}}>people</span></span>
+        </div>
       </div>
     </div>
   );

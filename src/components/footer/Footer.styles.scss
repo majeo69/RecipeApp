@@ -1,13 +1,17 @@
 .footer-container {
-  background-color: #B77879;
+  background-color: #2A356C;
+  width: 100vw;
+  height: 70px;
   opacity: 0.9;
   display: flex;
   justify-content: center;
   
   p {
+    font-family: 'Cabin', sans-serif;
+    color: aliceblue;
     text-align: center;
     vertical-align: middle;
     margin: 0 0;
-    padding: 10px 0;
+    margin: auto 0;
   }
 }

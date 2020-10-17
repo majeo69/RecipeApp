@@ -5,19 +5,20 @@
 }
 .searchTerm {
   width: 100%;
-  border: 3px solid #AEB4A9;
+  border: 3px solid #2A356C;
   border-right: none;
   padding: 5px;
   height: 46px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: #333333;
 }
+
 .searchButton {
   width: 60px;
   height: 46px;
-  border: 1px solid #989D95;
-  background: #989D95;
+  border: 1px solid #2A356C;
+  background: #2A356C;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -27,8 +28,8 @@
 .searchButton:hover {
   width: 60px;
   height: 46px;
-  border: 1px solid #989D95;
-  background: #474935;
+  border: 1px solid #2A356C;
+  background: #4A5696;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;

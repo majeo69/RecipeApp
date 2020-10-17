@@ -80,7 +80,7 @@ class ExplorePage extends Component {
           <div>
             <div className='explore-searchbar-container'>
               <SearchBar onChange={this.handleChange} className='searchbar-explore'>
-                Explore universe recipes from here!
+                ex. Chocolate tart
               </SearchBar>
             </div>
             <div className='explore-recipes-container'>
@@ -96,7 +96,7 @@ class ExplorePage extends Component {
               :
               <div className='public-pagination-container'>
                 <Pagination 
-                  variant="outlined" 
+                  color='secondary'
                   count={publicTotalPages} 
                   page={publicCurrentPage} 
                   onChange={this.handlePagination} 

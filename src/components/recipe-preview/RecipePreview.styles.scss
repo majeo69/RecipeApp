@@ -3,13 +3,13 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   transition:transform 0.25s ease-out;
-  background-color: #fffff0;
+  background: #FFFFFF;
+  box-shadow: 3px 4px 4px rgba(153, 153, 153, 0.25);
   width: 25%;
   min-width: 350px;
-  border: 1px solid #DF9B9E;
 
   margin: 25px;
-  padding: 10px 10px;
+
   border-radius: 3px;
 
   &:hover, &:focus {
@@ -24,6 +24,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    overflow: hidden;
 
 
     img {
@@ -41,12 +44,24 @@
       align-items: center;
       justify-content: flex-start;
       flex-wrap: wrap;
-      margin-bottom: 6px;
+      margin: 0 0 5px 15px;
+    }
+
+    .recipe-preview-row2 {
+      display: flex;
+      align-items: center;
+      margin: 0 0 20px 15px;
+    }
+
+    span {
+      font-family: 'Cabin', sans-serif;
     }
   }
 
   h4 {
-    margin: 15px 0 15px 5px;
+    font-size: 27px;
+    font-family: 'Frank Ruhl Libre', serif;
+    margin: 15px 15px 15px 20px;
   }
 
   h6:last-child {

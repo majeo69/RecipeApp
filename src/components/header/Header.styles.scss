@@ -1,17 +1,22 @@
 .header-container {
-  background-color: #DF9B9E;
-  opacity: 0.9;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 5px rgba(153, 153, 153, 0.25);
 	height: 70px;
 	display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 1px 6px #945D5E;
   font-size: 18px;
 
   .web-logo {
     text-decoration: none;
     color: #1B2021;
     padding-left: 3%;
+
+    span {
+      font-family: Frank Ruhl Libre;
+      color: #2A356C;
+      font-size: 28px;
+    }
   }
 
   .header-options {
@@ -23,9 +28,22 @@
     color: #393D3F;
 
     .header-option {
-      padding: 0 3% 0 3%;
+      margin: 0 3% 0 3%;
       text-decoration: none;
       color: #1B2021;
+
+      .btn-header {
+        color: #ffffff;
+        background-color: #F4AEA4;
+        border-color: #F4AEA4;
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      &:hover {
+        color: #F4AEA4;
+        background: linear-gradient(180deg, rgba(255,255,255,0) 85%, #FBDD8A 85%);
+      }
     }
   }
 

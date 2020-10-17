@@ -18,6 +18,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUserToken } from '../redux/user/user.selectors';
 
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from '../utils/material-ui-theme';
 
 const mapStateToProps = createStructuredSelector({
   currentUserToken: selectUserToken
@@ -25,23 +27,25 @@ const mapStateToProps = createStructuredSelector({
 
 function App({ currentUserToken }) {
   return (
-    <div className="App">
-      <div className='sticky-header'>
-        <Header />
+    <MuiThemeProvider theme={theme}>
+      <div className="App">
+        <div className='sticky-header'>
+          <Header />
+        </div>
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/explore' component={()=><ExplorePage />} />
+          <Route exact path='/myrecipes' render={() => currentUserToken ? (<UserRecipePage />) : (<Redirect to='/signin' />)} />
+          <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
+          <Route exact path='/createrecipe' component={()=><CreateRecipePage />} />
+          <Route exacr path='/updaterecipe' component={()=><UpdateRecipePage />} />
+          <Route exacr path='/editrecipephoto' component={()=><EditRecipePhotoPage />} />
+          <Route path='/explore/:id' component={RecipePage} />
+          <Route path='/myrecipes/:id' component={RecipePage} />
+        </Switch>
+        <Footer />
       </div>
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/explore' component={()=><ExplorePage />} />
-        <Route exact path='/myrecipes' render={() => currentUserToken ? (<UserRecipePage />) : (<Redirect to='/signin' />)} />
-        <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
-        <Route exact path='/createrecipe' component={()=><CreateRecipePage />} />
-        <Route exacr path='/updaterecipe' component={()=><UpdateRecipePage />} />
-        <Route exacr path='/editrecipephoto' component={()=><EditRecipePhotoPage />} />
-        <Route path='/explore/:id' component={RecipePage} />
-        <Route path='/myrecipes/:id' component={RecipePage} />
-      </Switch>
-      <Footer />
-    </div>
+    </MuiThemeProvider>
   );
 }
 

@@ -13,7 +13,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border: 3px solid #DBDEDA;
+    border: 3px solid #333333;
     border-radius: 50%;
     width: 65%;
     height: auto;
@@ -40,17 +40,25 @@
     text-align: center;
     width: 90%;
 
-    .name-edit-icon {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      vertical-align: center;
-      margin-bottom: 5px;
+    .name-and-email {
+      .name-edit-icon {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        vertical-align: center;
+        margin-bottom: 5px;
+  
+        h4 {
+          font-family: 'Poppins', sans-serif;
+          margin-bottom: 0px;
+          background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #FBDD8A 70%);
+        }
+      }
 
-      h4 {
-        margin-bottom: 0px;
+      h6 {
+        font-family: 'Roboto', sans-serif;
       }
     }
   }

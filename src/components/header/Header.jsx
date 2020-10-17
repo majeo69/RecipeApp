@@ -28,16 +28,20 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
 
   return (
     <div className='header-container'>
-      <Link className='web-logo' to='/'>Secret Recipes</Link>
+      <Link className='web-logo' to='/'><span>Secret Recipes</span></Link>
       <div className='header-options'>
         <Link className='header-option' to='/explore'>Explore</Link>
         {
-          currentUserToken ? <Link className='header-option' to='/myrecipes'>My Recipes</Link> : null
+          currentUserToken ? 
+          <Link className='header-option' to='/myrecipes'>
+            <span>My Recipes</span>
+          </Link> 
+          : null
         }
-        <Link className='header-option' to='/signin'>
-          <Button variant="dark" type="button" onClick={() => handleClick()}>
+        <Link className='header-option header-signin' to='/signin'>
+          <Button variant="header" type="button" onClick={() => handleClick()}>
           {
-            currentUserToken ? "Sign Out" : "Sign In"
+            currentUserToken ? <span>Sign Out</span> : <span>Sign In</span>
           }
           </Button>
         </Link>

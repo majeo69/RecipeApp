@@ -7,9 +7,10 @@ import SearchBar from '../../components/searchbar/SearchBar';
 import PersonalInfo from '../../components/personal-info/PersonalInfo';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
+
+import CreateRecipeStyledButton from '../../components/create-recipe-styled-button/CreateRecipeStyledButton';
 
 import { userPagination } from '../../utils/user-recipes.utils';
 
@@ -88,14 +89,14 @@ class UserRecipePage extends Component {
             isPending ? <Loading /> :
             <div>
               <div className='user-searchbar-container'>
-                <SearchBar onChange={this.handleChange} className='searchbar-user'>Explore Your Own Recipe here</SearchBar>
+                <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
                 <div className='create-recipe-button'>
-                  <Button 
+                  <CreateRecipeStyledButton startIcon={<AddIcon />} 
                     onClick={() => {
                       resetUpdateRecipe();
-                      history.push('/createrecipe');}}
-                    variant="contained" color="default" startIcon={<AddIcon />} >Create Recipe
-                  </Button>
+                      history.push('/createrecipe');}}>
+                    <span>Create Recipe</span>
+                  </CreateRecipeStyledButton>
                 </div>
               </div>
               <ErrorBoundry>
@@ -107,9 +108,11 @@ class UserRecipePage extends Component {
               {
                 userTotalPages === 0 ? null 
                 :
+                
                 <div className='user-pagination-container'>
+
                   <Pagination 
-                    variant="outlined" 
+                    color='secondary'
                     count={userTotalPages} 
                     page={userCurrentPage} 
                     onChange={this.handlePagination} 

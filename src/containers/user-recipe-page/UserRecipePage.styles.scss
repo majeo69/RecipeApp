@@ -1,9 +1,9 @@
 .user-recipe-page-container {
+  background: #F7EFEE;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
   justify-content: space-evenly;
-  background-color: #F7EFEE;
   padding: 60px 0 50px 0;
 
   .user-recipe-container {
@@ -13,7 +13,7 @@
     .user-searchbar-container {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-evenly;
       padding-bottom: 35px;
 
       .searchbar-user {
@@ -24,6 +24,11 @@
       .create-recipe-button {
         margin-left: 20px;
         vertical-align: middle;
+
+        span {
+          font-family: 'Cabin', sans-serif;
+          font-size: 16px;
+        }
       }
     }
 
