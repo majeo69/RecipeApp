@@ -15,7 +15,7 @@ export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, s
   console.log(ingredients)
   console.log(steps)
   dispatch({ type: UpdateRecipeTypes.UPDATE_RECIPE_PENDING })
-  fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/${recipeID}`,
+  fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/${recipeID}`,
   {
     method: 'PATCH',
     headers: {
@@ -43,7 +43,7 @@ export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, s
 
 export const deleteRecipe = (userToken, recipeID) => (dispatch) => {
   dispatch({ type: UpdateRecipeTypes.DELETE_RECIPE_PENDING })
-  fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/delete`,
+  fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/delete`,
   {
     method: 'DELETE',
     headers: {

@@ -5,7 +5,7 @@ const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
 
 export const requestAllUserRecipes = (token) => (dispatch) => {
   dispatch({ type: UserRecipesTypes.REQUEST_ALL_USER_RECIPES_PENGING })
-  apiCall(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/recipes',
+  apiCall('https://chieh-recipe-manager.herokuapp.com/recipes',
     {
       method: 'GET',
       headers: {

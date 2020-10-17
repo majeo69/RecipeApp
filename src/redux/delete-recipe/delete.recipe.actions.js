@@ -4,7 +4,7 @@ const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/';
 
 export const deleteRecipe = (userToken, recipeID) => (dispatch) => {
   dispatch({ type: DeleteRecipeTypes.DELETE_RECIPE_PENDING })
-  fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/delete`,
+  fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/delete`,
   {
     method: 'DELETE',
     headers: {

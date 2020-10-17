@@ -8,7 +8,7 @@ export const resetCreateNeRecipeState = () => ({
 
 export const createNewRecipe = (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
   dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_PENDING })
-  fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/recipes',
+  fetch('https://chieh-recipe-manager.herokuapp.com/recipes',
   {
     method: 'POST',
     headers: {
@@ -42,7 +42,7 @@ export const uploadRecipeImage = (recipeId, recipeImg) => (dispatch) => {
 	dispatch({ type: CreateRecipesTypes.UPLOAD_RECIPE_PIC_PENDING })
 	const formData = new FormData();
 	formData.append("foodimg", recipeImg);
-	fetch(cors_anywhere + `https://chieh-recipe-manager.herokuapp.com/recipes/${recipeId}/foodimg`,
+	fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/${recipeId}/foodimg`,
 	{
 		method: 'POST',
 		body: formData

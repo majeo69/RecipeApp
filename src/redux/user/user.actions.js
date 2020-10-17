@@ -8,7 +8,7 @@ export const setCurrentUser = user => ({
 });
 
 export const signupNewUser = (displayName, email, password) => (dispatch) => {
-	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users',
+	fetch('https://chieh-recipe-manager.herokuapp.com/users',
 		{
 			method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -37,7 +37,7 @@ export const uploadProfileImage = (token, profilepic) => (dispatch) => {
 	dispatch({ type: UserActionTypes.UPLOAD_PROFILE_PIC_PENDING })
 	const formData = new FormData();
 	formData.append("avatar", profilepic);
-	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
+	fetch('https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
 	{
 		method: 'POST',
 		headers: {
@@ -69,7 +69,7 @@ export const uploadProfileImageTypeError = (data) => ({
 
 export const deleteProfileImage = (token) => (dispatch) => {
 	dispatch({ type: UserActionTypes.DELETE_PROFILE_PIC_PENDING })
-	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
+	fetch('https://chieh-recipe-manager.herokuapp.com/users/me/avatar',
 	{
 		method: 'DELETE',
 		headers: {
@@ -85,7 +85,7 @@ export const deleteProfileImage = (token) => (dispatch) => {
 }
 
 export const logoutCurrentUser = (token) => (dispatch) => {
-	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/logout',
+	fetch('https://chieh-recipe-manager.herokuapp.com/users/logout',
 	{
 		method: 'POST',
 		headers: {
@@ -100,7 +100,7 @@ export const onEditProfile = () => ({type: UserActionTypes.CHANGE_EDIT_STATUS});
 
 export const updateUserInfo = (token, displayName, email) => (dispatch) => {
 	dispatch({ type: UserActionTypes.UPDATE_USER_INFO_PENDING })
-	fetch(cors_anywhere + 'https://chieh-recipe-manager.herokuapp.com/users/updateme',
+	fetch('https://chieh-recipe-manager.herokuapp.com/users/updateme',
 	{
 		method: 'PATCH',
 		headers: {
