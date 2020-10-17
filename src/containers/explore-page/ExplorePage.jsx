@@ -42,9 +42,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class ExplorePage extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (this.props.publicRecipes.length === 0){
-      this.props.requestAllPublicRecipes();
+      await this.props.requestAllPublicRecipes();
     }
   }
   componentDidUpdate(prevProps) {
