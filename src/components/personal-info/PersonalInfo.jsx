@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './PersonalInfo.styles.scss';
 
-import { Button, IconButton, CircularProgress } from "@material-ui/core";
+import { IconButton, CircularProgress } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
+import UploadDeleteStyledButton from '../styled-buttons/UploadDeleteStyledButton';
 import UpdatePersonalInfo from '../update-personal-info/UpdatePersonalInfo';
 
 import { connect } from 'react-redux';
@@ -96,19 +97,19 @@ class PersonalInfo extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-avatar">
-              <Button color="default" size="small" component="span"
+              <UploadDeleteStyledButton size="small" component="span"
                 disabled={uploadProfilePicPending} startIcon={<PhotoCamera />}>
                 {uploadProfilePicPending && <CircularProgress size={15} />}
-                {!uploadProfilePicPending && 'Upload'}
-              </Button>
+                {!uploadProfilePicPending && 'UPLOAD'}
+              </UploadDeleteStyledButton>
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <Button color="default" size="small" onClick={this.onDelete} 
+            <UploadDeleteStyledButton color="default" size="small" onClick={this.onDelete} 
               disabled={deleteProfilePicPending} startIcon={<DeleteIcon />} >
               {deleteProfilePicPending && <CircularProgress size={15} />}
-              {!deleteProfilePicPending && 'Delete'}
-            </Button>
+              {!deleteProfilePicPending && 'DELETE'}
+            </UploadDeleteStyledButton>
           </div>
         </div>
         <div className='user-detailed-info'>

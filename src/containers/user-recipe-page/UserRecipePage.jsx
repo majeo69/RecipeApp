@@ -7,10 +7,11 @@ import SearchBar from '../../components/searchbar/SearchBar';
 import PersonalInfo from '../../components/personal-info/PersonalInfo';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
+import InitialUserPage from '../../components/initial-user-page/InitialUserPage';
+
 import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
-
-import CreateRecipeStyledButton from '../../components/create-recipe-styled-button/CreateRecipeStyledButton';
+import CreateRecipeStyledButton from '../../components/styled-buttons/CreateRecipeStyledButton';
 
 import { userPagination } from '../../utils/user-recipes.utils';
 
@@ -87,39 +88,43 @@ class UserRecipePage extends Component {
         <div className='user-recipe-container'>
           {
             isPending ? <Loading /> :
-            <div>
-              <div className='user-searchbar-container'>
-                <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
-                <div className='create-recipe-button'>
-                  <CreateRecipeStyledButton startIcon={<AddIcon />} 
-                    onClick={() => {
-                      resetUpdateRecipe();
-                      history.push('/createrecipe');}}>
-                    <span>Create Recipe</span>
-                  </CreateRecipeStyledButton>
+              <div>
+                <div className='user-searchbar-container'>
+                  <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
+                  <div className='create-recipe-button'>
+                    <CreateRecipeStyledButton startIcon={<AddIcon />} 
+                      onClick={() => {
+                        resetUpdateRecipe();
+                        history.push('/createrecipe');}}>
+                      <span>Create Recipe</span>
+                    </CreateRecipeStyledButton>
+                  </div>
                 </div>
-              </div>
-              <ErrorBoundry>
                 {
-                  typeof(userRecipesPagination) === 'string' ? <div><h4>{userRecipesPagination}</h4></div>
-                  : <RecipesOverview recipes={userRecipesPagination} />
+                  userRecipes.length === 0 ? <InitialUserPage />
+                  :
+                  <div>
+                    <ErrorBoundry>
+                    {
+                      typeof(userRecipesPagination) === 'string' ? <div><h4>{userRecipesPagination}</h4></div>
+                      : <RecipesOverview recipes={userRecipesPagination} />
+                    }
+                    </ErrorBoundry>
+                    {
+                      userTotalPages === 0 ? null 
+                      :
+                      <div className='user-pagination-container'>
+                        <Pagination 
+                          color='secondary'
+                          count={userTotalPages} 
+                          page={userCurrentPage} 
+                          onChange={this.handlePagination} 
+                        />
+                      </div>
+                    }
+                  </div>
                 }
-              </ErrorBoundry>
-              {
-                userTotalPages === 0 ? null 
-                :
-                
-                <div className='user-pagination-container'>
-
-                  <Pagination 
-                    color='secondary'
-                    count={userTotalPages} 
-                    page={userCurrentPage} 
-                    onChange={this.handlePagination} 
-                  />
-                </div>
-              }
-            </div>
+              </div>
           }
         </div>
         <div className='personal-info-container'>

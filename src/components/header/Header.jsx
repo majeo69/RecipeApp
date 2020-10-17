@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.styles.scss';
 
+import { ReactComponent as Logo} from '../../assets/logo.svg';
+
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,7 +30,9 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
 
   return (
     <div className='header-container'>
-      <Link className='web-logo' to='/'><span>Secret Recipes</span></Link>
+      <Link className='logo-container' to="/">
+			  <Logo className='logo' /><span>Secret Recipes</span>
+		  </Link>
       <div className='header-options'>
         <Link className='header-option' to='/explore'>Explore</Link>
         {
