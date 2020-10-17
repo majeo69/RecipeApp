@@ -1,7 +1,5 @@
 import UpdateRecipeTypes from './update.recipe.types';
 
-const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/';
-
 export const setToBeUpdatedRecipe = (data) => ({
   type: UpdateRecipeTypes.RECIPE_TO_BE_UPDATE,
   payload: data
@@ -12,8 +10,6 @@ export const resetUpdateRecipe = () => ({
 })
 
 export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
-  console.log(ingredients)
-  console.log(steps)
   dispatch({ type: UpdateRecipeTypes.UPDATE_RECIPE_PENDING })
   fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/${recipeID}`,
   {

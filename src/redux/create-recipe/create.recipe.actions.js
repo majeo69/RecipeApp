@@ -1,7 +1,5 @@
 import CreateRecipesTypes from './create.recipe.types';
 
-const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
-
 export const resetCreateNeRecipeState = () => ({
   type: CreateRecipesTypes.CREATE_NEW_RECIPE_RESET_STATE
 })

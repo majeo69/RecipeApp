@@ -1,6 +1,4 @@
-import { UserActionTypes } from './user.types'
-
-const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/'
+import { UserActionTypes } from './user.types';
 
 export const setCurrentUser = user => ({
 	type: UserActionTypes.SET_CURRENT_USER,

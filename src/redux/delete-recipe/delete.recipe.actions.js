@@ -1,7 +1,5 @@
 import DeleteRecipeTypes from './delete.recipe.types';
 
-const cors_anywhere = 'https://chieh-cors-anywhere.herokuapp.com/';
-
 export const deleteRecipe = (userToken, recipeID) => (dispatch) => {
   dispatch({ type: DeleteRecipeTypes.DELETE_RECIPE_PENDING })
   fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/delete`,
