@@ -25,6 +25,10 @@
     align-items: center;
     justify-content: space-between;
 
+    h1 {
+      font-family: 'Frank Ruhl Libre', serif;
+    }
+
     .edit-delete-icons {
       display: flex;
       flex-direction: row;
@@ -101,6 +105,8 @@
     margin-top: 3%;
 
     h3 {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #F4AEA4 70%);
       font-size: 25px;
       margin-top: 10px;
     }
@@ -118,6 +124,8 @@
     width: 85%;
 
     h3 {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #F4AEA4 70%);
       font-size: 25px;
       margin-top: 30px;
     }

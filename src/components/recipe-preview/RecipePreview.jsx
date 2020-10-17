@@ -2,8 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './RecipePreview.styles.scss';
 
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
+import TimerIcon from '@material-ui/icons/Timer';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const RecipePreview = ({ recipe, match, history }) => {
@@ -26,8 +25,8 @@ const RecipePreview = ({ recipe, match, history }) => {
       <h4>{title}</h4>
       <div className='recipe-preview-icons'>
         <div className='recipe-preview-row1'>
-          <AccessTimeIcon /><span style={{paddingLeft: "5px", paddingRight: "15px", fontSize: "20px"}}>{preparation} <span style={{fontSize: "16px"}}>mins</span></span>
-          <WhatshotIcon /><span style={{paddingLeft: "5px", fontSize: "20px"}}>{cook_time} <span style={{fontSize: "16px"}}>mins</span></span>
+          <TimerIcon /><span style={{paddingLeft: "5px", paddingRight: "15px", fontSize: "20px"}}><span style={{fontSize: "17px"}}>Prep: </span>{preparation} <span style={{fontSize: "16px"}}>mins</span></span>
+          <span style={{fontSize: "20px"}}><span style={{fontSize: "17px"}}>Cook: </span>{cook_time} <span style={{fontSize: "16px"}}>mins</span></span>
         </div>
         <div className='recipe-preview-row2'>
           <PersonOutlineIcon /><span style={{paddingLeft: "5px", fontSize: "20px"}}>{servings} <span style={{fontSize: "16px"}}>people</span></span>

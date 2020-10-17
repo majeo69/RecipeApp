@@ -96,7 +96,7 @@ class PersonalInfo extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-avatar">
-              <Button variant="outlined" color="default" size="small" component="span"
+              <Button color="default" size="small" component="span"
                 disabled={uploadProfilePicPending} startIcon={<PhotoCamera />}>
                 {uploadProfilePicPending && <CircularProgress size={15} />}
                 {!uploadProfilePicPending && 'Upload'}
@@ -104,7 +104,7 @@ class PersonalInfo extends Component {
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <Button variant="outlined" color="default" size="small" onClick={this.onDelete} 
+            <Button color="default" size="small" onClick={this.onDelete} 
               disabled={deleteProfilePicPending} startIcon={<DeleteIcon />} >
               {deleteProfilePicPending && <CircularProgress size={15} />}
               {!deleteProfilePicPending && 'Delete'}
