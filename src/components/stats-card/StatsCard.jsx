@@ -16,7 +16,7 @@ const StatsCard = ({ allUserRecipes, usersPublicCount }) => {
   return (
     <div className='stats-card'>
       <h5>Stats:</h5>
-      <div className='stats-col'><DescriptionIcon /> {allUserRecipes.length} recipes</div>
+      <div className='stats-col'><DescriptionIcon /> {allUserRecipes.length} recipe(s)</div>
       <div className='stats-col'><DescriptionIcon /> {usersPublicCount} public</div>
       <div className='stats-col'><DescriptionIcon /> {allUserRecipes.length - usersPublicCount} private</div>
     </div>
