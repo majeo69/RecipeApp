@@ -9,7 +9,7 @@
     -webkit-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
     transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
     transform-origin: left center;
-    color: #7f94a9;
+    color: #333333;
     font-weight: 100;
     letter-spacing: 0.01em;
     font-size: 17px;
@@ -28,7 +28,7 @@
     transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
     appearance: none;
     background-color: none;
-    border: 1px solid #7f94a9;
+    border: 1px solid #F3F3F3;
     line-height: 0;
     font-size: 17px;
     width: 100%;
@@ -36,14 +36,14 @@
     box-sizing: border-box;
     padding: 10px 15px;
     border-radius: 60px;
-    color: #7f94a9;
+    color: #F3F3F3;
     font-weight: 100;
     letter-spacing: 0.01em;
     position: relative;
     z-index: 1;
     &:focus {
       outline: none;
-      background:#7f94a9;
+      background:#F3F3F3;
       color: white;
       margin-top: 30px;
       ~ {
