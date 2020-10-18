@@ -1,0 +1,47 @@
+.homepage-container {
+  margin-bottom: 10%;
+  
+  .homepage-col-1 {
+    width: 100vw;
+    z-index: 1;
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+  }
+  .get-started-btn {
+    position: relative;
+    width: 16vw;
+    height: 4vw;
+    min-width: 80px;
+    min-height: 22px;
+    background: #F4AEA4;
+    box-shadow: 2px 2px 0px #2A356C;
+    border: none;
+    border-radius: 5px;
+    bottom: 14.5vw;
+    left: 15vw;
+    z-index: 2;
+
+    .get-started-text {
+      height: 100%;
+      padding: auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      span {
+        color: #ffffff;
+        font-size: 2vw;
+        width: 100%;
+        height: 100%;
+
+        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

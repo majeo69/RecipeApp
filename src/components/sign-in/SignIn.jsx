@@ -60,8 +60,8 @@ class SignIn extends Component {
   render() {
     return (
       <div className='signin-container'>
-        <h5>Sign in with your email and password.</h5>
-        <form onSubmit={this.handleSubmit}>
+        <form className='sign-in-form' onSubmit={this.handleSubmit}>
+          <h6>Sign in with your email and password.</h6>
           <FormInput 
             name="email" 
             type="email"

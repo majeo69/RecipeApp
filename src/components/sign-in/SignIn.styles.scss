@@ -1,11 +1,18 @@
 .signin-container {
-  width: 35vw;
-  margin: 50px auto 40px auto;
+  margin: 8vh auto 5vh auto;
+  display: flex;
+  justify-content: center;
 
-  h5 {
-    margin: 30px 10px 40px 10px;
+  h6 {
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
+  }
+
+  .sign-in-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .signin-button-container {
@@ -18,3 +25,4 @@
     text-align: center;
   }
 }
+

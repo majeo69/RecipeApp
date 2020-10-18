@@ -1,13 +1,21 @@
 import React from 'react';
-import './HomePage.styles.css';
+import './HomePage.styles.scss';
+import '../../assets/homepage/home-main-img.png';
+import {withRouter} from 'react-router-dom';
 
 
-const HomePage = () => {
+const HomePage = (props) => {
   return (
     <div className='homepage-container'>
-      <h1>THIS IS HOME PAGE</h1>
+      <div className='homepage-col-1'>
+        <img alt='homepage_main_userimg' src={require('../../assets/homepage/home-main-img.png')} />
+      </div>
+      <button className='get-started-btn' type="button"
+        onClick={() => props.history.push('/signin')}>
+        <div className='get-started-text'><span>Get started!</span></div>
+      </button>
     </div>
   );
 }
 
-export default HomePage;
+export default withRouter(HomePage);

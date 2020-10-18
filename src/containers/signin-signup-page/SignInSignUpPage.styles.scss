@@ -1,14 +1,15 @@
 .signin-signup-page-container {
   display: flex;
   justify-content: center;
-  background-color: #F7EFEE;
-  height: 720px;
+  background-color: #F3F3F3;
+
 
   .signin-signup-form-container {
     width: 50%;
-    margin: 70px auto auto auto;
+    min-width: 350px;
+    margin: 8vw auto ;
     padding-top: 20px;
     border-radius: 20px;
-    background-color: lightblue;
+    background-color: #FBDD8A;
   }
 }
