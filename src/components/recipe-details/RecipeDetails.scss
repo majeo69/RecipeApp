@@ -101,14 +101,14 @@
   }
 
   .recipe-details-ingredients-container {
-    width: 86%;
-    margin-top: 3%;
+    width: 88%;
+    margin-top: 5%;
 
     h3 {
+      display: inline;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #F4AEA4 70%);
       font-size: 25px;
-      margin-top: 10px;
     }
 
     .recipe-details-ingredient {
@@ -121,27 +121,29 @@
   }
 
   .recipe-details-steps-container {
-    width: 85%;
+    width: 88%;
+    margin-top: 5%;
 
     h3 {
+      display: inline;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #F4AEA4 70%);
       font-size: 25px;
-      margin-top: 30px;
     }
 
     .stepper {
+      margin-top: 2%;
       .step {
         .stepLabel {
           span {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             font-size: 19px;
+            font-family: 'Cabin', sans-serif;
           }
         }
         .stepContent {
           .typography {
             font-size: 19px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-family: 'Cabin', sans-serif;
           }
         }
       }

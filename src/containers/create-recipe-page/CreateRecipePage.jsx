@@ -33,7 +33,7 @@ const CreateRecipePage = (props) => {
                   onClick={() => {
                     props.history.push('/myrecipes');
                     props.history.go();}}
-                    variant="contained" color="default" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
+                    variant="contained" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
                 </Button>
                 and check it out!
               </h5>

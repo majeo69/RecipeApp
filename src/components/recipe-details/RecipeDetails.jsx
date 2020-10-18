@@ -101,7 +101,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
             return <FormControlLabel
                       key={index}
                       value="end"
-                      control={<Checkbox color="default" />}
+                      control={<Checkbox color="primary" />}
                       label={<span style={{ fontSize: '18px' }}>{ingredient}</span>}
                       labelPlacement="end"
                       fontSize={15}

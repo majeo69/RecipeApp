@@ -103,9 +103,9 @@ class RecipeForm extends Component {
           </div>
           <div className='category-field'>
             <h6 style={{verticalAlign: "center"}}>Category:</h6>
-            <FormControlLabel control={<Checkbox name="checkedDessert" />} label="Dessert" />
-            <FormControlLabel control={<Checkbox name="checkedMeal" />} label="Meal" />
-            <FormControlLabel control={<Checkbox name="checkedDrink" />} label="Drink" />
+            <FormControlLabel control={<Checkbox name="checkedDessert" color="primary" />} label="Dessert" />
+            <FormControlLabel control={<Checkbox name="checkedMeal" color="primary" />} label="Meal" />
+            <FormControlLabel control={<Checkbox name="checkedDrink" color="primary" />} label="Drink" />
           </div>
           <div className='time-field'>
             <h6>Prep time: </h6>

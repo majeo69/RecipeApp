@@ -115,7 +115,8 @@ class UserRecipePage extends Component {
                       :
                       <div className='user-pagination-container'>
                         <Pagination 
-                          color='secondary'
+                          variant='outlined'
+                          color='default'
                           count={userTotalPages} 
                           page={userCurrentPage} 
                           onChange={this.handlePagination} 
