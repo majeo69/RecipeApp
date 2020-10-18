@@ -22,8 +22,8 @@ import { selectRecipeToBeUpdate, selectUpdateRecipePending } from '../../redux/u
 const mapDispatchToProps = (dispatch) => ({
   createNewRecipe: (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
     dispatch(createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
-  updateRecipe: (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
-    dispatch(updateRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
+  updateRecipe: (recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
+    dispatch(updateRecipe(recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
   resetCreateNeRecipeState: () => dispatch(resetCreateNeRecipeState())
 });
 

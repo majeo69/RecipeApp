@@ -10,6 +10,7 @@ export const resetUpdateRecipe = () => ({
 })
 
 export const updateRecipe = (recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
+  console.log(public_recipe)
   dispatch({ type: UpdateRecipeTypes.UPDATE_RECIPE_PENDING })
   fetch(`https://chieh-recipe-manager.herokuapp.com/recipes/${recipeID}`,
   {
