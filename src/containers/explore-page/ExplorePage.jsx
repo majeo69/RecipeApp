@@ -96,7 +96,8 @@ class ExplorePage extends Component {
               :
               <div className='public-pagination-container'>
                 <Pagination 
-                  color='secondary'
+                  variant='outlined'
+                  color='primary'
                   count={publicTotalPages} 
                   page={publicCurrentPage} 
                   onChange={this.handlePagination} 

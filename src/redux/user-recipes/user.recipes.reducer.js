@@ -1,12 +1,13 @@
 import UserRecipesTypes from './user.recipes.types';
-import { addUpTotalTime, filterUserRecipes } from './user.recipes.utils';
+import { addUpTotalTime, filterUserRecipes, countPublicStats } from './user.recipes.utils';
 
 const INITIAL_STATE = {
   isPending: true,
   userRecipes: [],
   filteredUserRecipes: [],
   userCurrentPage: 1,
-  userTotalPages: 0
+  userTotalPages: 0,
+  public_count: 0
 }
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -20,7 +21,8 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         userRecipes: addUpTotalTime(action.payload),
-        isPending: !state.isPending
+        public_count: countPublicStats(action.payload),
+        isPending: false
       }
     case UserRecipesTypes.REQUEST_ALL_USER_RECIPES_FAILED:
       return {

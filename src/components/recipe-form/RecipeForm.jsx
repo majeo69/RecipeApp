@@ -9,6 +9,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Switch from '@material-ui/core/Switch';
 
+import SubmitStyledButton from '../styled-buttons/SubmitStyledButton';
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { updateRecipe } from '../../redux/update-recipe/update.recipe.actions';
@@ -162,7 +164,7 @@ class RecipeForm extends Component {
             />
           </div>
           <div className='create-recipe-submitbtn'>
-            <Button variant="contained" type="submit" onClick={this.handleSubmit} 
+            <SubmitStyledButton type="submit" onClick={this.handleSubmit}
               disabled={Object.keys(recipeToBeUpdate).length===0 ? createRecipePending : updateRecipePending}>
               {Object.keys(recipeToBeUpdate).length===0 ? 
                 createRecipePending && <CircularProgress size={19} />
@@ -170,7 +172,7 @@ class RecipeForm extends Component {
               {Object.keys(recipeToBeUpdate).length===0 ? 
                 !createRecipePending && 'Submit'
                 : !updateRecipePending && 'Submit'}
-            </Button>
+            </SubmitStyledButton>
           </div>
         </form>
         <div className='create-recipe-error'>

@@ -8,6 +8,7 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
 import UploadDeleteStyledButton from '../styled-buttons/UploadDeleteStyledButton';
 import UpdatePersonalInfo from '../update-personal-info/UpdatePersonalInfo';
+import StatsCard from '../stats-card/StatsCard';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -126,6 +127,7 @@ class PersonalInfo extends Component {
             </div>
           }
         </div>
+        <StatsCard />
       </div>
     );
   }
