@@ -1,9 +1,9 @@
-.initial-user-page-container {
+.empty-match-page-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 5vw;
+  margin-top: 3vw;
 
   h5 {
     text-align: center;
@@ -11,13 +11,17 @@
     padding: 0 20px;
   }
 
-  .initial-user-page-img {
+  .empty-match-img {
     width: 60%;
     min-width: 300px;
     margin: 0 auto;
+
     img{
       max-width: 100%;
       max-height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
     }
   }
 }

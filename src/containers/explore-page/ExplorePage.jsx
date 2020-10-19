@@ -7,6 +7,7 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import Pagination from '@material-ui/lab/Pagination';
 
+import EmptyMatch from '../../components/empty-match/EmptyMatch';
 import { publicPagination } from '../../utils/public-recipes.utils';
 
 import { connect } from 'react-redux';
@@ -86,7 +87,8 @@ class ExplorePage extends Component {
             <div className='explore-recipes-container'>
               <ErrorBoundry>
                 {
-                  typeof(publicRecipesPagination) === 'string' ? <div><h4>{publicRecipesPagination}</h4></div>
+                  typeof(publicRecipesPagination) === 'string' ?
+                  <EmptyMatch emptyMsg={"No matches found! Please search with other keywords."}/>
                   : <RecipesOverview recipes={publicRecipesPagination} />
                 }
               </ErrorBoundry>

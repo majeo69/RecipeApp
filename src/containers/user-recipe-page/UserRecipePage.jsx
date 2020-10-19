@@ -7,7 +7,7 @@ import SearchBar from '../../components/searchbar/SearchBar';
 import PersonalInfo from '../../components/personal-info/PersonalInfo';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
-import InitialUserPage from '../../components/initial-user-page/InitialUserPage';
+import EmptyMatch from '../../components/empty-match/EmptyMatch';
 
 import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
@@ -101,12 +101,14 @@ class UserRecipePage extends Component {
                   </div>
                 </div>
                 {
-                  userRecipes.length === 0 ? <InitialUserPage />
+                  userRecipes.length === 0 ? 
+                  <EmptyMatch emptyMsg={"You don't have any recipes yet. Create one today!"}/>
                   :
                   <div>
                     <ErrorBoundry>
                     {
-                      typeof(userRecipesPagination) === 'string' ? <div><h4>{userRecipesPagination}</h4></div>
+                      typeof(userRecipesPagination) === 'string' ? 
+                      <EmptyMatch emptyMsg={"No matches found! Please search with other keywords."}/>
                       : <RecipesOverview recipes={userRecipesPagination} />
                     }
                     </ErrorBoundry>
