@@ -1,0 +1,12 @@
+.user-profile-container {
+  background-color: #F7EFEE;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  .small-screen-user-profile {
+    width: 50%;
+    min-width: 300px;
+    margin: 10vw 0;
+  }
+}

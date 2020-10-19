@@ -13,3 +13,13 @@ button:active, button:focus {
   height: 80px;
   z-index: 1;
 }
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  #header-full-screen { display: none; } 
+  #personal-info-full-screen { display: none; } 
+}
+
+@media screen and (min-width: 800px) {
+  #header-small-screen { display: none; } 
+}
+

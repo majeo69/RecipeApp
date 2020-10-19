@@ -128,7 +128,7 @@ class UserRecipePage extends Component {
               </div>
           }
         </div>
-        <div className='personal-info-container'>
+        <div className='personal-info-container' id='personal-info-full-screen'>
           <PersonalInfo />
         </div>
       </div>

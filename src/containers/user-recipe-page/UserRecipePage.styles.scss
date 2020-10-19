@@ -7,7 +7,7 @@
   padding: 60px 0 50px 0;
 
   .user-recipe-container {
-    width: 900px;
+    width: 60vw;
     padding-top: 10px;
 
     .user-searchbar-container {
@@ -42,7 +42,8 @@
   }
 
   .personal-info-container {
-    width: 350px;
+    width: 25vw;
+    min-width: 320px;
     margin: 20px 0 40px 0 ;
   }
 }

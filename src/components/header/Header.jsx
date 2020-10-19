@@ -60,6 +60,7 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item href="/explore">Explore</Dropdown.Item>
+            <Dropdown.Item href="/myprofile">My Profile</Dropdown.Item>
             {
               currentUserToken ? 
               <Dropdown.Item href="/myrecipes">My recipes</Dropdown.Item>

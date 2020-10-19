@@ -5,6 +5,7 @@ import './App.css';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 
+import UserProfilePage from './user-profile-page/UserProfilePage';
 import HomePage from './home-page/HomePage';
 import ExplorePage from './explore-page/ExplorePage';
 import UserRecipePage from './user-recipe-page/UserRecipePage';
@@ -35,6 +36,7 @@ function App({ currentUserToken }) {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/explore' component={ExplorePage} />
+              <Route exact path='/myprofile' component={UserProfilePage} />
               <Route exact path='/myrecipes' render={() => currentUserToken ? (<UserRecipePage />) : (<Redirect to='/signin' />)} />
               <Route exact path='/signin' render={() => currentUserToken ? (<Redirect to='/myrecipes' />) : (<SignInSignUpPage />)} />
               <Route exact path='/createrecipe' component={CreateRecipePage} />

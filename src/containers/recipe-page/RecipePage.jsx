@@ -21,7 +21,7 @@ const RecipePage = (props) => {
       </div>
       {
         props.userId !== 'no-user' ?
-        <div className='personal-info-box'>
+        <div className='personal-info-box' id='personal-info-full-screen'>
           <PersonalInfo />
         </div>
         : null
