@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   filteredUserRecipes: [],
   userCurrentPage: 1,
   userTotalPages: 0,
+  total_count: 0,
   public_count: 0
 }
 
@@ -21,6 +22,7 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         userRecipes: addUpTotalTime(action.payload),
+        total_count: action.payload.length,
         public_count: countPublicStats(action.payload),
         isPending: false
       }

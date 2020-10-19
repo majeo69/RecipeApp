@@ -27,6 +27,11 @@ export const selectUserTotalPages = createSelector(
   allUserRecipes => allUserRecipes.userTotalPages
 )
 
+export const selectUsersTotalCount = createSelector(
+  [selectUserRecipes],
+  allUserRecipes => allUserRecipes.total_count
+)
+
 export const selectUsersPublicCount = createSelector(
   [selectUserRecipes],
   allUserRecipes => allUserRecipes.public_count

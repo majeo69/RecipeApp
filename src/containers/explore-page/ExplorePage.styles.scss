@@ -1,6 +1,7 @@
 .explore-page-container {
   background: #F7EFEE;
   padding: 30px 20px 40px 20px;
+
   .explore-searchbar-container {
     display: flex;
     justify-content: center;
@@ -11,10 +12,6 @@
       width: 50%;
       margin: 0 auto;
     }
-  }
-
-  .explore-recipes-container {
-    //padding-bottom: 30px;
   }
 
   .public-pagination-container {
