@@ -34,7 +34,7 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
   return (
     <div className='header-container'>
       <Link className='logo-container' to="/">
-			  <Logo className='logo' /><span>Secret Recipes</span>
+			  <Logo className='logo' /><span>Secret Recipe</span>
 		  </Link>
       <div className='header-options' id="header-full-screen">
         <Link className='header-option' to='/explore'>Explore</Link>
@@ -60,11 +60,13 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item href="/explore">Explore</Dropdown.Item>
-            <Dropdown.Item href="/myprofile">My Profile</Dropdown.Item>
             {
               currentUserToken ? 
-              <Dropdown.Item href="/myrecipes">My recipes</Dropdown.Item>
-              : null
+              <Dropdown.Item href="/myprofile">My Profile</Dropdown.Item> : null
+            }
+            {
+              currentUserToken ? 
+              <Dropdown.Item href="/myrecipes">My recipes</Dropdown.Item> : null
             }
             <Dropdown.Item href="/signin" onClick={() => handleClick()}>
             {

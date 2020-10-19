@@ -5,15 +5,33 @@
   flex-direction: column;
   justify-content: center;
 
+  .upload-recipeimg-skip {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2vw;
+  }
+
+  .upload-recipeimg-msg {
+    margin-bottom: 2vw;
+    h4 {
+      span {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #FBDD8A 70%);
+      }
+    }
+    h4, h5 {
+      font-family: 'Poppins', sans-serif;
+      color: #443E3E;
+      margin-bottom: 1vw;
+      line-height: 40px; 
+    }
+  }
+
   .upload-foodimg-btn-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
-    .uploadrecipeimg-container {
-      margin-top: 20px;
-    }
   }
 
   .upload-recipeimg {

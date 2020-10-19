@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './RecipePhotoUpload.styles.scss';
+import { withRouter } from 'react-router-dom';
+
+import UploadDeleteStyledButton from '../styled-buttons/UploadDeleteStyledButton';
 
 import { Button, CircularProgress } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -43,8 +47,27 @@ class RecipePhotoUpload extends Component {
     const { uploadFoodimgPending, onEditRecipeInfo } = this.props;
     return (
       <div className='upload-recipeimg-container'>
+        <div className='upload-recipeimg-skip'>
+          <Button onClick={() =>{
+            this.props.history.push('/myrecipes');
+            this.props.history.go();
+          }}
+            type="button" endIcon={<ArrowForwardIcon />}>
+              SKIP
+          </Button>
+        </div>
+        <div className='upload-recipeimg-msg'>
+          <h4>{this.props.msg1} <span>{this.props.recipeName} recipe</span> ?</h4>
+          <h5>{this.props.msg2}
+            <Button 
+              onClick={() => {
+                this.props.history.push('/myrecipes');
+                this.props.history.go();}}
+                variant="contained" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
+              </Button>
+              {this.props.msg3}</h5>
+        </div>
         <div className='upload-foodimg-btn-container'>
-          <div className='uploadrecipeimg-container'>
             <input 
               accept="image/*" 
               className="upload-recipeimg-button" 
@@ -54,13 +77,12 @@ class RecipePhotoUpload extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-recipeimg">
-              <Button variant="outlined" color="primary" size="small" component="span" 
+              <UploadDeleteStyledButton variant="outlined" color="primary" component="span" 
                 disabled={uploadFoodimgPending} startIcon={<PhotoCamera />}>
                 {uploadFoodimgPending && <CircularProgress size={15} />}
-                {!uploadFoodimgPending && 'Upload'}
-              </Button>
+                {!uploadFoodimgPending && 'UPLOAD'}
+              </UploadDeleteStyledButton>
             </label>
-          </div>
         </div>
 
         <div className='upload-recipeimg'>
@@ -74,4 +96,4 @@ class RecipePhotoUpload extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipePhotoUpload);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecipePhotoUpload));

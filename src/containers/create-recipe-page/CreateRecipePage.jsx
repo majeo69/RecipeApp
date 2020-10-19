@@ -2,8 +2,6 @@ import React from 'react';
 import './CreateRecipePage.styles.scss';
 import { withRouter } from 'react-router-dom';
 
-import Button from '@material-ui/core/Button';
-
 import RecipeForm from '../../components/recipe-form/RecipeForm';
 import RecipePhotoUpload from '../../components/recipe-photo-upload/RecipePhotoUpload';
 
@@ -24,35 +22,20 @@ const CreateRecipePage = (props) => {
       {
         createSuccess ?
         <div className='create-recipe-img-section'>
-          {
-            uploadFoodimgSuccess ?
-            <div>
-              <h5>You've successfully uploaded the image for your {props.onEditNewRecipe.title} recipe!</h5>
-              <h5>Go back to 
-                <Button 
-                  onClick={() => {
-                    props.history.push('/myrecipes');
-                    props.history.go();}}
-                    variant="contained" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
-                </Button>
-                and check it out!
-              </h5>
-            </div>
+        {
+          uploadFoodimgSuccess ?
+            <RecipePhotoUpload 
+              msg1={"You've successfully uploaded the photo for your"}
+              msg2={"Go back to "}
+              msg3={"and check it out!"}
+              recipeName={`${props.onEditNewRecipe.title}`} />
             :
-            <div>
-              <h5>You are almost done! Upload an image for your {props.onEditNewRecipe.title} recipe!</h5>
-              <h5>Or simply go back to 
-                <Button 
-                  onClick={() => {
-                    props.history.push('/myrecipes');
-                    props.history.go();}}
-                  variant="contained" color="default" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
-                </Button>
-                and upload it next time!
-              </h5>
-            </div>
-          }
-          <RecipePhotoUpload />
+            <RecipePhotoUpload 
+              msg1={"You are almost done! Upload an image for your"}
+              msg2={"Or simply go back to  "}
+              msg3={"and upload it next time!"}
+              recipeName={`${props.onEditNewRecipe.title}`} />
+        }
         </div> 
         : 
         <RecipeForm />

@@ -7,7 +7,6 @@ const UploadDeleteStyledButton = withStyles({
     borderRadius: 3,
     border: 0,
     color: 'black',
-    padding: '5px 8px',
   },
   label: {
     textTransform: 'capitalize',
