@@ -37,8 +37,8 @@ const HomePage = (props) => {
           <img alt='homepage-img-3' src={require('../../assets/homepage/home-img-3.png')} />
         </div>
         <div className='homepage-row-4-text'>
-          <h2>Keep some recipes private</h2>
-          <p>You can save other's recipe to your account without infringement. Always keep those recipes as private and you still can easily check it out and access all the time.</p>
+          <h2>Keep them private</h2>
+          <p>You can save other's recipe to your account without infringement. Always keep those recipes as private and you still can easily check it out and access them all the time.</p>
         </div>
       </div>
 

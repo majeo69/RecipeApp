@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.styles.scss';
 
+import { Dropdown } from 'react-bootstrap';
+import MenuIcon from '@material-ui/icons/Menu';
+
 import { ReactComponent as Logo} from '../../assets/logo.svg';
 
 import Button from 'react-bootstrap/Button';
@@ -33,7 +36,7 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
       <Link className='logo-container' to="/">
 			  <Logo className='logo' /><span>Secret Recipes</span>
 		  </Link>
-      <div className='header-options'>
+      <div className='header-options' id="header-full-screen">
         <Link className='header-option' to='/explore'>Explore</Link>
         {
           currentUserToken ? 
@@ -49,6 +52,26 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
           }
           </Button>
         </Link>
+      </div>
+      <div className='media-header-options' id="header-small-screen">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <MenuIcon />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/explore">Explore</Dropdown.Item>
+            {
+              currentUserToken ? 
+              <Dropdown.Item href="/myrecipes">My recipes</Dropdown.Item>
+              : null
+            }
+            <Dropdown.Item href="/signin" onClick={() => handleClick()}>
+            {
+              currentUserToken ? "Sign Out" : "Sign In"
+            }
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </div>
   );
