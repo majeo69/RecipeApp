@@ -8,12 +8,21 @@ import ScrollAnimation from 'react-animate-on-scroll';
 const HomePage = (props) => {
   return (
     <div className='homepage-container'>
-      <div className='homepage-row-1'>
-        <img alt='homepage_main_userimg' src={require('../../assets/homepage/home-main-img.png')} />
-        <button className='get-started-btn' type="button"
-          onClick={() => props.history.push('/signin')}>
-          <div className='get-started-text'><span>Get started!</span></div>
-        </button>
+      <div className='homepage-row-1 row'>
+        <div className='col-lg-7 col-12'>
+          <div className='homepage-title'>  
+            <h4>Come get your own</h4>
+            <h1>Secret<br/>Recipe</h1>
+            <button className='get-started-btn' type="button"
+              onClick={() => props.history.push('/signin')}>
+              <span className='get-started-text'>Get started!</span>
+            </button>
+          </div>
+          <img alt='homepage_main_userimg' src={require('../../assets/homepage/home-main-img-left.png')} className='homepage-img-left'/>
+        </div>
+        <div className='col-lg-5 d-none d-lg-inline-block text-right'>
+          <img alt='homepage_main_img-left' src={require('../../assets/homepage/home-main-img-right.png')} className='homepage-img-right'/>
+        </div>
       </div>
       <ScrollAnimation animateIn="fadeIn" animateOut='fadeOut' duration={5}>
       <div className='homepage-row-2'>

@@ -2,53 +2,83 @@
   margin-bottom: 5%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   
   .homepage-row-1 {
-    width: 100vw;
+    width: 68%;
+    position: relative;
+    margin: 0 auto;
 
-    img {
+    .homepage-img-left {
+      position: absolute;
+      top: 0;
+      left: -10%;
       max-width: 100%;
-      display: block;
+      z-index: -1;
+    }
+    .homepage-img-right {  
+      position: relative;
+      top: 10%;
+      right: 0;
+      max-width: 70%;
+      z-index: -1;
+    }
+    .homepage-title {
+      margin: 120px 0;
+      @media (max-width:560px) {
+        margin: 12vw 0;
+      }
+      h1 {
+        font-family: 'Frank Ruhl Libre', serif;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 75px;
+        line-height: 110%;
+        letter-spacing: 0.015em;
+        color: #2A356C;
+        @media (max-width:560px) {
+          font-size: 15vw;
+        }
+      }
+      h4 {
+        font-family: Cabin;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 50px;
+        letter-spacing: 0.015em;
+        color: #2A356C;
+        @media (max-width:560px) {
+          font-size: 6vw;
+        }
+      }
     }
 
     .get-started-btn {
-      margin-top:-200px;
-      margin-bottom:-200px;
-      position: relative;
-      width: 16vw;
-      height: 4vw;
+      margin-top: 12%;
+      padding: 4px 16px;
       min-width: 80px;
       min-height: 22px;
-
       background: #F4AEA4;
       box-shadow: 2px 2px 0px #2A356C;
       border: none;
       border-radius: 5px;
-
-      bottom: 14.5vw;
-      left: 15vw;
-      
+      transition: 0.1s linear;
       .get-started-text {
-        height: 100%;
-        padding: auto 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        span {
-          color: #ffffff;
-          font-size: 2vw;
-          width: 100%;
-          height: 100%;
-          margin: auto 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        color: #ffffff;
+        font-size: 2em;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        @media (max-width:560px) {
+          font-size: 6vw;
         }
+      }
+      &:hover {
+        box-shadow: none;
+        transform: translate(2px,2px);
       }
     }
   }
-
 
   .homepage-row-2{
     width: 100vw;
