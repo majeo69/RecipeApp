@@ -37,10 +37,10 @@ const Header = ({ logoutCurrentUser, currentUserToken }) => {
 			  <Logo className='logo' /><span>Secret Recipe</span>
 		  </Link>
       <div className='header-options' id="header-full-screen">
-        <Link className='header-option' to='/explore'>Explore</Link>
+        <Link className='header-option link' to='/explore'>Explore</Link>
         {
           currentUserToken ? 
-          <Link className='header-option' to='/myrecipes'>
+          <Link className='header-option link' to='/myrecipes'>
             <span>My Recipes</span>
           </Link> 
           : null

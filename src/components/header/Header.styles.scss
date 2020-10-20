@@ -32,8 +32,11 @@
 
     .header-option {
       margin: 0 3% 0 3%;
+      padding: 8px 0;
       text-decoration: none;
       color: #1B2021;
+      border-bottom: 2px solid white;
+      transition: .3s ;
 
       .btn-header {
         color: #ffffff;
@@ -41,11 +44,21 @@
         border-color: #F4AEA4;
         font-weight: 500;
         font-size: 18px;
+        &:hover {
+          background-color: #FBDD8A;
+          border-color: #FBDD8A;
+        }
+        &:focus {
+          box-shadow: none;
+        }
       }
 
-      &:hover {
+      &.link:hover {
         color: #F4AEA4;
-        background: linear-gradient(180deg, rgba(255,255,255,0) 85%, #FBDD8A 85%);
+        border-bottom: 2px solid #F4AEA4;
+      }
+      &.header-signin:hover {
+
       }
     }
   }
