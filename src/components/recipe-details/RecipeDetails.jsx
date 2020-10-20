@@ -66,7 +66,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
             : null
         }
       </div>
-      
+
       <div className='recipe-details-row3'>
         <AlarmIcon /><span style={{paddingLeft: "5px"}}>{total_time} mins</span>
         <div style={{paddingLeft: "16px", fontSize: "13px"}}><span>Prep: </span><br /><span>{preparation} mins</span></div>
