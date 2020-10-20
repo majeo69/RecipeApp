@@ -73,21 +73,35 @@
     margin: 15px 0;
     position: relative;
 
-    &.recipe-details-auth {
-      &:hover {
-        opacity: 70%;
-  
-        .food-pic-camera-btn {
-          display: block;
-          position: absolute;
-          margin-left: auto;
-          margin-right: auto;
-          left: 0;
-          right: 0;
-          text-align: center;
-        }      
-      }
+    &:hover {
+      opacity: 80%;
+
+      .food-pic-camera-btn {
+        display: block;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }      
     }
+
+    // &.recipe-details-auth {
+    //   &:hover {
+    //     opacity: 70%;
+
+    //     .food-pic-camera-btn {
+    //       display: block;
+    //       position: absolute;
+    //       margin-left: auto;
+    //       margin-right: auto;
+    //       left: 0;
+    //       right: 0;
+    //       text-align: center;
+    //     }      
+    //   }
+    // }
 
     img {
       width: 100%;

@@ -3,6 +3,8 @@ import './HomePage.styles.scss';
 import '../../assets/homepage/home-main-img.png';
 import {withRouter} from 'react-router-dom';
 
+import ScrollAnimation from 'react-animate-on-scroll';
+
 
 const HomePage = (props) => {
   return (
@@ -14,6 +16,7 @@ const HomePage = (props) => {
           <div className='get-started-text'><span>Get started!</span></div>
         </button>
       </div>
+      <ScrollAnimation animateIn="fadeIn" animateOut='fadeOut' duration={5}>
       <div className='homepage-row-2'>
         <div className='homepage-row-2-img'>
           <img alt='homepage-img-1' src={require('../../assets/homepage/home-img-1.png')} />
@@ -23,6 +26,7 @@ const HomePage = (props) => {
           <p>Simply create your recipes by clicking Add New Recipe button. Upload an image for your new recipe and makes it look awesome and delicious!</p>
         </div>
       </div>
+      </ScrollAnimation>
       <div className='homepage-row-3'>
         <div className='homepage-row-3-text'>
           <h2>Share it with public</h2>
@@ -41,7 +45,6 @@ const HomePage = (props) => {
           <p>You can save other's recipe to your account without infringement. Always keep those recipes as private and you still can easily check it out and access them all the time.</p>
         </div>
       </div>
-
     </div>
   );
 }
