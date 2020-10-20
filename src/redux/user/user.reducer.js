@@ -3,6 +3,9 @@ import { updateUser } from './user.utils';
 
 const INITIAL_STATE = {
 	currentUser: { user: {_id: 'no-user'} },
+	signinPending: false,
+	signinErrormsg: '',
+	signupPending: false,
 	signupErrormsg: '',
 	uploadProfilePicPending: false,
 	uploadProfilePicSuccessmsg: '',
@@ -15,25 +18,52 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case UserActionTypes.SET_CURRENT_USER:
+		case UserActionTypes.SIGN_IN_USER_PENDING:
 			return {
 				...state,
-				currentUser: action.payload
+				signinPending: true,
+				currentUser: { user: {_id: 'no-user'} },
+				signinErrormsg: ''
+			}
+		case UserActionTypes.SIGN_IN_USER_SUCCESS:
+			return {
+				...state,
+				signinPending: false,
+				currentUser: action.payload,
+				signinErrormsg: ''
+			}
+		case UserActionTypes.SIGN_IN_USER_FAILED:
+			return {
+				...state,
+				signinPending: false,
+				currentUser: { user: {_id: 'no-user'} },
+				signinErrormsg: action.payload
 			}
 		case UserActionTypes.LOGOUT_CURRENT_USER:
 			return {
 				...state,
 				currentUser: action.payload
 			}
+		case UserActionTypes.SIGNUP_NEW_USER_PENDING:
+			return {
+				...state,
+				signupPending: true,
+				currentUser: { user: {_id: 'no-user'} },
+				signupErrormsg: ''
+			}
 		case UserActionTypes.SIGNUP_NEW_USER_SUCCESS:
 			return {
 				...state,
-				currentUser: action.payload
+				signupPending: false,
+				currentUser: action.payload,
+				signupErrormsg: ''
 			}
 		case UserActionTypes.SIGNUP_NEW_USER_FAILED:
 			return {
 				...state,
-				signupErrormsg: action.payload
+				signupPending: false,
+				currentUser: { user: {_id: 'no-user'} },
+				signupErrormsg: action.payload,
 			}
 		case UserActionTypes.UPLOAD_PROFILE_PIC_PENDING:
 			return {

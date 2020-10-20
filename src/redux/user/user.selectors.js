@@ -2,6 +2,26 @@ import { createSelector } from 'reselect';
 
 const selectUser = state => state.user;
 
+export const selectSigninPending = createSelector(
+  [selectUser],
+  user => user.signinPending
+)
+
+export const selectSigninFailed = createSelector(
+  [selectUser],
+  user => user.signinErrormsg
+)
+
+export const selectSignupPending = createSelector(
+  [selectUser],
+  user => user.signupPending
+)
+
+export const selectSignupErrormsg = createSelector(
+  [selectUser],
+  user => user.signupErrormsg
+)
+
 export const selectUserName = createSelector(
   [selectUser],
   user => user.currentUser.user.name
@@ -25,11 +45,6 @@ export const selectUserId = createSelector(
 export const selectUserToken = createSelector(
   [selectUser],
   user => user.currentUser.token
-)
-
-export const selectSignupErrormsg = createSelector(
-  [selectUser],
-  user => user.signupErrormsg
 )
 
 export const selectUploadProfilePicPending = createSelector(

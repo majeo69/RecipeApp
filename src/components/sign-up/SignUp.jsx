@@ -3,19 +3,20 @@ import './SignUp.styles.scss';
 
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Spinner from 'react-bootstrap/Spinner';
 import FormInput from '../form-input/FormInput';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { setCurrentUser, signupNewUser } from '../../redux/user/user.actions';
-import { selectSignupErrormsg } from '../../redux/user/user.selectors'
+import { signupNewUser } from '../../redux/user/user.actions';
+import { selectSignupPending, selectSignupErrormsg } from '../../redux/user/user.selectors'
 
 const mapStateToProps = createStructuredSelector({
+  signupPending: selectSignupPending,
   signupError: selectSignupErrormsg
 })
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user)), 
   signupNewUser: (displayName, email, password) => dispatch(signupNewUser(displayName, email, password))
 })
 
@@ -89,7 +90,10 @@ class SignUp extends Component {
             required
           />
           <div className='signup-button-container'>
-            <Button type="submit" variant="outline-secondary">Sign Up</Button>
+            <Button type="submit" variant="outline-secondary" disabled={this.props.signupPending}>
+              {this.props.signupPending && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"/>}
+              Sign Up
+            </Button>
           </div>
           {
             signupPwdNotMatch ? <h6>{signupPwdNotMatch}</h6> 

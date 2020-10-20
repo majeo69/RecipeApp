@@ -1,11 +1,33 @@
 import { UserActionTypes } from './user.types';
 
-export const setCurrentUser = user => ({
-	type: UserActionTypes.SET_CURRENT_USER,
-	payload: user
-});
+export const singinUser = (email, password) => (dispatch) => {
+	dispatch({ type: UserActionTypes.SIGN_IN_USER_PENDING })
+	fetch('https://chieh-recipe-manager.herokuapp.com/users/login', 
+		{
+			method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+		})
+		.then(response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				dispatch({ type: UserActionTypes.SIGN_IN_USER_FAILED, payload: "Your login information is wrong..." })
+			}
+		})
+		.then(data => {
+			if (data !== undefined) {
+				dispatch({ type: UserActionTypes.SIGN_IN_USER_SUCCESS, payload: data })
+			}
+		})
+		.catch(error => dispatch({ type: UserActionTypes.SIGN_IN_USER_FAILED, payload: error }))
+}
 
 export const signupNewUser = (displayName, email, password) => (dispatch) => {
+	dispatch({ type: UserActionTypes.SIGNUP_NEW_USER_PENDING })
 	fetch('https://chieh-recipe-manager.herokuapp.com/users',
 		{
 			method: 'POST',
