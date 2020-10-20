@@ -24,32 +24,42 @@
       z-index: -1;
     }
     .homepage-title {
-      margin: 120px 0;
-      @media (max-width:560px) {
+      //margin: 120px 0;
+      margin: 7vw 0;
+      @media (min-width: 560px) and (max-width: 991px) {
         margin: 12vw 0;
+      }
+      @media (max-width:560px) {
+        margin: 8vw 0;
       }
       h1 {
         font-family: 'Frank Ruhl Libre', serif;
         font-style: normal;
         font-weight: 900;
-        font-size: 75px;
+        font-size: 5vw;
         line-height: 110%;
         letter-spacing: 0.015em;
         color: #2A356C;
+        @media (min-width: 560px) and (max-width: 991px) {
+          font-size: 7vw;
+        }
         @media (max-width:560px) {
-          font-size: 15vw;
+          font-size: 8vw;
         }
       }
       h4 {
         font-family: Cabin;
         font-style: normal;
         font-weight: normal;
-        font-size: 32px;
+        font-size: 3vw;
         line-height: 50px;
         letter-spacing: 0.015em;
         color: #2A356C;
+        @media (min-width: 560px) and (max-width: 991px) {
+          font-size: 4vw;
+        }
         @media (max-width:560px) {
-          font-size: 6vw;
+          font-size: 5vw;
         }
       }
     }
@@ -57,20 +67,48 @@
     .get-started-btn {
       margin-top: 12%;
       padding: 4px 16px;
-      min-width: 80px;
-      min-height: 22px;
+      width: 15vw;
+      height: 4vw;
       background: #F4AEA4;
       box-shadow: 2px 2px 0px #2A356C;
       border: none;
       border-radius: 5px;
       transition: 0.1s linear;
+
+      @media (min-width: 610px) and (max-width: 991px) {
+        margin-top: 18%;
+        margin-left: 5%;
+        width: 20vw;
+        height: 6vw;
+      }
+      @media (min-width: 560px) and (max-width: 712px) {
+        margin-top: 10%;
+        width: 150px;
+        height: 50px;
+      }
+      @media (max-width:560px) {
+        margin-top: 7%;
+        width: 130px;
+        height: 40px;
+      }
+
+
       .get-started-text {
         color: #ffffff;
-        font-size: 2em;
+        font-size: 2vw;
         font-weight: 500;
         letter-spacing: 0.02em;
+        @media (min-width: 713px) and (max-width: 991px) {
+          font-size: 3vw;
+        }
+        @media (min-width: 609px) and (max-width: 712px) {
+          font-size: 2.5vw;
+        }
+        @media (min-width: 560px) and (max-width: 609px) {
+          font-size: 22px;
+        }
         @media (max-width:560px) {
-          font-size: 6vw;
+          font-size: 18px;
         }
       }
       &:hover {
