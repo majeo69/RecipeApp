@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './RecipePhotoUpload.styles.scss';
 import { withRouter } from 'react-router-dom';
 
-import UploadDeleteStyledButton from '../styled-buttons/UploadDeleteStyledButton';
+import StyledGreyButton from '../styled-buttons/StyledGreyButton';
 
 import { Button, CircularProgress } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
@@ -77,11 +77,11 @@ class RecipePhotoUpload extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-recipeimg">
-              <UploadDeleteStyledButton variant="outlined" color="primary" component="span" 
+              <StyledGreyButton variant="outlined" color="primary" component="span" 
                 disabled={uploadFoodimgPending} startIcon={<PhotoCamera />}>
                 {uploadFoodimgPending && <CircularProgress size={15} />}
                 {!uploadFoodimgPending && 'UPLOAD'}
-              </UploadDeleteStyledButton>
+              </StyledGreyButton>
             </label>
         </div>
 

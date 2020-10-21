@@ -7,6 +7,8 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import Pagination from '@material-ui/lab/Pagination';
 
+import StyledGreyButton from '../../components/styled-buttons/StyledGreyButton';
+
 import EmptyMatch from '../../components/empty-match/EmptyMatch';
 import { publicPagination } from '../../utils/public-recipes.utils';
 
@@ -66,6 +68,10 @@ class ExplorePage extends Component {
     this.props.requestFilteredPublicRecipes(event.target.value);
   }
 
+  onSelectAll = event => {
+    this.props.requestAllPublicRecipes();
+  }
+
   handlePagination = (event, value) => {
     this.props.setPublicCurrentPage(value)
   };
@@ -76,19 +82,27 @@ class ExplorePage extends Component {
 
     return (
       <div className='explore-page-container'>
+        <div className='explore-search-container'>
+          <div className='explore-search-col-1'>
+            <SearchBar onChange={this.handleChange} className='searchbar-explore'>
+              ex. Chocolate tart
+            </SearchBar>
+          </div>
+          <div className='explore-search-col-2'>
+            <StyledGreyButton size="small" onClick={this.onSelectAll}>All</StyledGreyButton>
+            <StyledGreyButton size="small" onClick={this.onSelectMeal}>Meal</StyledGreyButton>
+            <StyledGreyButton size="small" onClick={this.onSelectDessert}>Dessert</StyledGreyButton>
+            <StyledGreyButton size="small" onClick={this.onSelectDrink}>Drink</StyledGreyButton>
+          </div>
+        </div>
         {
           isPending ? <Loading /> :
           <div>
-            <div className='explore-searchbar-container'>
-              <SearchBar onChange={this.handleChange} className='searchbar-explore'>
-                ex. Chocolate tart
-              </SearchBar>
-            </div>
             <div className='explore-recipes-container'>
               <ErrorBoundry>
                 {
                   typeof(publicRecipesPagination) === 'string' ?
-                  <EmptyMatch emptyMsg={"No matches found! Please search with other keywords."}/>
+                  <EmptyMatch emptyMsg={"No matches found!"}/>
                   : <RecipesOverview recipes={publicRecipesPagination} />
                 }
               </ErrorBoundry>

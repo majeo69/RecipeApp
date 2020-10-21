@@ -1,7 +1,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const UploadDeleteStyledButton = withStyles({
+const StyledGreyButton = withStyles({
   root: {
     background: '#E0E0E0',
     borderRadius: 3,
@@ -13,4 +13,4 @@ const UploadDeleteStyledButton = withStyles({
   },
 })(Button);
 
-export default UploadDeleteStyledButton;
+export default StyledGreyButton;

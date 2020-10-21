@@ -6,7 +6,7 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
-import UploadDeleteStyledButton from '../styled-buttons/UploadDeleteStyledButton';
+import StyledGreyButton from '../styled-buttons/StyledGreyButton';
 import UpdatePersonalInfo from '../update-personal-info/UpdatePersonalInfo';
 import StatsCard from '../stats-card/StatsCard';
 
@@ -98,19 +98,19 @@ class PersonalInfo extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-avatar">
-              <UploadDeleteStyledButton size="small" component="span"
+              <StyledGreyButton size="small" component="span"
                 disabled={uploadProfilePicPending} startIcon={<PhotoCamera />}>
                 {uploadProfilePicPending && <CircularProgress size={15} />}
                 {!uploadProfilePicPending && 'UPLOAD'}
-              </UploadDeleteStyledButton>
+              </StyledGreyButton>
             </label>
           </div>
           <div className='deleteuserimg-container'>
-            <UploadDeleteStyledButton color="default" size="small" onClick={this.onDelete} 
+            <StyledGreyButton color="default" size="small" onClick={this.onDelete} 
               disabled={deleteProfilePicPending} startIcon={<DeleteIcon />} >
               {deleteProfilePicPending && <CircularProgress size={15} />}
               {!deleteProfilePicPending && 'DELETE'}
-            </UploadDeleteStyledButton>
+            </StyledGreyButton>
           </div>
         </div>
         <div className='user-detailed-info'>

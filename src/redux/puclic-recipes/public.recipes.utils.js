@@ -4,13 +4,17 @@ export const addUpTotalTime = (publicRecipes) => {
   )
 }
 
-export const filterPublicRecipes = (keywords, publicRecipes) => {
-  const filteredRecipes = publicRecipes.filter(publicRecipe => {
-    return publicRecipe.title.toLowerCase().includes(keywords.toLowerCase());
-  });
-  if (filteredRecipes.length !== 0) {
-    return filteredRecipes;
+export const filterPublicRecipes = (keyword, publicRecipes) => {
+  if (keyword === 'random') {
+    console.log('random keyword')
   } else {
-    return "no matches found. Please search with other keywords."
+    const filteredRecipes = publicRecipes.filter(publicRecipe => {
+      return publicRecipe.title.toLowerCase().includes(keyword.toLowerCase());
+    });
+    if (filteredRecipes.length !== 0) {
+      return filteredRecipes;
+    } else {
+      return "no matches found."
+    }
   }
 }

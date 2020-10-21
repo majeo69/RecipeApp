@@ -2,16 +2,33 @@
   background: #F7EFEE;
   padding: 30px 20px 40px 20px;
 
-  .explore-searchbar-container {
+  .explore-search-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     padding-top: 35px;
     padding-bottom: 35px;
 
-    .searchbar-explore {
-      width: 50%;
-      margin: 0 auto;
+    .explore-search-col-1 {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      
+      .searchbar-explore {
+        width: 50%;
+        margin: 0 auto;
+      }
     }
+
+    .explore-search-col-2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      button {
+        margin: 0 10px;
+      }
+    }
+
   }
 
   .public-pagination-container {

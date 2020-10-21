@@ -9,7 +9,7 @@ const HomePage = (props) => {
       <div className='homepage-row-1 row'>
         <div className='col-lg-7 col-12'>
           <div className='homepage-title'>  
-            <h4>Come get your own</h4>
+            <h4>Come create your own</h4>
             <h1>Secret<br/>Recipe</h1>
             <button className='get-started-btn' type="button"
               onClick={() => props.history.push('/signin')}>
@@ -28,13 +28,13 @@ const HomePage = (props) => {
         </div>
         <div className='homepage-row-2-text'>
           <h2>Create a recipe</h2>
-          <p>Ypu can simply create a new recipe by clicking Add New Recipe button. Don't forget to add an image for your new recipe to make it look awesome and delicious!</p>
+          <p>Click the "Add New Recipe" button to start. Add an image and description to make it pop!</p>
         </div>
       </div>
       <div className='homepage-row-3'>
         <div className='homepage-row-3-text'>
           <h2>Discover</h2>
-          <p>Discover others recipe in Explore! There's a lot of awesome recipes for you to make.</p>
+          <p>Discover others recipe in Explore! There's a lot of awesome recipes for you to create!</p>
         </div>
         <div className='homepage-row-3-img'>
           <img alt='homepage-img-2' src={require('../../assets/homepage/home-img-2.png')} />
@@ -46,7 +46,7 @@ const HomePage = (props) => {
         </div>
         <div className='homepage-row-4-text'>
           <h2>Keep them private</h2>
-          <p>You can share your amazing recipe with public by simply set your recipe to public when you create it. You can also set it to private when you no longer want to share it.</p>
+          <p>You can hide your recipes by labelling them private, or you can share them with the world by labelling them public. You can even switch a public recipe back to private at any time.</p>
         </div>
       </div>
     </div>
