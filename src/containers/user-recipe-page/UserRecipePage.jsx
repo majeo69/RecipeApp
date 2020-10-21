@@ -102,13 +102,13 @@ class UserRecipePage extends Component {
                 </div>
                 {
                   userRecipes.length === 0 ? 
-                  <EmptyMatch emptyMsg={"You don't have any recipes yet. Create one today!"}/>
+                  <EmptyMatch emptyMsg={"You don't have any recipe yet. Create one today!"}/>
                   :
                   <div>
                     <ErrorBoundry>
                     {
                       typeof(userRecipesPagination) === 'string' ? 
-                      <EmptyMatch emptyMsg={"No matches found! Please search with other keywords."}/>
+                      <EmptyMatch emptyMsg={"No matches found!"}/>
                       : <RecipesOverview recipes={userRecipesPagination} />
                     }
                     </ErrorBoundry>

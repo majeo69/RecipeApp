@@ -13,7 +13,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const RecipePage = (props) => {
-  const recipe = props.location.state.detailedRecipe
+  const recipe = props.location.state.detailedRecipe;
   return (
     <div className='recipe-details-page-container'>
       <div className='details-box'>
