@@ -88,7 +88,7 @@ class RecipePhotoUpload extends Component {
         <div className='upload-recipeimg'>
         {
           onEditRecipeInfo.img ? <img alt='recipe_image' src={`data:image/png;base64,${onEditRecipeInfo.img}`} /> 
-          : <img alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+          : <img alt='default_foodimg' src={require('../../assets/foodimg_default_detail.png')} />
         }
         </div>
       </div>

@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   publicRecipes: [],
   filteredPublicRecipes: [],
   currentPage: 1,
-  totalPages: 0
+  totalPages: 0,
+  publicKeyword: ''
 }
 
 const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -30,7 +31,13 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
     case PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES:
       return {
         ...state,
-        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes)
+        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes),
+        publicKeyword: action.payload
+      }
+    case PublicRecipesTypes.RESET_PUBLIC_KEYWORD: 
+      return {
+        ...state,
+        publicKeyword: action.payload
       }
     case PublicRecipesTypes.SET_CURRENT_PAGE:
       return {

@@ -6,7 +6,7 @@ export const addUpTotalTime = (publicRecipes) => {
 
 export const filterPublicRecipes = (keyword, publicRecipes) => {
   if (keyword === 'random') {
-    console.log('random keyword')
+    return [publicRecipes[Math.floor(Math.random()*publicRecipes.length)]];
   } else {
     const filteredRecipes = publicRecipes.filter(publicRecipe => {
       return publicRecipe.title.toLowerCase().includes(keyword.toLowerCase());

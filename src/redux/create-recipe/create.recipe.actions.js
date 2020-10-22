@@ -4,7 +4,7 @@ export const resetCreateNeRecipeState = () => ({
   type: CreateRecipesTypes.CREATE_NEW_RECIPE_RESET_STATE
 })
 
-export const createNewRecipe = (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => (dispatch) => {
+export const createNewRecipe = (userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe) => (dispatch) => {
   dispatch({ type: CreateRecipesTypes.CREATE_NEW_RECIPE_PENDING })
   fetch('https://chieh-recipe-manager.herokuapp.com/recipes',
   {
@@ -17,6 +17,9 @@ export const createNewRecipe = (userToken, title, prep_time, cook_time, servings
       title: title,
       preparation: prep_time,
       cook_time: cook_time,
+      dessert: dessert,
+      meal: meal,
+      drink: drink,
       servings: servings,
       ingredients: ingredients.split('\n').filter(Boolean),
       steps: steps.split('\n').filter(Boolean),

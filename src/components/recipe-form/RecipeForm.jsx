@@ -20,10 +20,10 @@ import { selectCreateRecipePending, selectCreateRecipeSuccess, selectCreateRecip
 import { selectRecipeToBeUpdate, selectUpdateRecipePending } from '../../redux/update-recipe/update.recipe.selectors';
 
 const mapDispatchToProps = (dispatch) => ({
-  createNewRecipe: (userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
-    dispatch(createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
-  updateRecipe: (recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe) => 
-    dispatch(updateRecipe(recipeID, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)),
+  createNewRecipe: (userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe) => 
+    dispatch(createNewRecipe(userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe)),
+  updateRecipe: (recipeID, userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe) => 
+    dispatch(updateRecipe(recipeID, userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe)),
   resetCreateNeRecipeState: () => dispatch(resetCreateNeRecipeState())
 });
 
@@ -44,6 +44,9 @@ class RecipeForm extends Component {
         title: '',
         prep_time: '',
         cook_time: '',
+        dessert: false,
+        meal: false,
+        drink: false,
         servings: '',
         ingredients: '',
         steps: '',
@@ -54,6 +57,9 @@ class RecipeForm extends Component {
         title: this.props.recipeToBeUpdate.title,
         prep_time: this.props.recipeToBeUpdate.preparation,
         cook_time: this.props.recipeToBeUpdate.cook_time,
+        dessert: this.props.recipeToBeUpdate.dessert,
+        meal: this.props.recipeToBeUpdate.meal,
+        drink: this.props.recipeToBeUpdate.drink,
         servings: this.props.recipeToBeUpdate.servings,
         ingredients: this.props.recipeToBeUpdate.ingredients.join('\n'),
         steps: this.props.recipeToBeUpdate.steps.join('\n'),
@@ -65,11 +71,11 @@ class RecipeForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { userToken, recipeToBeUpdate } = this.props;
-    const { title, prep_time, cook_time, servings, ingredients, steps, public_recipe } = this.state;
+    const { title, prep_time, cook_time, dessert, meal, drink,  servings, ingredients, steps, public_recipe } = this.state;
     if (Object.keys(this.props.recipeToBeUpdate).length===0) {
-      this.props.createNewRecipe(userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)
+      this.props.createNewRecipe(userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe)
     } else {
-      this.props.updateRecipe(recipeToBeUpdate._id, userToken, title, prep_time, cook_time, servings, ingredients, steps, public_recipe)
+      this.props.updateRecipe(recipeToBeUpdate._id, userToken, title, prep_time, cook_time, dessert, meal, drink, servings, ingredients, steps, public_recipe)
     }
   }
 
@@ -77,7 +83,7 @@ class RecipeForm extends Component {
     const { value, checked, name } = event.target;
     if (name === 'prep_time' || name === 'cook_time' || name === 'servings') {
       this.setState({ [name]: parseInt(value) })
-    } else if (name === 'public_recipe'){
+    } else if (name === 'public_recipe' || name === 'dessert' || name === 'meal' || name === 'drink'){
       this.setState({ [name]: checked })
     } else {
       this.setState({ [name]: value })
@@ -105,9 +111,18 @@ class RecipeForm extends Component {
           </div>
           <div className='category-field'>
             <h6 style={{verticalAlign: "center"}}>Category:</h6>
-            <FormControlLabel control={<Checkbox name="checkedDessert" color="primary" />} label="Dessert" />
-            <FormControlLabel control={<Checkbox name="checkedMeal" color="primary" />} label="Meal" />
-            <FormControlLabel control={<Checkbox name="checkedDrink" color="primary" />} label="Drink" />
+            <FormControlLabel 
+              control={<Checkbox name="dessert" color="primary" onChange={this.handleChange} 
+                      defaultChecked={recipeToBeUpdate.dessert || false}/>} 
+              label="Dessert" />
+            <FormControlLabel 
+              control={<Checkbox name="meal" color="primary" onChange={this.handleChange} 
+                      defaultChecked={recipeToBeUpdate.meal || false} />} 
+              label="Meal" />
+            <FormControlLabel 
+              control={<Checkbox name="drink" color="primary" onChange={this.handleChange} 
+                      defaultChecked={recipeToBeUpdate.drink || false}/>} 
+              label="Drink" />
           </div>
           <div className='time-field'>
             <h6>Prep time: </h6>

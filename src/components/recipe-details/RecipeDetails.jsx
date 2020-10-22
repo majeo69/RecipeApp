@@ -77,7 +77,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       <div className={`${userId !== 'no-user' &&  userId === owner ? 'recipe-details-auth': ''} recipe-details-img-container`}>
       {
         recipe.img ? <img alt='foodimg' src={`data:image/png;base64,${recipe.img}`} /> 
-        : <img className='food-img-default' alt='default_foodimg' src={require('../../utils/foodimg_default_detail.png')} />
+        : <img className='food-img-default' alt='default_foodimg' src={require('../../assets/foodimg_default_detail.png')} />
       }
       {
         userId !== 'no-user' && userId === owner ?

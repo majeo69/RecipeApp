@@ -17,6 +17,11 @@ export const selectFilteredPublicRecipes = createSelector(
   allPublicRecipes => allPublicRecipes.filteredPublicRecipes
 )
 
+export const selectFilteredPublicKeyword = createSelector(
+  [selectPublicRecipes],
+  allPublicRecipes => allPublicRecipes.publicKeyword
+)
+
 export const selectPublicCurrentPage = createSelector(
   [selectPublicRecipes],
   allPublicRecipes => allPublicRecipes.currentPage

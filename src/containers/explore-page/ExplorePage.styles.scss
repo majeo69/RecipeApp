@@ -22,11 +22,9 @@
     .explore-search-col-2 {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center;
-
-      button {
-        margin: 0 10px;
-      }
+      height: 40px;
     }
 
   }
