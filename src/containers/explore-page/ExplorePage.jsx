@@ -135,7 +135,7 @@ class ExplorePage extends Component {
           <div className='explore-page-main-container'>
             {
               publicKeyword === 'random' ? 
-                <h5>Here's a ramdon recipe picked from <span>{publicSelectedType}</span> category! <br/> 
+                <h5>Here's a random recipe picked from <span>{publicSelectedType}</span> category! <br/> 
                     Refresh (Crl+R) the page if you no longer want a random recipe.</h5>
               : null
             }
