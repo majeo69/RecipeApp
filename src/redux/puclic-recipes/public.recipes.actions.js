@@ -19,6 +19,10 @@ export const requestFilteredPublicRecipes = (keyword) => ({
   payload: keyword
 })
 
+export const resetFilteredPublicRecipes = () => ({
+  type: PublicRecipesTypes.RESET_FILTERED_PUBLIC_RECIPES
+})
+
 export const resetPublicKeyword = () => ({
   type: PublicRecipesTypes.RESET_PUBLIC_KEYWORD,
   payload: ''

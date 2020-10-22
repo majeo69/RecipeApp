@@ -36,6 +36,11 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
         filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes),
         publicKeyword: action.payload
       }
+    case PublicRecipesTypes.RESET_FILTERED_PUBLIC_RECIPES:
+      return {
+        ...state,
+        filteredPublicRecipes: []
+      }
     case PublicRecipesTypes.SET_PUBLIC_SELECTED_TYPE:
       return {
         ...state,

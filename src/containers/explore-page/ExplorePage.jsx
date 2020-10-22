@@ -23,6 +23,7 @@ import { createStructuredSelector } from 'reselect';
 import { 
   requestAllPublicRecipes, 
   requestFilteredPublicRecipes,
+  resetFilteredPublicRecipes,
   resetPublicKeyword,
   setPublicSelectedType,
   setCurrentPage, 
@@ -52,6 +53,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   requestAllPublicRecipes: (url_to_match) => dispatch(requestAllPublicRecipes(url_to_match)),
   requestFilteredPublicRecipes: keyword => dispatch(requestFilteredPublicRecipes(keyword)),
+  resetFilteredPublicRecipes: () => dispatch(resetFilteredPublicRecipes()),
   resetPublicKeyword: () => dispatch(resetPublicKeyword()),
   setPublicSelectedType: (selectedType) => dispatch(setPublicSelectedType(selectedType)),
   setPublicCurrentPage: (data) => dispatch(setCurrentPage(data)),
@@ -69,14 +71,14 @@ class ExplorePage extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
       && typeof(this.props.filteredPublicRecipes) === 'string') {
-        this.props.setPublicTotalPage(0)
+        this.props.setPublicTotalPage(0);
     }
-    if ( prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
+    if (prevProps.filteredPublicRecipes !== this.props.filteredPublicRecipes
       && this.props.filteredPublicRecipes !== []
       && typeof(this.props.filteredPublicRecipes) !== 'string') {
-        this.props.setPublicTotalPage(Math.ceil(this.props.filteredPublicRecipes.length / 9))
+        this.props.setPublicTotalPage(Math.ceil(this.props.filteredPublicRecipes.length / 9));
       } else if (prevProps.publicRecipes !== this.props.publicRecipes) {
-      this.props.setPublicTotalPage(Math.ceil(this.props.publicRecipes.length / 9))
+        this.props.setPublicTotalPage(Math.ceil(this.props.publicRecipes.length / 9));
     }
   }
 
@@ -85,8 +87,9 @@ class ExplorePage extends Component {
   }
 
   handleRadioChange = event => {
-    this.props.setPublicSelectedType(event.target.value)
+    this.props.setPublicSelectedType(event.target.value);
     this.props.resetPublicKeyword();
+    this.props.resetFilteredPublicRecipes();
     if (event.target.value === 'All') {
       this.props.requestAllPublicRecipes('public');
     } else {
@@ -99,7 +102,7 @@ class ExplorePage extends Component {
   }
 
   handlePagination = (event, value) => {
-    this.props.setPublicCurrentPage(value)
+    this.props.setPublicCurrentPage(value);
   };
 
   render() {
@@ -110,7 +113,7 @@ class ExplorePage extends Component {
       <div className='explore-page-container'>
         <div className='explore-search-container'>
           <div className='explore-search-col-1'>
-            <SearchBar onChange={this.handleChange} className='searchbar-explore'>
+            <SearchBar onChange={this.handleChange} value={publicKeyword || ''} className='searchbar-explore'>
               ex. Chocolate tart
             </SearchBar>
           </div>
