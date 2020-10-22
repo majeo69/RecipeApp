@@ -24,6 +24,11 @@ export const resetPublicKeyword = () => ({
   payload: ''
 })
 
+export const setPublicSelectedType = (selectedType) => ({
+  type: PublicRecipesTypes.SET_PUBLIC_SELECTED_TYPE,
+  payload: selectedType
+}) 
+
 export const setCurrentPage = (data) => ({
   type: PublicRecipesTypes.SET_CURRENT_PAGE,
   payload: data

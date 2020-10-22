@@ -12,6 +12,11 @@ export const selectAllPublicRecipes = createSelector(
   allPublicRecipes => allPublicRecipes.publicRecipes
 )
 
+export const selectPublicSelectedType = createSelector(
+  [selectPublicRecipes],
+  allPublicRecipes => allPublicRecipes.selectedType
+)
+
 export const selectFilteredPublicRecipes = createSelector(
   [selectPublicRecipes],
   allPublicRecipes => allPublicRecipes.filteredPublicRecipes

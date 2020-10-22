@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   isPending: true,
   publicRecipes: [],
   filteredPublicRecipes: [],
+  selectedType: 'All',
   currentPage: 1,
   totalPages: 0,
   publicKeyword: ''
@@ -33,6 +34,11 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
         ...state,
         filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes),
         publicKeyword: action.payload
+      }
+    case PublicRecipesTypes.SET_PUBLIC_SELECTED_TYPE:
+      return {
+        ...state,
+        selectedType: action.payload
       }
     case PublicRecipesTypes.RESET_PUBLIC_KEYWORD: 
       return {

@@ -24,6 +24,7 @@ import {
   requestAllPublicRecipes, 
   requestFilteredPublicRecipes,
   resetPublicKeyword,
+  setPublicSelectedType,
   setCurrentPage, 
   setTotalPage 
 } from '../../redux/puclic-recipes/public.recipes.actions';
@@ -32,6 +33,7 @@ import {
   selectAllPublicRecipes,
   selectFilteredPublicRecipes,
   selectFilteredPublicKeyword,
+  selectPublicSelectedType,
   selectPublicCurrentPage,
   selectPublicTotalPages
 } from '../../redux/puclic-recipes/public.recipes.selectors';
@@ -42,6 +44,7 @@ const mapStateToProps = createStructuredSelector({
   publicRecipes: selectAllPublicRecipes,
   filteredPublicRecipes: selectFilteredPublicRecipes,
   publicKeyword: selectFilteredPublicKeyword,
+  publicSelectedType: selectPublicSelectedType,
   publicCurrentPage: selectPublicCurrentPage,
   publicTotalPages: selectPublicTotalPages
 });
@@ -50,6 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
   requestAllPublicRecipes: (url_to_match) => dispatch(requestAllPublicRecipes(url_to_match)),
   requestFilteredPublicRecipes: keyword => dispatch(requestFilteredPublicRecipes(keyword)),
   resetPublicKeyword: () => dispatch(resetPublicKeyword()),
+  setPublicSelectedType: (selectedType) => dispatch(setPublicSelectedType(selectedType)),
   setPublicCurrentPage: (data) => dispatch(setCurrentPage(data)),
   setPublicTotalPage: (data) => dispatch(setTotalPage(data))
 });
@@ -85,7 +89,7 @@ class ExplorePage extends Component {
   }
 
   handleRadioChange = event => {
-    this.setState({ search_type: event.target.value })
+    this.props.setPublicSelectedType(event.target.value)
     this.props.resetPublicKeyword();
     if (event.target.value === 'All') {
       this.props.requestAllPublicRecipes('public');
@@ -103,7 +107,7 @@ class ExplorePage extends Component {
   };
 
   render() {
-    const { isPending, publicRecipes, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
+    const { isPending, publicRecipes, publicSelectedType, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
     const publicRecipesPagination = publicPagination(publicRecipes, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages);
 
     return (
@@ -116,7 +120,7 @@ class ExplorePage extends Component {
           </div>
           <div className='explore-search-col-2'>
             <FormControl component="fieldset">
-              <RadioGroup row name="selectFoodType" value={this.state.search_type} onChange={this.handleRadioChange}>
+              <RadioGroup row name="selectFoodType" value={publicSelectedType} onChange={this.handleRadioChange}>
                 <FormControlLabel value="All" control={<Radio />} label="All" />
                 <FormControlLabel value="Meal" control={<Radio />} label="Meal" />
                 <FormControlLabel value="Dessert" control={<Radio />} label="Dessert" />
