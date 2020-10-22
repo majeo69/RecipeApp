@@ -22,7 +22,8 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         publicRecipes: addUpTotalTime(action.payload),
-        isPending: !state.isPending
+        isPending: !state.isPending,
+        currentPage: 1
       }
     case PublicRecipesTypes.REQUEST_ALL_PUBLIC_RECIPES_FAILED:
       return {
