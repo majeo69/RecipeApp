@@ -132,16 +132,20 @@ class ExplorePage extends Component {
         </div>
         {
           isPending ? <Loading /> :
-          <div>
-            <div className='explore-recipes-container'>
-              <ErrorBoundry>
-                {
-                  typeof(publicRecipesPagination) === 'string' ?
-                  <EmptyMatch emptyMsg={"No matches found!"}/>
-                  : <RecipesOverview recipes={publicRecipesPagination} />
-                }
-              </ErrorBoundry>
-            </div>
+          <div className='explore-page-main-container'>
+            {
+              publicKeyword === 'random' ? 
+                <h5>Here's a ramdon recipe picked from <span>{publicSelectedType}</span> categary! <br/> 
+                    Refresh the page if you no longer want a randomized recipe</h5>
+              : null
+            }
+            <ErrorBoundry>
+              {
+                typeof(publicRecipesPagination) === 'string' ?
+                <EmptyMatch emptyMsg={"No matches found!"}/>
+                : <RecipesOverview recipes={publicRecipesPagination} />
+              }
+            </ErrorBoundry> 
             {
               publicTotalPages === 0 ? null 
               :
