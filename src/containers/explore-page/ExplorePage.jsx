@@ -59,15 +59,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class ExplorePage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search_type: 'All'
-    }
-  }
-  async componentDidMount() {
-    if (this.props.publicRecipes.length === 0){
-      await this.props.requestAllPublicRecipes('public');
+  componentDidMount() {
+    if (this.props.publicSelectedType === 'All') {
+      this.props.requestAllPublicRecipes('public');
+    } else {
+      this.props.requestAllPublicRecipes(`public/${this.props.publicSelectedType.toLowerCase()}`);
     }
   }
   componentDidUpdate(prevProps) {
