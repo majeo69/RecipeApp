@@ -52,15 +52,9 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       </div>
 
       <div className='hashtag-container'>
-        {
-          meal ? <Hashtag hashtag="Meal" food_category /> : null
-        }
-        {
-          dessert ? <Hashtag hashtag="Dessert" food_category /> : null
-        }
-        {
-          drink ? <Hashtag hashtag="Drink" food_category /> : null
-        }
+        { meal ? <Hashtag hashtag="Meal" food_category /> : null }
+        { dessert ? <Hashtag hashtag="Dessert" food_category /> : null }
+        { drink ? <Hashtag hashtag="Drink" food_category /> : null }
         <Hashtag hashtag={`${recipe.public ? 'Public' : 'Private'}`} public_private />
       </div>
 

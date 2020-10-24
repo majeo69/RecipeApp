@@ -98,6 +98,7 @@ class ExplorePage extends Component {
   }
 
   onSelectRandom = event => {
+    this.props.setPublicCurrentPage(1);
     this.props.requestFilteredPublicRecipes('random');
   }
 
