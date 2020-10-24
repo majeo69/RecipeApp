@@ -74,6 +74,7 @@ class UserRecipePage extends Component {
 
   handleChange = event => {
     this.props.requestFilteredUserRecipes(event.target.value);
+    
   }
 
   handlePagination = (event, value) => {

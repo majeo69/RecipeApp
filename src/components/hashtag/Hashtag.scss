@@ -1,0 +1,25 @@
+.hashtag-pill {
+  margin: 0 7px;
+  border-radius: 30px;
+  box-sizing: border-box;
+
+  &.public_private-pill {
+    border: 2px solid #F4AEA4;
+
+    span {
+      color: #F4AEA4;
+    }
+  }
+
+  &.food-category-pill {
+    border: 2px solid #2A356C;
+    background: #2A356C;
+    span {
+      color: #ffffff;
+    }
+  }
+
+  span {
+    padding: 3px 20px;
+  }
+}

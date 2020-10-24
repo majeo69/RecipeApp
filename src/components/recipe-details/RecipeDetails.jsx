@@ -2,6 +2,7 @@ import React from 'react';
 import './RecipeDetails.scss';
 
 import DeleteAlert from '../../components/delete-alert/DeleteAlert';
+import Hashtag from '../hashtag/Hashtag';
 
 import { Button, IconButton, Checkbox, FormControlLabel } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
@@ -29,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpdateRecipe, setOnEditRecipeForPhoto }) => {
-  const { title, preparation, total_time, cook_time, servings, ingredients, steps, owner } = recipe;
+  const { title, preparation, meal, dessert, drink, total_time, cook_time, servings, ingredients, steps, owner } = recipe;
   return (
     <div className='recipe-details'>
       <div className='recipe-details-row1'>
@@ -48,6 +49,19 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
             Create Recipe
         </Button>
 
+      </div>
+
+      <div className='hashtag-container'>
+        {
+          meal ? <Hashtag hashtag="Meal" food_category /> : null
+        }
+        {
+          dessert ? <Hashtag hashtag="Dessert" food_category /> : null
+        }
+        {
+          drink ? <Hashtag hashtag="Drink" food_category /> : null
+        }
+        <Hashtag hashtag={`${recipe.public ? 'Public' : 'Private'}`} public_private />
       </div>
 
       <div className='recipe-details-row2'>
@@ -94,7 +108,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
       </div>
 
       <div className='recipe-details-ingredients-container'>
-        <h3>{`<Ingredients for='${servings} people'>`}</h3>
+        <h3>{`Ingredients`}</h3>
         <div className='recipe-details-ingredient'>
         {
           ingredients.map((ingredient, index) => {
@@ -111,7 +125,7 @@ const RecipeDetails = ({ recipe, history, userId, setToBeUpdatedRecipe, resetUpd
         </div>
       </div>
       <div className='recipe-details-steps-container'>
-        <h3>{`<Steps time='${preparation} minutes'>`}</h3>
+        <h3>{`Steps`}</h3>
         <Stepper className='stepper' orientation="vertical">
           {steps.map((step, index) => (
             <Step className='step' key={index} active={true} >

@@ -11,10 +11,19 @@
     align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 5%;
     
     Button {
       margin: 20 0;
     }
+  }
+
+  .hashtag-container {
+    margin-top: 3%;
+    width: 92%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
   }
 
   .recipe-details-row2 {
@@ -27,6 +36,7 @@
 
     h1 {
       font-family: 'Frank Ruhl Libre', serif;
+      color: #2A356C;
     }
 
     .edit-delete-icons {
