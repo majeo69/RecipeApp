@@ -114,7 +114,7 @@ class ExplorePage extends Component {
       <div className='explore-page-container'>
         <div className='explore-search-container'>
           <div className='explore-search-col-1'>
-            <SearchBar onChange={this.handleChange} value={publicKeyword || ''} className='searchbar-explore'>
+            <SearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
               ex. Chocolate tart
             </SearchBar>
           </div>
