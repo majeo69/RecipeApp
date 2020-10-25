@@ -5,9 +5,20 @@
     padding: 0 0 40px 0;
   }
 
+  h1 {
+    font-family: Frank Ruhl Libre;
+    color: #2A356C;
+    margin: 1% 0 0 9%;
+  }
+
   .explore-search-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    width: 82%;
+    margin: 0 auto;
     padding-top: 35px;
     padding-bottom: 35px;
 

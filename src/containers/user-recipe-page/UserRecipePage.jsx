@@ -87,45 +87,43 @@ class UserRecipePage extends Component {
     return (
       <div className='user-recipe-page-container'>
         <div className='user-recipe-container'>
+          <div className='user-searchbar-container'>
+            <h1>My Recipes.</h1>
+            <div className='user-searchbar'>
+              <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
+              <div className='create-recipe-button'>
+                <CreateRecipeStyledButton startIcon={<AddIcon />} 
+                  onClick={() => {
+                    resetUpdateRecipe();
+                    history.push('/createrecipe');}}>
+                  <span>Create Recipe</span>
+                </CreateRecipeStyledButton>
+              </div>
+            </div>
+          </div>
           {
-            isPending ? <Loading /> :
+            isPending ? <Loading /> : userRecipes.length === 0 ? 
+              <EmptyMatch emptyMsg={"You don't have any recipe yet. Create one today!"}/>
+              :
               <div>
-                <div className='user-searchbar-container'>
-                  <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
-                  <div className='create-recipe-button'>
-                    <CreateRecipeStyledButton startIcon={<AddIcon />} 
-                      onClick={() => {
-                        resetUpdateRecipe();
-                        history.push('/createrecipe');}}>
-                      <span>Create Recipe</span>
-                    </CreateRecipeStyledButton>
-                  </div>
-                </div>
+                <ErrorBoundry>
                 {
-                  userRecipes.length === 0 ? 
-                  <EmptyMatch emptyMsg={"You don't have any recipe yet. Create one today!"}/>
+                  typeof(userRecipesPagination) === 'string' ? 
+                  <EmptyMatch emptyMsg={"No matches found!"}/>
+                  : <RecipesOverview recipes={userRecipesPagination} />
+                }
+                </ErrorBoundry>
+                {
+                  userTotalPages === 0 ? null 
                   :
-                  <div>
-                    <ErrorBoundry>
-                    {
-                      typeof(userRecipesPagination) === 'string' ? 
-                      <EmptyMatch emptyMsg={"No matches found!"}/>
-                      : <RecipesOverview recipes={userRecipesPagination} />
-                    }
-                    </ErrorBoundry>
-                    {
-                      userTotalPages === 0 ? null 
-                      :
-                      <div className='user-pagination-container'>
-                        <Pagination 
-                          variant='outlined'
-                          color='primary'
-                          count={userTotalPages} 
-                          page={userCurrentPage} 
-                          onChange={this.handlePagination} 
-                        />
-                      </div>
-                    }
+                  <div className='user-pagination-container'>
+                    <Pagination 
+                      variant='outlined'
+                      color='primary'
+                      count={userTotalPages} 
+                      page={userCurrentPage} 
+                      onChange={this.handlePagination} 
+                    />
                   </div>
                 }
               </div>

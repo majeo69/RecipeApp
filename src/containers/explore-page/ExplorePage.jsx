@@ -112,6 +112,7 @@ class ExplorePage extends Component {
 
     return (
       <div className='explore-page-container'>
+        <h1>Explore.</h1>
         <div className='explore-search-container'>
           <div className='explore-search-col-1'>
             <SearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
@@ -121,10 +122,10 @@ class ExplorePage extends Component {
           <div className='explore-search-col-2'>
             <FormControl component="fieldset">
               <RadioGroup row name="selectFoodType" value={publicSelectedType} onChange={this.handleRadioChange}>
-                <FormControlLabel value="All" control={<Radio />} label="All" />
-                <FormControlLabel value="Meal" control={<Radio />} label="Meal" />
-                <FormControlLabel value="Dessert" control={<Radio />} label="Dessert" />
-                <FormControlLabel value="Drink" control={<Radio />} label="Drink" />
+                <FormControlLabel value="All" control={<Radio color='primary' />} label="All" />
+                <FormControlLabel value="Meal" control={<Radio color='primary' />} label="Meal" />
+                <FormControlLabel value="Dessert" control={<Radio color='primary' />} label="Dessert" />
+                <FormControlLabel value="Drink" control={<Radio color='primary' />} label="Drink" />
               </RadioGroup>
             </FormControl>
             <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
