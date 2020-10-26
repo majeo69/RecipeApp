@@ -90,6 +90,7 @@ class ExplorePage extends Component {
     this.props.setPublicSelectedType(event.target.value);
     this.props.resetPublicKeyword();
     this.props.resetFilteredPublicRecipes();
+    this.props.setPublicCurrentPage(1);
     if (event.target.value === 'All') {
       this.props.requestAllPublicRecipes('public');
     } else {
