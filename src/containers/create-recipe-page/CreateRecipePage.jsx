@@ -25,15 +25,17 @@ const CreateRecipePage = (props) => {
         {
           uploadFoodimgSuccess ?
             <RecipePhotoUpload 
-              msg1={"You've successfully uploaded the photo for your"}
+              msg1={"You've successfully uploaded the photo"}
               msg2={"Go back to "}
               msg3={"and check it out!"}
+              msg4={"Congrats!"}
               recipeName={`${props.onEditNewRecipe.title}`} />
             :
             <RecipePhotoUpload 
-              msg1={"You are almost done! Upload an image for your"}
+              msg1={"Upload an image"}
               msg2={"Or simply go back to  "}
               msg3={"and upload it next time!"}
+              msg4={"You are almost done!"}
               recipeName={`${props.onEditNewRecipe.title}`} />
         }
         </div> 

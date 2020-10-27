@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import StyledGreyButton from '../styled-buttons/StyledGreyButton';
 
 import { Button, CircularProgress } from "@material-ui/core";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import { connect } from 'react-redux';
@@ -57,13 +57,14 @@ class RecipePhotoUpload extends Component {
           </Button>
         </div>
         <div className='upload-recipeimg-msg'>
-          <h4>{this.props.msg1} <span>{this.props.recipeName} recipe</span> ?</h4>
+          <h5>{this.props.msg4}</h5>
+          <h4>{this.props.msg1} <span>for your </span> <span>{this.props.recipeName} recipe</span> ?</h4>
           <h5>{this.props.msg2}
             <Button 
               onClick={() => {
                 this.props.history.push('/myrecipes');
                 this.props.history.go();}}
-                variant="contained" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
+                variant="outlined" size="small" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
               </Button>
               {this.props.msg3}</h5>
         </div>
@@ -77,12 +78,18 @@ class RecipePhotoUpload extends Component {
               onChange={this.onChangeFile}
             />
             <label htmlFor="upload-recipeimg">
-              <StyledGreyButton variant="outlined" color="primary" component="span" 
-                disabled={uploadFoodimgPending} startIcon={<PhotoCamera />}>
+              <Button variant="contained" color="primary" component="span" 
+                disabled={uploadFoodimgPending} startIcon={<CloudUploadIcon />}>
                 {uploadFoodimgPending && <CircularProgress size={15} />}
                 {!uploadFoodimgPending && 'UPLOAD'}
-              </StyledGreyButton>
+              </Button>
             </label>
+            <div className='upload-skip-btn'>
+              <StyledGreyButton onClick={() => {
+                this.props.history.push('/myrecipes');
+                this.props.history.go();}}
+                color="primary" >SKIP</StyledGreyButton>
+            </div>
         </div>
 
         <div className='upload-recipeimg'>
