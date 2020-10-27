@@ -1,0 +1,31 @@
+.pink-blue-btn {
+  background: #F4AEA4;
+  box-shadow: 2px 2px 0px #2A356C;
+  border: none;
+  border-radius: 5px;
+  transition: 0.1s linear;
+  z-index: 1;
+
+  .pink-blue-text {
+    color: #ffffff;
+  }
+
+  &:hover {
+    box-shadow: none;
+    transform: translate(2px,2px);
+  }
+
+  &.signinsignup-btn {
+    height: 37px;
+    width: 100%;
+    margin: 7% 0;
+
+    .pink-blue-text {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 24px;
+      margin: 20px auto;
+      letter-spacing: 0.1em;
+    }
+  }
+}

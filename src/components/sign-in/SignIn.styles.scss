@@ -1,28 +1,22 @@
 .signin-container {
-  margin: 8vh auto 5vh auto;
+  margin: 8vh auto 3vh auto;
   display: flex;
   justify-content: center;
 
-  h6 {
+  h6:first-child {
     margin-bottom: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
+  }
+  h6:last-child {
+    text-align: center;
+    margin-top: 3%;
   }
 
   .sign-in-form {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-  }
-
-  .signin-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-  }
-
-  h6 {
-    text-align: center;
   }
 }
 

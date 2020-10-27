@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './SignIn.styles.scss';
 
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Spinner from 'react-bootstrap/Spinner';
 
 import FormInput from '../form-input/FormInput';
+import PinkBlueButton from '../pink-blue-button/PinkBlueButton';
+import SignInSignUpPending from '../signin-signup-pending/SignInSignUpPending';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -64,12 +64,10 @@ class SignIn extends Component {
             value={this.state.password} 
             required 
           />
-          <div className='signin-button-container'>
-            <Button type="submit" variant="outline-secondary" disabled={this.props.signinPending}>
-              {this.props.signinPending && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"/>}
-              Sign In
-            </Button>
-          </div>
+          <PinkBlueButton className='signin-btn' type="submit" btn_text={"SIGN IN"} SignInSignUp />
+          {
+            this.props.signinPending ? <SignInSignUpPending /> : null
+          }
           {
             this.props.signinErrormsg ? <h6>{this.props.signinErrormsg}</h6> : null
           }

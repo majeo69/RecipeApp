@@ -24,16 +24,16 @@ function SignInSignUpPage() {
       <div className='signin-signup-form-container'>
         <Tabs
           value={value}
-          TabIndicatorProps={{style: { background: "#7f94a9" }}}
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="secondary"
           onChange={handleChange}
           centered
         >
-          <Tab style={tab_styles} label="Sign in" />
           <Tab style={tab_styles} label="Sign up" />
+          <Tab style={tab_styles} label="Sign in" />
         </Tabs>
         {
-          value === 0 ? <SignIn /> : <SignUp />
+          value === 0 ? <SignUp /> : <SignIn />
         }
       </div>
     </div>
