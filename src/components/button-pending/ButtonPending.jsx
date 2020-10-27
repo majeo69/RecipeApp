@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignInSignUpPending = () => {
+const ButtonPending = () => {
   return (
     <div>
       <div class="spinner-grow text-secondary" role="status">
@@ -25,4 +25,4 @@ const SignInSignUpPending = () => {
   )
 }
 
-export default SignInSignUpPending;
+export default ButtonPending;

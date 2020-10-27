@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FormInput from '../form-input/FormInput';
 import PinkBlueButton from '../pink-blue-button/PinkBlueButton';
-import SignInSignUpPending from '../signin-signup-pending/SignInSignUpPending';
+import ButtonPending from '../button-pending/ButtonPending';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -64,9 +64,9 @@ class SignIn extends Component {
             value={this.state.password} 
             required 
           />
-          <PinkBlueButton className='signin-btn' type="submit" btn_text={"SIGN IN"} SignInSignUp />
+          <PinkBlueButton btn_type="submit" btn_text={"SIGN IN"} SignInSignUp />
           {
-            this.props.signinPending ? <SignInSignUpPending /> : null
+            this.props.signinPending ? <ButtonPending /> : null
           }
           {
             this.props.signinErrormsg ? <h6>{this.props.signinErrormsg}</h6> : null

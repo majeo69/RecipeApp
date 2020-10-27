@@ -8,10 +8,9 @@ import PersonalInfo from '../../components/personal-info/PersonalInfo';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import EmptyMatch from '../../components/empty-match/EmptyMatch';
+import PinkBlueButton from '../../components/pink-blue-button/PinkBlueButton';
 
-import AddIcon from '@material-ui/icons/Add';
 import Pagination from '@material-ui/lab/Pagination';
-import CreateRecipeStyledButton from '../../components/styled-buttons/CreateRecipeStyledButton';
 
 import { userPagination } from '../../utils/user-recipes.utils';
 
@@ -91,13 +90,12 @@ class UserRecipePage extends Component {
             <h1>My Recipes.</h1>
             <div className='user-searchbar'>
               <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
-              <div className='create-recipe-button'>
-                <CreateRecipeStyledButton startIcon={<AddIcon />} 
-                  onClick={() => {
+
+              <div onClick={() => {
                     resetUpdateRecipe();
-                    history.push('/createrecipe');}}>
-                  <span>Create Recipe</span>
-                </CreateRecipeStyledButton>
+                    history.push('/createrecipe');}}
+              >
+                <PinkBlueButton btn_type="button" btn_text={"＋ Create Recipe"} createRecipe />
               </div>
             </div>
           </div>

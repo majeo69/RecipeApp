@@ -3,13 +3,14 @@ import './RecipeForm.styles.scss'
 import { compose } from 'recompose'
 import { withRouter } from 'react-router-dom';
 
-import { Button, CircularProgress, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Switch from '@material-ui/core/Switch';
 
-import SubmitStyledButton from '../styled-buttons/SubmitStyledButton';
+import PinkBlueButton from '../pink-blue-button/PinkBlueButton';
+import ButtonPending from '../button-pending/ButtonPending';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -178,17 +179,12 @@ class RecipeForm extends Component {
               required
             />
           </div>
-          <div className='create-recipe-submitbtn'>
-            <SubmitStyledButton type="submit" onClick={this.handleSubmit}
-              disabled={Object.keys(recipeToBeUpdate).length===0 ? createRecipePending : updateRecipePending}>
-              {Object.keys(recipeToBeUpdate).length===0 ? 
-                createRecipePending && <CircularProgress size={19} />
-                : updateRecipePending && <CircularProgress size={19} />}
-              {Object.keys(recipeToBeUpdate).length===0 ? 
-                !createRecipePending && 'Submit'
-                : !updateRecipePending && 'Submit'}
-            </SubmitStyledButton>
-          </div>
+          <PinkBlueButton onClick={this.handleSubmit} btn_type="submit" btn_text={"SUBMIT"} submitRecipe/>
+          {
+            Object.keys(recipeToBeUpdate).length===0 ?
+              createRecipePending ? <ButtonPending /> : null
+            : updateRecipePending ? <ButtonPending /> : null
+          }
         </form>
         <div className='create-recipe-error'>
         {

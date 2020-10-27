@@ -1,6 +1,4 @@
 .pink-blue-btn {
-  background: #F4AEA4;
-  box-shadow: 2px 2px 0px #2A356C;
   border: none;
   border-radius: 5px;
   transition: 0.1s linear;
@@ -10,15 +8,17 @@
     color: #ffffff;
   }
 
-  &:hover {
-    box-shadow: none;
-    transform: translate(2px,2px);
-  }
-
   &.signinsignup-btn {
+    background: #F4AEA4;
+    box-shadow: 2px 2px 0px #2A356C;
     height: 37px;
     width: 100%;
     margin: 7% 0;
+
+    &:hover {
+      box-shadow: none;
+      transform: translate(2px,2px);
+    }
 
     .pink-blue-text {
       font-weight: bold;
@@ -26,6 +26,31 @@
       line-height: 24px;
       margin: 20px auto;
       letter-spacing: 0.1em;
+    }
+  }
+
+  &.submitrecipe-btn {
+    background: #2A356C;
+    box-shadow: 2px 2px 0px black;
+    height: 40px;
+    width: 100%;
+    margin: 8% 0 5% 0;
+    
+    &:hover {
+      box-shadow: none;
+      transform: translate(2px,2px);
+    }
+  }
+
+  &.createrecipe-btn {
+    background: #F4AEA4;
+    box-shadow: 2px 2px 0px #2A356C;
+    height: 44px;
+    width: 150px;
+    
+    &:hover {
+      box-shadow: none;
+      transform: translate(2px,2px);
     }
   }
 }
