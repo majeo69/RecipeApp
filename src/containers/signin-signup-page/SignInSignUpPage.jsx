@@ -21,6 +21,7 @@ function SignInSignUpPage() {
 
   return (
     <div className='signin-signup-page-container'>
+      <img alt='signin-signup-bg' src={require('../../assets/signin_signup_bg.png')} className='signin-signup-bg'/>
       <div className='signin-signup-form-container'>
         <Tabs
           value={value}
