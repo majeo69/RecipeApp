@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 class CategoryButton extends Component {
   handleCategoryChange = event => {
-    console.log(event.currentTarget.value)
     this.props.setPublicSelectedType(event.currentTarget.value);
     this.props.resetPublicKeyword();
     this.props.resetFilteredPublicRecipes();

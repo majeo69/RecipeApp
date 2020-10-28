@@ -27,6 +27,7 @@ import {
   selectUserRecipesPending, 
   selectAllUserRecipes, 
   selectFilteredUserRecipes,
+  selectUserKeyword,
   selectUserCurrentPage,
   selectUserTotalPages 
 } from '../../redux/user-recipes/user.recipes.selectors';
@@ -37,6 +38,7 @@ const mapStateToProps = createStructuredSelector({
   isPending: selectUserRecipesPending,
   userRecipes: selectAllUserRecipes,
   filteredUserRecipes: selectFilteredUserRecipes,
+  userKeyword: selectUserKeyword,
   userCurrentPage: selectUserCurrentPage,
   userTotalPages: selectUserTotalPages,
   token: selectUserToken
@@ -81,7 +83,7 @@ class UserRecipePage extends Component {
   };
 
   render() {
-    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages, history, resetUpdateRecipe } = this.props;
+    const { isPending, userRecipes, filteredUserRecipes, userKeyword, userCurrentPage, userTotalPages, history, resetUpdateRecipe } = this.props;
     const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages);
     return (
       <div className='user-recipe-page-container'>
@@ -90,7 +92,7 @@ class UserRecipePage extends Component {
             <h1>My Recipes.</h1>
             <div className='user-searchbar'>
               <div className='searchbar-user'>
-                <SearchBar onChange={this.handleChange} >Search...</SearchBar>
+                <SearchBar onChange={this.handleChange}  value={userKeyword}>Search...</SearchBar>
               </div>
               <div onClick={() => {
                     resetUpdateRecipe();

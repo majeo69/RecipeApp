@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   userCurrentPage: 1,
   userTotalPages: 0,
   total_count: 0,
-  public_count: 0
+  public_count: 0,
+  userKeyword: ''
 }
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
@@ -34,7 +35,8 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
     case UserRecipesTypes.REQUEST_FILTERED_USER_RECIPES:
       return {
         ...state,
-        filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes)
+        filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes),
+        userKeyword: action.payload
       }
     case UserRecipesTypes.SET_USER_CURRENT_PAGE:
       return {

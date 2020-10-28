@@ -17,6 +17,11 @@ export const selectFilteredUserRecipes = createSelector(
   allUserRecipes => allUserRecipes.filteredUserRecipes
 )
 
+export const selectUserKeyword = createSelector(
+  [selectUserRecipes],
+  allUserRecipes => allUserRecipes.userKeyword
+)
+
 export const selectUserCurrentPage = createSelector(
   [selectUserRecipes],
   allUserRecipes => allUserRecipes.userCurrentPage

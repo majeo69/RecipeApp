@@ -63,10 +63,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 class ExplorePage extends Component {
   componentDidMount() {
-    if (this.props.publicSelectedType === 'All') {
-      this.props.requestAllPublicRecipes('public');
-    } else {
-      this.props.requestAllPublicRecipes(`public/${this.props.publicSelectedType.toLowerCase()}`);
+    if (this.props.publicRecipes.length === 0) {
+      if (this.props.publicSelectedType === 'All') {
+        this.props.requestAllPublicRecipes('public');
+      } else {
+        this.props.requestAllPublicRecipes(`public/${this.props.publicSelectedType.toLowerCase()}`);
+      }
     }
   }
   componentDidUpdate(prevProps) {
