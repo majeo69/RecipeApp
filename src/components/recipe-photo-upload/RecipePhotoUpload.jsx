@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import './RecipePhotoUpload.styles.scss';
 import { withRouter } from 'react-router-dom';
 
-//import StyledGreyButton from '../styled-buttons/StyledGreyButton';
-
 import { Button, CircularProgress } from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-//import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { uploadRecipeImage, uploadRecipeImgError } from '../../redux/create-recipe/create.recipe.actions';
-import { 
-  selectUploadFoodimgPending,
-  selectNewRecipeInfo
-} from '../../redux/create-recipe/create.recipe.selectors';
+import { selectUploadFoodimgPending, selectNewRecipeInfo } from '../../redux/create-recipe/create.recipe.selectors';
 
 const mapStateToProps = createStructuredSelector({
   uploadFoodimgPending: selectUploadFoodimgPending,
@@ -56,41 +50,37 @@ class RecipePhotoUpload extends Component {
               onClick={() => {
                 this.props.history.push('/myrecipes');
                 this.props.history.go();}}
-                size="large" style={{marginLeft: "5px", marginRight: "5px", textDecoration:"underline"}}>My recipes
-              </Button>
-              {this.props.msg3}</h5>
+                size="large" style={{marginLeft: "5px", marginRight: "5px", textDecoration:"underline"}}
+            >My recipes
+            </Button>
+            {this.props.msg3}
+          </h5>
         </div>
         <div className='upload-foodimg-btn-container'>
-            <input 
-              accept="image/*" 
-              className="upload-recipeimg-button" 
-              id="upload-recipeimg"
-              type="file" 
-              style={{display:"none"}}
-              onChange={this.onChangeFile}
-            />
-            <label htmlFor="upload-recipeimg">
-              <Button variant="contained" color="primary" component="span" 
-                disabled={uploadFoodimgPending} startIcon={<CloudUploadIcon />}>
-                {uploadFoodimgPending && <CircularProgress size={15} />}
-                {!uploadFoodimgPending && 'UPLOAD'}
-              </Button>
-            </label>
-            <div className='upload-skip-btn'>
-              <Button onClick={() =>{
-                this.props.history.push('/myrecipes');
-                this.props.history.go();
-              }}
-              size="medium" color="primary">
-                  SKIP
-              </Button>
-            </div>
-            {/* <div className='upload-skip-btn'>
-              <StyledGreyButton onClick={() => {
-                this.props.history.push('/myrecipes');
-                this.props.history.go();}}
-                color="primary" >SKIP</StyledGreyButton>
-            </div> */}
+          <input 
+            accept="image/*" 
+            className="upload-recipeimg-button" 
+            id="upload-recipeimg"
+            type="file" 
+            style={{display:"none"}}
+            onChange={this.onChangeFile}
+          />
+          <label htmlFor="upload-recipeimg">
+            <Button variant="contained" color="primary" component="span" 
+              disabled={uploadFoodimgPending} startIcon={<CloudUploadIcon />}>
+              {uploadFoodimgPending && <CircularProgress size={15} />}
+              {!uploadFoodimgPending && 'UPLOAD'}
+            </Button>
+          </label>
+          <div className='upload-skip-btn'>
+            <Button onClick={() =>{
+              this.props.history.push('/myrecipes');
+              this.props.history.go();
+            }}
+            size="medium" color="primary">
+                SKIP
+            </Button>
+          </div>
         </div>
 
         <div className='upload-recipeimg'>
