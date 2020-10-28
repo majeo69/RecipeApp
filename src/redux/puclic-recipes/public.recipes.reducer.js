@@ -4,6 +4,7 @@ import { addUpTotalTime, filterPublicRecipes } from './public.recipes.utils'
 const INITIAL_STATE = {
   isPending: true,
   publicRecipes: [],
+  publicSearchFilter: 'byTitle',
   filteredPublicRecipes: [],
   selectedType: 'All',
   currentPage: 1,
@@ -29,10 +30,15 @@ const requestPublicRecipesReducer = (state = INITIAL_STATE, action={}) => {
         ...state,
         error: action.payload
       }
+    case PublicRecipesTypes.SET_PUBLIC_SEARCH_FILTER:
+      return {
+        ...state,
+        publicSearchFilter: action.payload
+      }
     case PublicRecipesTypes.REQUEST_FILTERED_PUBLIC_RECIPES:
       return {
         ...state,
-        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes),
+        filteredPublicRecipes: filterPublicRecipes(action.payload, state.publicRecipes, state.publicSearchFilter),
         publicKeyword: action.payload
       }
     case PublicRecipesTypes.RESET_FILTERED_PUBLIC_RECIPES:

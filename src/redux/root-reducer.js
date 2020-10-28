@@ -25,7 +25,7 @@ const StatsPersistConfig = {
 const selectedPublicPersistConfig = {
   key: 'selectedType',
   storage: storageSession,
-  whitelist: ['selectedType', 'totalPages']
+  whitelist: ['selectedType', 'totalPages', 'publicSearchFilter']
 }
 
 const rootRuducer = combineReducers({
