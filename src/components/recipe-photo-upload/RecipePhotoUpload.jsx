@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './RecipePhotoUpload.styles.scss';
 import { withRouter } from 'react-router-dom';
 
-import StyledGreyButton from '../styled-buttons/StyledGreyButton';
+//import StyledGreyButton from '../styled-buttons/StyledGreyButton';
 
 import { Button, CircularProgress } from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+//import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -47,15 +47,7 @@ class RecipePhotoUpload extends Component {
     const { uploadFoodimgPending, onEditRecipeInfo } = this.props;
     return (
       <div className='upload-recipeimg-container'>
-        <div className='upload-recipeimg-skip'>
-          <Button onClick={() =>{
-            this.props.history.push('/myrecipes');
-            this.props.history.go();
-          }}
-            type="button" endIcon={<ArrowForwardIcon />}>
-              SKIP
-          </Button>
-        </div>
+
         <div className='upload-recipeimg-msg'>
           <h5>{this.props.msg4}</h5>
           <h4>{this.props.msg1} <span>for your </span> <span>{this.props.recipeName} recipe</span> ?</h4>
@@ -64,7 +56,7 @@ class RecipePhotoUpload extends Component {
               onClick={() => {
                 this.props.history.push('/myrecipes');
                 this.props.history.go();}}
-                variant="outlined" size="small" color="primary" style={{marginLeft: "10px", marginRight: "10px"}}>My recipes
+                size="large" style={{marginLeft: "5px", marginRight: "5px", textDecoration:"underline"}}>My recipes
               </Button>
               {this.props.msg3}</h5>
         </div>
@@ -85,11 +77,20 @@ class RecipePhotoUpload extends Component {
               </Button>
             </label>
             <div className='upload-skip-btn'>
+              <Button onClick={() =>{
+                this.props.history.push('/myrecipes');
+                this.props.history.go();
+              }}
+              size="medium" color="primary">
+                  SKIP
+              </Button>
+            </div>
+            {/* <div className='upload-skip-btn'>
               <StyledGreyButton onClick={() => {
                 this.props.history.push('/myrecipes');
                 this.props.history.go();}}
                 color="primary" >SKIP</StyledGreyButton>
-            </div>
+            </div> */}
         </div>
 
         <div className='upload-recipeimg'>
