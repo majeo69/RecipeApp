@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ExplorePage.styles.scss';
+import { withRouter } from 'react-router-dom';
 
 import Loading from '../../components/loading/Loading';
 import SearchBar from '../../components/searchbar/SearchBar';
@@ -7,19 +8,17 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import Pagination from '@material-ui/lab/Pagination';
 
-
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import CategoryButton from '../../components/category-button/CategoryButton';
 
 import StyledColorfulButton from '../../components/styled-buttons/StyledColorfulButton';
-
+import PinkBlueButton from '../../components/pink-blue-button/PinkBlueButton';
 import EmptyMatch from '../../components/empty-match/EmptyMatch';
 import { publicPagination } from '../../utils/public-recipes.utils';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
+import { selectUserId } from '../../redux/user/user.selectors';
 import { 
   requestAllPublicRecipes, 
   requestFilteredPublicRecipes,
@@ -41,6 +40,7 @@ import {
 
 
 const mapStateToProps = createStructuredSelector({
+  userId: selectUserId,
   isPending: selectPublicRecipesPending,
   publicRecipes: selectAllPublicRecipes,
   filteredPublicRecipes: selectFilteredPublicRecipes,
@@ -57,7 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
   resetPublicKeyword: () => dispatch(resetPublicKeyword()),
   setPublicSelectedType: (selectedType) => dispatch(setPublicSelectedType(selectedType)),
   setPublicCurrentPage: (data) => dispatch(setCurrentPage(data)),
-  setPublicTotalPage: (data) => dispatch(setTotalPage(data))
+  setPublicTotalPage: (data) => dispatch(setTotalPage(data)),
+  resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
 });
 
 class ExplorePage extends Component {
@@ -108,6 +109,7 @@ class ExplorePage extends Component {
   };
 
   render() {
+    const { history, resetUpdateRecipe, userId } = this.props;
     const { isPending, publicRecipes, publicSelectedType, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
     const publicRecipesPagination = publicPagination(publicRecipes, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages);
 
@@ -119,17 +121,26 @@ class ExplorePage extends Component {
             <SearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
               ex. Chocolate tart
             </SearchBar>
+            <div className='category-random-btn'>
+              <div className='category-btn-group'>
+                <CategoryButton category="All" category_active={`${publicSelectedType === "All" ? "true" : ""}`} />
+                <CategoryButton category="Meal" category_active={`${publicSelectedType === "Meal" ? "true" : ""}`} />
+                <CategoryButton category="Dessert" category_active={`${publicSelectedType === "Dessert" ? "true" : ""}`} />
+                <CategoryButton category="Drink" category_active={`${publicSelectedType === "Drink" ? "true" : ""}`} />
+              </div>
+              <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
+            </div>
           </div>
           <div className='explore-search-col-2'>
-            <FormControl component="fieldset">
-              <RadioGroup row name="selectFoodType" value={publicSelectedType} onChange={this.handleRadioChange}>
-                <FormControlLabel value="All" control={<Radio color='primary' />} label="All" />
-                <FormControlLabel value="Meal" control={<Radio color='primary' />} label="Meal" />
-                <FormControlLabel value="Dessert" control={<Radio color='primary' />} label="Dessert" />
-                <FormControlLabel value="Drink" control={<Radio color='primary' />} label="Drink" />
-              </RadioGroup>
-            </FormControl>
-            <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
+            <div onClick={() => {
+                  resetUpdateRecipe();
+                  if (userId !== 'no-user') {
+                    history.push('/createrecipe');
+                  } else {
+                    history.push('/signin');
+                  }}}>
+              <PinkBlueButton btn_type="button" btn_text={"＋ Create Recipe"} createRecipe />
+            </div>
           </div>
         </div>
         {
@@ -168,4 +179,4 @@ class ExplorePage extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExplorePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ExplorePage));

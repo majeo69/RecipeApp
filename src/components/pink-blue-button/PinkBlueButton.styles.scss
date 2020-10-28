@@ -46,11 +46,16 @@
     background: #F4AEA4;
     box-shadow: 2px 2px 0px #2A356C;
     height: 44px;
-    width: 150px;
+    width: 170px;
     
     &:hover {
       box-shadow: none;
       transform: translate(2px,2px);
+    }
+
+    .pink-blue-text {
+      font-weight: 700;
+      letter-spacing: 0.08em;
     }
   }
 }

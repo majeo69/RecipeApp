@@ -29,6 +29,10 @@
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
+
+        .searchbar-user {
+          width: 65%;
+        }
   
         .create-recipe-button {
           margin-left: 20px;

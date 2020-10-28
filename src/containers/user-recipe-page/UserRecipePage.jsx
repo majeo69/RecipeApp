@@ -89,8 +89,9 @@ class UserRecipePage extends Component {
           <div className='user-searchbar-container'>
             <h1>My Recipes.</h1>
             <div className='user-searchbar'>
-              <SearchBar onChange={this.handleChange} className='searchbar-user'>Search...</SearchBar>
-
+              <div className='searchbar-user'>
+                <SearchBar onChange={this.handleChange} >Search...</SearchBar>
+              </div>
               <div onClick={() => {
                     resetUpdateRecipe();
                     history.push('/createrecipe');}}
