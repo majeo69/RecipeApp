@@ -34,6 +34,7 @@ import {
   selectAllPublicRecipes,
   selectFilteredPublicRecipes,
   selectFilteredPublicKeyword,
+  selectPublicFilterType,
   selectPublicSelectedType,
   selectPublicCurrentPage,
   selectPublicTotalPages
@@ -44,6 +45,7 @@ const mapStateToProps = createStructuredSelector({
   userId: selectUserId,
   isPending: selectPublicRecipesPending,
   publicRecipes: selectAllPublicRecipes,
+  publicFilterType: selectPublicFilterType,
   filteredPublicRecipes: selectFilteredPublicRecipes,
   publicKeyword: selectFilteredPublicKeyword,
   publicSelectedType: selectPublicSelectedType,
@@ -113,7 +115,8 @@ class ExplorePage extends Component {
 
   render() {
     const { history, resetUpdateRecipe, userId } = this.props;
-    const { isPending, publicRecipes, publicSelectedType, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
+    const { isPending, publicRecipes, publicFilterType, publicSelectedType } = this.props;
+    const { publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages } = this.props;
     const publicRecipesPagination = publicPagination(publicRecipes, publicKeyword, filteredPublicRecipes, publicCurrentPage, publicTotalPages);
 
     return (
@@ -123,7 +126,11 @@ class ExplorePage extends Component {
           <div className='explore-search-col-1n2'>
             <div className='explore-search-col-1'>
               <SearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
-                ex. Chocolate tart
+                {
+                  publicFilterType === "byTitle" ?
+                  "Searching by title... ex. Chocolate tart"
+                  : "Searching by ingredient... ex. Egg"
+                }
               </SearchBar>
               <div className='category-random-btn'>
                 <div className='category-btn-group'>
