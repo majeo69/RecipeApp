@@ -10,7 +10,7 @@
   border: 3px solid #2A356C;
   border-right: none;
   padding: 5px;
-  height: 48px;
+  height: 46px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #333333;
@@ -18,7 +18,7 @@
 
 .searchButton {
   width: 60px;
-  height: 48px;
+  height: 46px;
   border: 1px solid #2A356C;
   background: #2A356C;
   text-align: center;

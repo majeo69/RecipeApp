@@ -3,13 +3,11 @@ import './ExplorePage.styles.scss';
 import { withRouter } from 'react-router-dom';
 
 import Loading from '../../components/loading/Loading';
-import SearchBar from '../../components/searchbar/SearchBar';
+import PublicSearchBar from '../../components/searchbar/PublicSearchBar';
 import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import CategoryButton from '../../components/category-button/CategoryButton';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import Pagination from '@material-ui/lab/Pagination';
-
-import SearchFilter from '../../components/search-filter/SearchFilter';
 
 import StyledColorfulButton from '../../components/styled-buttons/StyledColorfulButton';
 import PinkBlueButton from '../../components/pink-blue-button/PinkBlueButton';
@@ -123,37 +121,25 @@ class ExplorePage extends Component {
       <div className='explore-page-container'>
         <h1>Explore.</h1>
         <div className='explore-search-container'>
-          <div className='explore-search-col-1n2'>
-            <div className='explore-search-col-1'>
-              <SearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
-                {
-                  publicFilterType === "byTitle" ?
-                  "Searching by title... ex. Chocolate tart"
-                  : "Searching by ingredient... ex. Egg"
-                }
-              </SearchBar>
-              <div className='category-random-btn'>
-                <div className='category-btn-group'>
-                  <CategoryButton category="All" category_active={`${publicSelectedType === "All" ? "true" : ""}`} />
-                  <CategoryButton category="Meal" category_active={`${publicSelectedType === "Meal" ? "true" : ""}`} />
-                  <CategoryButton category="Dessert" category_active={`${publicSelectedType === "Dessert" ? "true" : ""}`} />
-                  <CategoryButton category="Drink" category_active={`${publicSelectedType === "Drink" ? "true" : ""}`} />
-                </div>
-                <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
+          <div className='explore-search-col-1'>
+            <PublicSearchBar onChange={this.handleChange} value={`${publicKeyword==='random' ? '' : publicKeyword}`} className='searchbar-explore'>
+              {
+                publicFilterType === "byTitle" ?
+                "Searching by title... ex. Chocolate tart"
+                : "Searching by ingredient... ex. Egg"
+              }
+            </PublicSearchBar>
+            <div className='category-random-btn'>
+              <div className='category-btn-group'>
+                <CategoryButton category="All" category_active={`${publicSelectedType === "All" ? "true" : ""}`} />
+                <CategoryButton category="Meal" category_active={`${publicSelectedType === "Meal" ? "true" : ""}`} />
+                <CategoryButton category="Dessert" category_active={`${publicSelectedType === "Dessert" ? "true" : ""}`} />
+                <CategoryButton category="Drink" category_active={`${publicSelectedType === "Drink" ? "true" : ""}`} />
               </div>
-            </div>
-            <div className='explore-search-col-2'>
-              <SearchFilter />
-              <div className='explore-search-col-2-deco'>
-                <span className="dot" style={{backgroundColor: "#F4AEA4"}}></span>
-                <span className="dot" style={{backgroundColor: "#FBDD8A"}}></span>
-                <span className="dot" style={{backgroundColor: "#F4AEA4"}}></span>
-                <span className="dot" style={{backgroundColor: "#FBDD8A"}}></span>
-                <span className="dot" style={{backgroundColor: "#F4AEA4"}}></span>
-              </div>
+              <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
             </div>
           </div>
-          <div className='explore-search-col-3'>
+          <div className='explore-search-col-2'>
             <div onClick={() => {
                   resetUpdateRecipe();
                   if (userId !== 'no-user') {
