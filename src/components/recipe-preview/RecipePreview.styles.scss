@@ -59,13 +59,14 @@
     }
   }
 
-  h4 {
-    font-size: 27px;
-    font-family: 'Frank Ruhl Libre', serif;
-    margin: 15px 15px 15px 20px;
-  }
-
-  h6:last-child {
-    margin-bottom: 25px;
+  .preview-title-name {
+    h4 {
+      font-size: 27px;
+      font-family: 'Frank Ruhl Libre', serif;
+      margin: 15px 15px 0px 20px;
+    }
+    h6 {
+      margin: 5px 0px 15px 20px;
+    }
   }
 }
