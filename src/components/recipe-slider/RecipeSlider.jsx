@@ -42,7 +42,8 @@ const RecipeSlider = ({ usersTotalCount, usersPublicCount }) => {
           value={usersTotalCount}
           aria-labelledby="discrete-slider-always"
           step={10}
-          max={40}
+          min={0}
+          max={ usersTotalCount > 35 ?  usersTotalCount + 5 : 40}
           marks
           valueLabelDisplay="on"
         />
@@ -54,7 +55,7 @@ const RecipeSlider = ({ usersTotalCount, usersPublicCount }) => {
           value={usersPublicCount} 
           step={10}
           min={0} 
-          max={20} 
+          max={ usersPublicCount > 15 ? usersPublicCount + 5 : 20} 
           marks 
         />
         <span style={{marginLeft:'8px'}}>{usersPublicCount}</span>
@@ -65,7 +66,7 @@ const RecipeSlider = ({ usersTotalCount, usersPublicCount }) => {
           value={usersTotalCount - usersPublicCount}
           step={10} 
           min={0} 
-          max={20} 
+          max={ (usersTotalCount - usersPublicCount) > 15 ? (usersTotalCount - usersPublicCount) + 5 : 20} 
           marks 
         />
         <span style={{marginLeft:'8px'}}>{usersTotalCount - usersPublicCount}</span>
