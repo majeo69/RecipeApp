@@ -1,25 +1,52 @@
 .category-btn {
   height: 33px;
-  background: #F7EFEE;
-  border: 2px solid #2A356C;
   box-sizing: border-box;
   border-radius: 30px;
   margin-right: 10px;
 
-  &:hover{
-    background-color: #E5E5E5;
-  }
-
   span {
-    color: #2A356C;
     margin: 0 7px;
   }
 
-  &.category-active {
-    background: #2A356C;
+  &.explore-category, &.user-category-all {
+    background: #F7EFEE;
+    border: 2px solid #2A356C;
 
     span {
-      color: #FFFFFF;
+      color: #2A356C;
+    }
+
+    &:hover{
+      background-color: #E5E5E5;
+    }
+  
+    &.category-active, &.user-category-active {
+      background: #2A356C;
+  
+      span {
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  &.user-category {
+    background: #F7EFEE;
+    border: 2px solid #EC9C90;
+
+    span {
+      color: #EC9C90;
+    }
+
+    &:hover{
+      background-color: #F3F3F3;
+    }
+
+    &.user-category-active {
+      background: #EC9C90;
+
+      span {
+        color: #FFFFFF;
+      }
     }
   }
 }

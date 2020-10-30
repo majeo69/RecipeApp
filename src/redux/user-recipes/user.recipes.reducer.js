@@ -4,6 +4,7 @@ import { addUpTotalTime, filterUserRecipes, countPublicStats } from './user.reci
 const INITIAL_STATE = {
   isPending: true,
   userRecipes: [],
+  userSelectedCategory: "All",
   filteredUserRecipes: [],
   userCurrentPage: 1,
   userTotalPages: 0,
@@ -14,7 +15,25 @@ const INITIAL_STATE = {
 
 const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
   switch(action.type) {
-    case UserRecipesTypes.REQUEST_ALL_USER_RECIPES_PENGING:
+    case UserRecipesTypes.INITIAL_REQUEST_ALL_USER_RECIPES_PENDING:
+      return {
+        ...state,
+        isPending: true
+      }
+    case UserRecipesTypes.INITIAL_REQUEST_ALL_USER_RECIPES_SUCCESS:
+      return {
+        ...state,
+        userRecipes: addUpTotalTime(action.payload),
+        total_count: action.payload.length,
+        public_count: countPublicStats(action.payload),
+        isPending: false
+      }
+    case UserRecipesTypes.INITIAL_REQUEST_ALL_USER_RECIPES_FAILED:
+      return {
+        ...state,
+        error: action.payload
+      }
+    case UserRecipesTypes.REQUEST_ALL_USER_RECIPES_PENDING:
       return {
         ...state,
         isPending: true
@@ -23,8 +42,6 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
       return {
         ...state,
         userRecipes: addUpTotalTime(action.payload),
-        total_count: action.payload.length,
-        public_count: countPublicStats(action.payload),
         isPending: false
       }
     case UserRecipesTypes.REQUEST_ALL_USER_RECIPES_FAILED:
@@ -32,11 +49,22 @@ const requestUserRecipesReducer = (state = INITIAL_STATE, action={}) => {
         ...state,
         error: action.payload
       }
+    case UserRecipesTypes.SET_USER_SELECTED_CATEGORY:
+      return {
+        ...state,
+        userSelectedCategory: action.payload
+      }
     case UserRecipesTypes.REQUEST_FILTERED_USER_RECIPES:
       return {
         ...state,
         filteredUserRecipes: filterUserRecipes(action.payload, state.userRecipes),
         userKeyword: action.payload
+      }
+    case UserRecipesTypes.RESET_FILTERED_USER_RECIPES_AND_KEYWORDS:
+      return {
+        ...state,
+        filteredUserRecipes: [],
+        userKeyword: ''
       }
     case UserRecipesTypes.SET_USER_CURRENT_PAGE:
       return {

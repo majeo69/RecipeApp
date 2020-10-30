@@ -9,6 +9,7 @@ import ErrorBoundry from '../../components/error-boundry/ErrorBoundry';
 import RecipesOverview from '../../components/recipes-overview/RecipesOverview';
 import EmptyMatch from '../../components/empty-match/EmptyMatch';
 import PinkBlueButton from '../../components/pink-blue-button/PinkBlueButton';
+import CategoryButton from '../../components/category-button/CategoryButton';
 
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -18,7 +19,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { resetUpdateRecipe } from '../../redux/update-recipe/update.recipe.actions';
 import { 
-  requestAllUserRecipes, 
+  initialRequestAllUserRecipes, 
   requestFilteredUserRecipes, 
   setUserCurrentPage, 
   setUserTotalPage 
@@ -26,6 +27,7 @@ import {
 import { 
   selectUserRecipesPending, 
   selectAllUserRecipes, 
+  selectUserSelectedCategory,
   selectFilteredUserRecipes,
   selectUserKeyword,
   selectUserCurrentPage,
@@ -37,6 +39,7 @@ import { selectUserToken } from '../../redux/user/user.selectors';
 const mapStateToProps = createStructuredSelector({
   isPending: selectUserRecipesPending,
   userRecipes: selectAllUserRecipes,
+  userSelectedCategory: selectUserSelectedCategory,
   filteredUserRecipes: selectFilteredUserRecipes,
   userKeyword: selectUserKeyword,
   userCurrentPage: selectUserCurrentPage,
@@ -45,7 +48,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestAllUserRecipes: (token) => dispatch(requestAllUserRecipes(token)),
+  initialRequestAllUserRecipes: (token) => dispatch(initialRequestAllUserRecipes(token)),
   requestFilteredUserRecipes: (keyword) => dispatch(requestFilteredUserRecipes(keyword)),
   setUserCurrentPage: (data) => dispatch(setUserCurrentPage(data)),
   setUserTotalPage: (data) => dispatch(setUserTotalPage(data)),
@@ -55,7 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
 class UserRecipePage extends Component {
   componentDidMount() {
     if (this.props.userRecipes.length === 0) {
-      this.props.requestAllUserRecipes(this.props.token);
+      this.props.initialRequestAllUserRecipes(this.props.token);
     }
   }
 
@@ -75,7 +78,6 @@ class UserRecipePage extends Component {
 
   handleChange = event => {
     this.props.requestFilteredUserRecipes(event.target.value);
-    
   }
 
   handlePagination = (event, value) => {
@@ -83,7 +85,8 @@ class UserRecipePage extends Component {
   };
 
   render() {
-    const { isPending, userRecipes, filteredUserRecipes, userKeyword, userCurrentPage, userTotalPages, history, resetUpdateRecipe } = this.props;
+    const { isPending, userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages } = this.props;
+    const { history, userKeyword, userSelectedCategory, resetUpdateRecipe } = this.props;
     const userRecipesPagination = userPagination(userRecipes, filteredUserRecipes, userCurrentPage, userTotalPages);
     return (
       <div className='user-recipe-page-container'>
@@ -93,6 +96,11 @@ class UserRecipePage extends Component {
             <div className='user-searchbar'>
               <div className='searchbar-user'>
                 <SearchBar onChange={this.handleChange}  value={userKeyword}>Search...</SearchBar>
+                <div className='category-btn-group'>
+                  <CategoryButton category="All" user_category_all user_category_active={`${userSelectedCategory === "All" ? 'true': ''}`} />
+                  <CategoryButton category="Public" user_category user_category_active={`${userSelectedCategory === "Public" ? 'true': ''}`} />
+                  <CategoryButton category="Private" user_category user_category_active={`${userSelectedCategory === "Private" ? 'true': ''}`} />
+                </div>
               </div>
               <div onClick={() => {
                     resetUpdateRecipe();

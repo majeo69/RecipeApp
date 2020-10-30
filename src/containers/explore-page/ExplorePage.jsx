@@ -23,7 +23,6 @@ import {
   requestFilteredPublicRecipes,
   resetFilteredPublicRecipes,
   resetPublicKeyword,
-  setPublicSelectedType,
   setCurrentPage, 
   setTotalPage 
 } from '../../redux/puclic-recipes/public.recipes.actions';
@@ -56,7 +55,6 @@ const mapDispatchToProps = (dispatch) => ({
   requestFilteredPublicRecipes: keyword => dispatch(requestFilteredPublicRecipes(keyword)),
   resetFilteredPublicRecipes: () => dispatch(resetFilteredPublicRecipes()),
   resetPublicKeyword: () => dispatch(resetPublicKeyword()),
-  setPublicSelectedType: (selectedType) => dispatch(setPublicSelectedType(selectedType)),
   setPublicCurrentPage: (data) => dispatch(setCurrentPage(data)),
   setPublicTotalPage: (data) => dispatch(setTotalPage(data)),
   resetUpdateRecipe: () => dispatch(resetUpdateRecipe())
@@ -90,18 +88,6 @@ class ExplorePage extends Component {
     this.props.requestFilteredPublicRecipes(event.target.value);
   }
 
-  handleRadioChange = event => {
-    this.props.setPublicSelectedType(event.target.value);
-    this.props.resetPublicKeyword();
-    this.props.resetFilteredPublicRecipes();
-    this.props.setPublicCurrentPage(1);
-    if (event.target.value === 'All') {
-      this.props.requestAllPublicRecipes('public');
-    } else {
-      this.props.requestAllPublicRecipes(`public/${event.target.value.toLowerCase()}`);
-    }
-  }
-
   onSelectRandom = event => {
     this.props.setPublicCurrentPage(1);
     this.props.requestFilteredPublicRecipes('random');
@@ -131,10 +117,10 @@ class ExplorePage extends Component {
             </PublicSearchBar>
             <div className='category-random-btn'>
               <div className='category-btn-group'>
-                <CategoryButton category="All" category_active={`${publicSelectedType === "All" ? "true" : ""}`} />
-                <CategoryButton category="Meal" category_active={`${publicSelectedType === "Meal" ? "true" : ""}`} />
-                <CategoryButton category="Dessert" category_active={`${publicSelectedType === "Dessert" ? "true" : ""}`} />
-                <CategoryButton category="Drink" category_active={`${publicSelectedType === "Drink" ? "true" : ""}`} />
+                <CategoryButton category="All" explore_category explore_category_active={`${publicSelectedType === "All" ? "true" : ""}`} />
+                <CategoryButton category="Meal" explore_category explore_category_active={`${publicSelectedType === "Meal" ? "true" : ""}`} />
+                <CategoryButton category="Dessert" explore_category explore_category_active={`${publicSelectedType === "Dessert" ? "true" : ""}`} />
+                <CategoryButton category="Drink" explore_category explore_category_active={`${publicSelectedType === "Drink" ? "true" : ""}`} />
               </div>
               <StyledColorfulButton size="small" onClick={this.onSelectRandom}>Random</StyledColorfulButton>
             </div>

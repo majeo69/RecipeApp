@@ -16,21 +16,21 @@ const persistConfig = {
   whitelist: ['user', 'updateRecipe']
 }
 
-const StatsPersistConfig = {
-  key: 'stats',
+const UsersRecipePersistConfig = {
+  key: 'usersRecipePersist',
   storage: storageSession,
   whitelist: ['public_count', 'total_count']
 };
 
-const selectedPublicPersistConfig = {
-  key: 'selectedType',
+const PublicRecipePersistConfig = {
+  key: 'pubicRecipePersist',
   storage: storageSession,
   whitelist: ['selectedType', 'totalPages', 'publicSearchFilter']
 }
 
 const rootRuducer = combineReducers({
-  publicRecipes: persistReducer(selectedPublicPersistConfig, requestPublicRecipesReducer),
-  userRecipes: persistReducer(StatsPersistConfig, requestUserRecipesReducer),
+  publicRecipes: persistReducer(PublicRecipePersistConfig, requestPublicRecipesReducer),
+  userRecipes: persistReducer(UsersRecipePersistConfig, requestUserRecipesReducer),
   user: userReducer,
   createRecipe: createUserRecipeReducer,
   updateRecipe: updateUserRecipeReducer,
