@@ -30,11 +30,11 @@ function SignInSignUpPage() {
           onChange={handleChange}
           centered
         >
-          <Tab style={tab_styles} label="Sign up" />
           <Tab style={tab_styles} label="Sign in" />
+          <Tab style={tab_styles} label="Sign up" />
         </Tabs>
         {
-          value === 0 ? <SignUp /> : <SignIn />
+          value === 0 ? <SignIn /> : <SignUp />
         }
       </div>
     </div>
