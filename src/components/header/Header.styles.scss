@@ -40,13 +40,13 @@
 
       .btn-header {
         color: #ffffff;
-        background-color: #F4AEA4;
-        border-color: #F4AEA4;
+        background-color: #a4e4f4;
+        border-color: #a4e4f4;
         font-weight: 500;
         font-size: 18px;
         &:hover {
-          background-color: #FBDD8A;
-          border-color: #FBDD8A;
+          background-color: #b9a4f4;
+          border-color: #b9a4f4;
         }
         &:focus {
           box-shadow: none;
@@ -54,8 +54,8 @@
       }
 
       &.link:hover {
-        color: #F4AEA4;
-        border-bottom: 2px solid #F4AEA4;
+        color: #a4e4f4;
+        border-bottom: 2px solid #a4e4f4;
       }
     }
   }
@@ -71,12 +71,12 @@
     .btn-success:not(:disabled):not(.disabled).active, 
     .btn-success:not(:disabled):not(.disabled):active, 
     .show>.btn-success.dropdown-toggle {
-      background-color: #F4AEA4;
-      border-color: #F4AEA4;
+      background-color: #a4e4f4;
+      border-color: #a4e4f4;
     }
 
     .dropdown-item.active, .dropdown-item:active {
-      background-color: #FBDD8A;
+      background-color: #a4e4f4;
     }
   }
 }
